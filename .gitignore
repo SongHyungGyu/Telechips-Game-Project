@@ -1,0 +1,20 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build 결과
+Debug/
+Release/
+x64/
+x86/
+
+# 임시 파일
+*.log
+*.tmp
+
+# Allegro DLL (선택)
+*.dll
+
+packages/
+*.nupkg
