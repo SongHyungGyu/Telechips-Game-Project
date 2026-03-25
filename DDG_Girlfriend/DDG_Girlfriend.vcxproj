@@ -130,15 +130,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LIB_DDG.c" />
-    <ClCompile Include="MAIN_DDG.c" />
-    <ClCompile Include="first_page.c" />
+    <ClCompile Include="LIB_ddg.c" />
+    <ClCompile Include="MAIN_ddg.c" />
+    <ClCompile Include="LIB_first_page.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LIB_DDG.h" />
+    <ClInclude Include="LIB_ddg.h" />
+    <ClInclude Include="LIB_first_page.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\first_page.png" />

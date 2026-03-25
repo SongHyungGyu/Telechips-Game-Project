@@ -1,5 +1,5 @@
 // 첫번째 페이지 함수 실행부
-#include "LIB_DDG.h"
+#include "LIB_first_page.h"
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image)
 {

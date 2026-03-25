@@ -1,5 +1,5 @@
-// 공용 함수 실행부
 #include "LIB_DDG.h"
+// 공용
 
 void must_init(bool test, const char* description)
 {

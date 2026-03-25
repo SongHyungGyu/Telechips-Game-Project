@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MAIN_DDG.c">
+    <ClCompile Include="MAIN_ddg.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="first_page.c">
+    <ClCompile Include="LIB_first_page.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LIB_DDG.c">
+    <ClCompile Include="LIB_ddg.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LIB_DDG.h">
+    <ClInclude Include="LIB_ddg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LIB_first_page.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

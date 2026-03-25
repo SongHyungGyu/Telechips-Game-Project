@@ -1,5 +1,5 @@
 #if 1
-#include "LIB_DDG.h"
+#include "LIB_ddg.h"
 
 int main()
 {
