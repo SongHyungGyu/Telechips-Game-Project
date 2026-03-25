@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DDG.c">
+    <ClCompile Include="MAIN_DDG.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="first_page.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LIB_DDG.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,7 +29,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\img\login_img.png">
+    <ClInclude Include="LIB_DDG.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\img\first_page.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\login_page.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

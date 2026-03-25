@@ -130,13 +130,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DDG.c" />
+    <ClCompile Include="LIB_DDG.c" />
+    <ClCompile Include="MAIN_DDG.c" />
+    <ClCompile Include="first_page.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\img\login_img.png" />
+    <ClInclude Include="LIB_DDG.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\img\first_page.png" />
+    <Image Include="resource\img\login_page.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
