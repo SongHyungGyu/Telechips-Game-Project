@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
     <ClCompile Include="LIB_stage.c" />
+    <ClCompile Include="LIB_stage1.h" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />

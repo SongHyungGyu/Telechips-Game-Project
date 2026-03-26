@@ -36,6 +36,9 @@
     <ClCompile Include="LIB_stage.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="LIB_stage1.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
