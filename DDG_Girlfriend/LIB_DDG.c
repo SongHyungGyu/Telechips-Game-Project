@@ -30,7 +30,7 @@ SYSTEM init_game_system() {
 
     al_register_event_source(sys.queue, al_get_keyboard_event_source());
     al_register_event_source(sys.queue, al_get_display_event_source(sys.display));
-    al_register_event_source(sys.queue, al_get_display_event_source(sys.timer));
+    al_register_event_source(sys.queue, al_get_timer_event_source(sys.timer));
 
     al_start_timer(sys.timer);
 

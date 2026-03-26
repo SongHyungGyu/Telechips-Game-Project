@@ -1,20 +1,16 @@
-# Visual Studio
 .vs/
-*.user
-*.suo
-
-# Build 결과
 Debug/
 Release/
 x64/
 x86/
+ipch/
 
-# 임시 파일
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.user
 *.log
-*.tmp
-
-# Allegro DLL (선택)
-*.dll
-
+*.tlog
+*.lastbuildstate
 packages/
-*.nupkg
