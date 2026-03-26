@@ -58,5 +58,14 @@
     <Image Include="resource\img\login_page.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="resource\img\ddg.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\road.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\wall.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

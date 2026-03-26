@@ -4,6 +4,6 @@
 #include "LIB_DDG.h"
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
-void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer);
+void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 
 #endif

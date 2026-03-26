@@ -147,8 +147,11 @@
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resource\img\ddg.png" />
     <Image Include="resource\img\first_page.png" />
     <Image Include="resource\img\login_page.png" />
+    <Image Include="resource\img\road.png" />
+    <Image Include="resource\img\wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
