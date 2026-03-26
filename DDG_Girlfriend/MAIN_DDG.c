@@ -12,13 +12,14 @@ int main()
 
     ALLEGRO_EVENT ev;
     int mode = 1;
-    bool stage1_init = false;
+    init_stage1();
 
     while (1) {
         al_wait_for_event(sys.queue, &ev);
+        keyboard_update(&ev);
         if(mode == 0) run_first_page(sys.display, sys.queue, sys.timer, ev);
         /*run_login_page(sys.display, sys.queue, sys.timer);*/
-        if(mode == 1) run_stage1(sys.display, sys.queue, sys.timer, ev, &stage1_init);
+        if(mode == 1) run_stage1(sys.display, sys.queue, sys.timer, ev);
     }
 
     return 0;

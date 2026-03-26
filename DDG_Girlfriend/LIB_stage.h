@@ -11,35 +11,42 @@
 #define shot_speed
 
 //두더지
-typedef struct ddg {
+typedef struct {
 	ALLEGRO_BITMAP* img;
 	int x;
 	int y;
 	int life;
 	int speed;
 }DDG;
-typedef struct worm {
+typedef struct {
 	int x;
 	int y;
 	int speed;
 }worm;
 //shot의 출발 지점
-typedef struct c_worm {
+typedef struct {
 	int x;
 	int y;
 	int shot_timer;
 }c_worm;
-typedef struct shot {
+typedef struct {
 	int x;
 	int y;
 	int speed;
 	bool used;
-};
+}shot;
 typedef struct flower {
 	int x;
 	int y;
 	bool used;
-};
-void run_stage1(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev, bool stage1_init);
-
+}flower;
+void run_stage1(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void init_stage1();
+typedef struct {
+	int x;
+	int y;
+	int w;
+	int h;
+	int type;
+} tile;
 #endif

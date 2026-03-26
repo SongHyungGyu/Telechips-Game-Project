@@ -30,7 +30,7 @@ SYSTEM init_game_system() {
 
     al_register_event_source(sys.queue, al_get_keyboard_event_source());
     al_register_event_source(sys.queue, al_get_display_event_source(sys.display));
-    al_register_event_source(sys.queue, al_get_display_event_source(sys.timer));
+    al_register_event_source(sys.queue, al_get_timer_event_source(sys.timer));
 
     al_start_timer(sys.timer);
 
@@ -59,4 +59,22 @@ void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp)
 
 void keyboard_init() {
     memset(key, 0, sizeof(key));
+}
+
+void keyboard_update(ALLEGRO_EVENT* event)
+{
+    switch (event->type)
+    {
+    case ALLEGRO_EVENT_TIMER:
+        for (int i = 0; i < ALLEGRO_KEY_MAX; i++)
+            key[i] &= ~KEY_SEEN;
+        break;
+
+    case ALLEGRO_EVENT_KEY_DOWN:
+        key[event->keyboard.keycode] = KEY_SEEN | KEY_DOWN;
+        break;
+    case ALLEGRO_EVENT_KEY_UP:
+        key[event->keyboard.keycode] &= ~KEY_DOWN;
+        break;
+    }
 }
