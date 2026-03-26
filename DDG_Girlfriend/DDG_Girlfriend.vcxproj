@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
+    <ClCompile Include="LIB_login.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
   </ItemGroup>
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
+    <ClInclude Include="LIB_login.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\first_page.png" />

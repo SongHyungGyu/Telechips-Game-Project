@@ -24,6 +24,9 @@
     <ClCompile Include="LIB_ddg.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="LIB_login.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -33,6 +36,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="LIB_first_page.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LIB_login.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

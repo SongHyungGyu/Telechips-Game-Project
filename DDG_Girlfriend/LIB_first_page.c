@@ -26,21 +26,19 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image)
     );
 }
 
-void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer) {
+void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
     ALLEGRO_BITMAP* first_page_image = load_image("resource/img/first_page.png");
     bool redraw = true;
-    ALLEGRO_EVENT ev;
-
-    char id[50] = "";
-    int len = 0;
-
-    while (1)
-    {
-        al_wait_for_event(queue, &ev);
+    /*ALLEGRO_EVENT ev;*/
+    //printf("first page\n");
+    /*while (1)
+    {*/
+        /*al_wait_for_event(queue, &ev);*/
         if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
-        if (ev.type == ALLEGRO_EVENT_KEY_DOWN) return;
-        if (redraw && al_is_event_queue_empty(queue))
+        /*if (ev.type == ALLEGRO_EVENT_KEY_DOWN) return;*/
+        if (redraw)
         {
+            printf("first page\n");
             al_clear_to_color(al_map_rgb(0, 0, 0));
             // 디스플레이 출력전 크기 맞추고 출력
             al_set_target_backbuffer(display);
@@ -49,5 +47,5 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
             al_flip_display();
             redraw = false;
         }
-    }
+    //}
 }

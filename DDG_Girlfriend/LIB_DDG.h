@@ -22,5 +22,7 @@ typedef struct SYSTEM {
 	ALLEGRO_TIMER* timer;
 }SYSTEM;
 SYSTEM init_game_system();
+void draw_scaled_crop(ALLEGRO_BITMAP* image);
+
 
 #endif
