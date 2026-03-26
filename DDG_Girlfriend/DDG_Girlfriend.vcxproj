@@ -131,9 +131,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
-    <ClCompile Include="LIB_login.c" />
+    <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
+    <ClCompile Include="stage1.c" />
+    <ClCompile Include="stage2.c" />
+    <ClCompile Include="stage3.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -141,7 +144,7 @@
   <ItemGroup>
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
-    <ClInclude Include="LIB_login.h" />
+    <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\first_page.png" />

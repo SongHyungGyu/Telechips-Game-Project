@@ -7,8 +7,8 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 
-#define DISP_W 1000
-#define DISP_H 600
+#define DISP_W 1200
+#define DISP_H 900
 unsigned char key[ALLEGRO_KEY_MAX];
 void must_init(bool test, const char* description);
 void init_system();
