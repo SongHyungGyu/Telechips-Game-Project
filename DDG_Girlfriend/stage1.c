@@ -37,7 +37,7 @@ static void render_stage1(Stage* s, DDG * ddg) {
     //지도 이미 그려놓은거 출력
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
     //ddg 렌더
-   // render_ddg(ddg);
+    render_ddg(ddg);
 
     al_flip_display();
 }
@@ -45,22 +45,28 @@ static void render_stage1(Stage* s, DDG * ddg) {
 
 
 //상태 업데이트
-static void update_stage1(DDG * ddg) {
-   // update_ddg(ddg);
+static void update_stage1(DDG * ddg, Map m) {
+   update_ddg(ddg, m);
 }
 
 void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display, 
     ALLEGRO_EVENT_QUEUE * queue, ALLEGRO_TIMER * timer, ALLEGRO_EVENT ev) {
           
-    bool redraw = true;
+    if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
+        (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
+        mode = 5;
+        return;
+    }
 
+    bool redraw = true;
+    
             
     if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
 
             
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
-        update_stage1(ddg);
+        update_stage1(ddg, s->map);
                 
         redraw = true;
             

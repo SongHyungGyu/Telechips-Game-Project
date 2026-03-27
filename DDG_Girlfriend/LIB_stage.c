@@ -43,3 +43,19 @@ void init_stage(Stage* s) {
     renderMap(s);                     // 300장 그리기 (단 1회)
     al_set_target_backbuffer(al_get_current_display()); // 다시 화면에 그리기 모드
 }
+
+void set_stage1(DDG* ddg) {
+    ddg->x = sx1;
+    ddg->y = sy1;
+    mode = 1;
+}
+void set_stage2(DDG* ddg) {
+    ddg->x = sx2;
+    ddg->y = sy2;
+    mode = 2;
+}
+void set_stage3(DDG* ddg) {
+    ddg->x = sx3;
+    ddg->y = sy3;
+    mode = 3;
+}

@@ -36,8 +36,8 @@ Stage* init_stage2() {
 /*초기화*/
 
 /*상태업데이트*/
-static void update_stage2() {
-    // update_ddg(ddg);
+static void update_stage2(DDG* ddg, Map m) {
+    update_ddg(ddg, m);
 }
 /*상태업데이트*/
 
@@ -49,7 +49,7 @@ static void render_stage2(Stage* s, DDG* ddg) {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
     //ddg 렌더
-    // render_ddg(ddg);
+    render_ddg(ddg);
     al_flip_display();
 
 }
@@ -60,6 +60,12 @@ static void render_stage2(Stage* s, DDG* ddg) {
 void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
     ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
 
+    if ((ddg->x > ax2 - (TILE_SIZE / 2)) && (ddg->x < ax2 + (TILE_SIZE / 2)) &&
+        (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2))) {
+        mode = 6;
+        return;
+    }
+
     bool redraw = true;
 
 
@@ -68,7 +74,7 @@ void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
 
     if (ev.type != ALLEGRO_EVENT_TIMER) {
 
-        update_stage2(ddg);
+        update_stage2(ddg, s->map);
 
         redraw = true;
 
