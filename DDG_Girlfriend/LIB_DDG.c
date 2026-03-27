@@ -14,6 +14,7 @@ void init_system()
     must_init(al_install_keyboard(), "keyboard");
     must_init(al_init_image_addon(), "image addon");
     must_init(al_init_font_addon(), "font addon");
+    must_init(al_init_ttf_addon(), "ttf addon");
 }
 
 SYSTEM init_game_system() {
@@ -30,7 +31,7 @@ SYSTEM init_game_system() {
 
     al_register_event_source(sys.queue, al_get_keyboard_event_source());
     al_register_event_source(sys.queue, al_get_display_event_source(sys.display));
-    al_register_event_source(sys.queue, al_get_display_event_source(sys.timer));
+    al_register_event_source(sys.queue, al_get_timer_event_source(sys.timer));
 
     al_start_timer(sys.timer);
 

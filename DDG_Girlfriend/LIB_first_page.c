@@ -1,5 +1,8 @@
 // 첫번째 페이지 함수 실행부
 #include "LIB_first_page.h"
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image)
 {
@@ -9,43 +12,61 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image)
     float scale_x = (float)DISP_W / img_w;
     float scale_y = (float)DISP_H / img_h;
 
-    // x축 y축 중에 큰 값 넣기
     float scale = (scale_x > scale_y) ? scale_x : scale_y;
-
-    float crop_w = DISP_W / scale;
-    float crop_h = DISP_H / scale;
-
-    float crop_x = (img_w - crop_w) / 2;
-    float crop_y = (img_h - crop_h) / 2;
 
     al_draw_scaled_bitmap(
         image,
-        crop_x, crop_y, crop_w, crop_h,
+        0, 0, img_w, img_h,
         0, 0, DISP_W, DISP_H,
         0
     );
 }
 
-void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
-    ALLEGRO_BITMAP* first_page_image = load_image("resource/img/first_page.png");
-    bool redraw = true;
-    /*ALLEGRO_EVENT ev;*/
-    //printf("first page\n");
-    /*while (1)
-    {*/
-        /*al_wait_for_event(queue, &ev);*/
-        if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
-        /*if (ev.type == ALLEGRO_EVENT_KEY_DOWN) return;*/
-        if (redraw)
-        {
-            printf("first page\n");
-            al_clear_to_color(al_map_rgb(0, 0, 0));
-            // 디스플레이 출력전 크기 맞추고 출력
-            al_set_target_backbuffer(display);
-            draw_scaled_crop(first_page_image);
-            // 백버퍼에서 프론트버퍼로 복사
-            al_flip_display();
-            redraw = false;
+
+void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev, int* mode) {
+    static char user_name[20] = "";
+    static int name_len = 0;
+    static ALLEGRO_BITMAP* first_page_image = NULL;
+    static ALLEGRO_FONT* font = NULL;
+    static bool resources_loaded = false;
+
+    if (!resources_loaded) {
+        first_page_image = al_load_bitmap("resource/img/page.png");
+        font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
+
+        resources_loaded = true;
+    }
+
+    bool redraw = false;
+
+    if (ev.type == ALLEGRO_EVENT_TIMER) {
+        redraw = true;
+    }
+    else if (ev.type == ALLEGRO_EVENT_KEY_CHAR) {
+        if (ev.keyboard.keycode == ALLEGRO_KEY_BACKSPACE && name_len > 0) {
+            user_name[--name_len] = '\0';
         }
-    //}
+        else if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
+            *mode = 1;
+        }
+        else if (ev.keyboard.unichar >= 32 && ev.keyboard.unichar <= 126 && name_len < 19) {
+            user_name[name_len++] = (char)ev.keyboard.unichar;
+            user_name[name_len] = '\0';
+        }
+        redraw = true;
+    }
+
+    if (redraw) {
+        al_clear_to_color(al_map_rgb(0, 0, 0));
+
+        if (first_page_image) {
+            draw_scaled_crop(first_page_image);
+        }
+
+        if (font) {
+            al_draw_text(font, al_map_rgb(0, 0, 0), 130, 130, 0 , user_name);
+        }
+
+        al_flip_display();
+    }
 }
