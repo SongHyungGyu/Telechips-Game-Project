@@ -31,6 +31,7 @@ static void update_stage1() {
 }
 
 static void render_stage1(Stage* s) {
+    //나중에 다른 요소들도 렌더 시키는거 추가될꺼라 공용으로 안뻄
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
     al_flip_display();

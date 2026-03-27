@@ -34,16 +34,16 @@ typedef struct {
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
 } Stage;
-
-Stage* Stage1();
-Stage* Stage3();
 void renderMap(Stage* s);
 void init_stage(Stage* s);
+Stage* Stage1();
+Stage* Stage2();
+Stage* Stage3();
+
 void run_stage1(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-//void init_stage2(Stage* s);
-//void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 #endif
