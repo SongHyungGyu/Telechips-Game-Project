@@ -1,5 +1,7 @@
 #ifndef LIB_STAGE_H
 #define LIB_STAGE_H
+#define tile_w_num 20
+#define tile_h_num 15
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -8,15 +10,23 @@
   
 
 typedef struct {
-    int x, y;         // 화면상의 출력 좌표
-    int type;         // 0: 길, 1: 벽 
+    int x;
+    int y;
+    int w;
+    int h;
+	int type; //0: 벽, 1: 길, 2: 늪
 } tile;
 
+typedef struct {
+    tile tiles[tile_h_num][tile_w_num];
+} Map;
 
-extern tile map[15][20];
+typedef struct {
+    Map map;
 
+    ALLEGRO_BITMAP* roadTile;
+    ALLEGRO_BITMAP* wallTile;
+    ALLEGRO_BITMAP* marshTile; 
 
-void loadMap(int blueprint[15][20]);
-void renderMap(ALLEGRO_BITMAP* roadTile, ALLEGRO_BITMAP* wallTile);
-
+} Stage;
 #endif
