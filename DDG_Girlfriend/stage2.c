@@ -1,5 +1,6 @@
 #include "LIB_DDG.h"
 #include "LIB_stage.h"
+#include "for_ddg.h"
 
 static void initStage2Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -21,6 +22,7 @@ static void initStage2Map(Map* m) {
     }
 }
 
+
 Stage* init_stage2() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
     //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
@@ -35,15 +37,19 @@ Stage* init_stage2() {
 
 /*상태업데이트*/
 static void update_stage2() {
-
+    // update_ddg(ddg);
 }
 /*상태업데이트*/
 
 /*렌더링*/
-static void render_stage2(Stage* s) {
+
+
+static void render_stage2(Stage* s, DDG* ddg) {
     //나중에 다른 요소들도 렌더 시키는거 추가될꺼라 공용으로 안뻄
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
+    //ddg 렌더
+    // render_ddg(ddg);
     al_flip_display();
 
 }
@@ -51,16 +57,28 @@ static void render_stage2(Stage* s) {
 
 
 /*stage2를 런하는 인터페이스*/
-void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
+void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
+    ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
+
     bool redraw = true;
 
-    /*al_wait_for_event(queue, &ev);*/
+
     if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
-    /*if (ev.type == ALLEGRO_EVENT_KEY_DOWN) return;*/
-    update_stage2();
-    if (redraw)
-    {
-        render_stage2(s);
+
+
+    if (ev.type != ALLEGRO_EVENT_TIMER) {
+
+        update_stage2(ddg);
+
+        redraw = true;
+
+    }
+
+    if (redraw) {
+
+        render_stage2(s, ddg);
+
         redraw = false;
+
     }
 }

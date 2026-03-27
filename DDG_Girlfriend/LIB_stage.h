@@ -81,15 +81,15 @@ void renderMap(Stage* s);
 void init_stage(Stage* s);
 
 Stage* init_stage1();
-//Stage* init_stage2();
-//Stage* init_stage3();
+Stage* init_stage2();
+Stage* init_stage3();
 
 void run_stage1(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-//void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-//void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_stage3(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 
 static bool col_wall(int nx, int ny);
 #endif

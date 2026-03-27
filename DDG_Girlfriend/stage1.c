@@ -40,7 +40,6 @@ static void render_stage1(Stage* s, DDG * ddg) {
    // render_ddg(ddg);
 
     al_flip_display();
-
 }
 
 

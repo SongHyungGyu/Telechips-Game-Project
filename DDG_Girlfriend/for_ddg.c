@@ -6,8 +6,7 @@ DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
 
 
-    ddg->img = load_image("C:/Telechips4/GameProjectPractice/x64/Debug/road.png");
-	//ddg->img = load_image("resource/img/ddg_down.png");
+    ddg->img = load_image(PATH "ddg_down.png");
 	ddg->x = 0;
 	ddg->y = 0;
 	ddg->life = 3;
@@ -34,7 +33,7 @@ void update_ddg(DDG* ddg) {
         ny = ddg ->y;
         if (!col_wall(nx, ny)) {
             ddg ->x = nx;
-            ddg ->img = load_image("resource/img/ddg_right.png");
+            ddg ->img = load_image(PATH "ddg_right.png");
 			ddg->w = al_get_bitmap_width(ddg->img);
 			ddg->h = al_get_bitmap_height(ddg->img);
         }
@@ -44,7 +43,7 @@ void update_ddg(DDG* ddg) {
         ny = ddg ->y;
         if (!col_wall(nx, ny)) {
             ddg ->x = nx;
-            ddg ->img = load_image("resource/img/ddg_left.png");
+            ddg ->img = load_image(PATH "ddg_left.png");
             ddg->w = al_get_bitmap_width(ddg->img);
             ddg->h = al_get_bitmap_height(ddg->img);
         }
@@ -54,7 +53,7 @@ void update_ddg(DDG* ddg) {
         ny = ddg ->y - ddg ->speed;
         if (!col_wall(nx, ny)) {
             ddg ->y = ny;
-            ddg ->img = load_image("resource/img/ddg_up.png");
+            ddg ->img = load_image(PATH "ddg_up.png");
             ddg->w = al_get_bitmap_width(ddg->img);
             ddg->h = al_get_bitmap_height(ddg->img);
         }
@@ -64,7 +63,7 @@ void update_ddg(DDG* ddg) {
         ny = ddg ->y + ddg ->speed;
         if (!col_wall(nx, ny)) {
             ddg ->y = ny;
-            ddg ->img = load_image("resource/img/ddg_down.png");
+            ddg ->img = load_image(PATH "ddg_down.png");
             ddg->w = al_get_bitmap_width(ddg->img);
             ddg->h = al_get_bitmap_height(ddg->img);
         }
