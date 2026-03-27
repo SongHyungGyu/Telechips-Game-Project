@@ -5,8 +5,11 @@
 
 #define TILE_SIZE 60  
 
+#define C_WORM_N 10
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include "LIB_c_worm.h"
 
 typedef enum {
     WALL = 1,
@@ -33,6 +36,11 @@ typedef struct {
     ALLEGRO_BITMAP* wallTile;
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
+    int sx, sy;
+
+    C_WORM** c_worms;
+    int c_worm_count;
+
 } Stage;
 
 Stage* Stage1();
