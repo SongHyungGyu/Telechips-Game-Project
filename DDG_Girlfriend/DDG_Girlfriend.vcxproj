@@ -136,7 +136,9 @@
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />
-    <ClCompile Include="stage2.c" />
+    <ClCompile Include="stage2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="stage3.c" />
   </ItemGroup>
   <ItemGroup>
@@ -146,8 +148,12 @@
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
     <ClInclude Include="LIB_stage.h" />
+    <ClInclude Include="LIB_stage2.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\road.png" />
+    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\wall.png" />
+    <Image Include="..\..\..\..\Downloads\marsh.png" />
     <Image Include="resource\img\first_page.png" />
     <Image Include="resource\img\login_page.png" />
   </ItemGroup>

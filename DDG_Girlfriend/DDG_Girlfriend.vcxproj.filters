@@ -53,12 +53,24 @@
     <ClInclude Include="LIB_stage.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="LIB_stage2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\first_page.png">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="resource\img\login_page.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\wall.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\road.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\marsh.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
