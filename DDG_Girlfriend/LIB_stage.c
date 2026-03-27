@@ -28,9 +28,6 @@ void renderMap(Stage* s) {
                 al_draw_scaled_bitmap(target,
                     0, 0, al_get_bitmap_width(target), al_get_bitmap_height(target),
                     t->x, t->y, t->w, t->h, 0);
-          /*      al_draw_scaled_bitmap(target,
-                    0, 0, 60, 60,
-                    t->x, t->y, t->w, t->h, 0);*/
             }
         }
     }

@@ -1,7 +1,6 @@
 #include "LIB_DDG.h"
 #include "LIB_stage.h"
 
-
 static void initStage2Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
         for (int j = 0; j < tile_w_num; j++) {

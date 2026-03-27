@@ -1,5 +1,14 @@
 #ifndef LIB_STAGE_H
 #define LIB_STAGE_H
+
+#include "LIB_ddg.h"
+#define ddg_size 60
+#define worm_size
+#define c_worm_size
+#define shot_size
+#define flower_size
+#define shot_speed
+
 #define tile_w_num 20
 #define tile_h_num 15
 
@@ -7,7 +16,36 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-
+//두더지
+typedef struct {
+	ALLEGRO_BITMAP* img;
+	int x;
+	int y;
+	int life;
+	int speed;
+}DDG;
+typedef struct {
+	int x;
+	int y;
+	int speed;
+}worm;
+//shot의 출발 지점
+typedef struct {
+	int x;
+	int y;
+	int shot_timer;
+}c_worm;
+typedef struct {
+	int x;
+	int y;
+	int speed;
+	bool used;
+}shot;
+typedef struct flower {
+	int x;
+	int y;
+	bool used;
+}flower;
 typedef enum {
     WALL = 1,
     ROAD = 0,
@@ -46,4 +84,6 @@ void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+
+static bool col_wall(int nx, int ny);
 #endif

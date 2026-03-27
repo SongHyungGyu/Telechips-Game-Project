@@ -1,5 +1,11 @@
-#include "LIB_DDG.h"
+Ôªø#include "LIB_DDG.h"
 #include "LIB_stage.h"
+
+int ddg_w, ddg_h;
+DDG ddg;
+int sx1, sy1;
+int angle;
+int nx, ny;
 
 static void initStage1Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -9,45 +15,101 @@ static void initStage1Map(Map* m) {
             m->tiles[i][j].w = TILE_SIZE;
             m->tiles[i][j].h = TILE_SIZE;
             if (i == 0 || i == tile_h_num - 1 || j == 0 || j == tile_w_num - 1) {
-                m->tiles[i][j].type = WALL; // ∫Æ
+                m->tiles[i][j].type = WALL; // Î≤Ω
             }
             else {
-                m->tiles[i][j].type = ROAD; // ±Ê
+                m->tiles[i][j].type = ROAD; // Í∏∏
             }
         }
     }
 }
 
+//// mainÏóêÏÑú ÌïúÎ≤àÎßå ÏãúÏûëÌï† Ï¥àÍ∏∞Ìôî Ìï®Ïàò
+//void init_stage1() {
+//    ddg_image = load_image("resource/img/ddg_down.png");
+//    ddg_w = al_get_bitmap_width(ddg_image);
+//    ddg_h = al_get_bitmap_height(ddg_image);
+//    sx1 = 0, sy1 = 0;
+//    ddg = (DDG){ ddg_image, sx1, sy1, 3, 5 };
+//}
 Stage* Stage1() {
-	Stage* s = (Stage*)malloc(sizeof(Stage));
+    Stage* s = (Stage*)malloc(sizeof(Stage));
     s->initMap = initStage1Map;
     return s;
 }
 
-
-//ªÛ≈¬ æ˜µ•¿Ã∆Æ
-static void update_stage1() {
-
-}
-
 static void render_stage1(Stage* s) {
-    //≥™¡ﬂø° ¥Ÿ∏• ø‰º“µÈµµ ∑ª¥ı Ω√≈∞¥¬∞≈ √ﬂ∞°µ…≤®∂Û ∞¯øÎ¿∏∑Œ æ»ñM
+    //ÎÇòÏ§ëÏóê Îã§Î•∏ ÏöîÏÜåÎì§ÎèÑ Î†åÎçî ÏãúÌÇ§ÎäîÍ±∞ Ï∂îÍ∞ÄÎê†Í∫ºÎùº Í≥µÏö©ÏúºÎ°ú Ïïà¬ñM
     al_clear_to_color(al_map_rgb(0, 0, 0));
-    al_draw_bitmap(s->mapCache, 0, 0, 0); // ¡æ¿Ã 1¿Â∏∏ √‚∑¬
+    //ÏßÄÎèÑ Ïù¥ÎØ∏ Í∑∏Î†§ÎÜìÏùÄÍ±∞ Ï∂úÎ†•
+    al_draw_bitmap(s->mapCache, 0, 0, 0); // Ï¢ÖÏù¥ 1Ïû•Îßå Ï∂úÎ†•
+    // ÎëêÎçîÏßÄ Í∑∏Î¶¨Í∏∞
+    ddg_w = al_get_bitmap_width(ddg.img);
+    ddg_h = al_get_bitmap_height(ddg.img);
+    al_draw_scaled_bitmap(ddg.img, 0, 0, ddg_w, ddg_h,
+        ddg.x, ddg.y, ddg_size, ddg_size, 0);
+
     al_flip_display();
-  
+
 }
 
-void run_stage1(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
-    bool redraw = true;
-
-    /*al_wait_for_event(queue, &ev);*/
-    if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
-    /*if (ev.type == ALLEGRO_EVENT_KEY_DOWN) return;*/
-    update_stage1();
-    if (redraw)
-    {
-        render_stage1(s);
-        redraw = false;
+static bool col_wall(int nx, int ny) {
+    int nxtile = nx / tile_h_num;
+    int nytile = ny / tile_w_num;
+    if (map[nxtile][nytile].type == 1) return true;
+    return false;
+}
+void update_ddg() {
+    if (key[ALLEGRO_KEY_RIGHT]) {
+        nx = ddg.x + ddg.speed;
+        ny = ddg.y;
+        if (!col_wall(nx, ny)) {
+            ddg.x = nx;
+            ddg.img = load_image("resource/img/ddg_right.png");
+        }
     }
+    if (key[ALLEGRO_KEY_LEFT]) {
+        nx = ddg.x - ddg.speed;
+        ny = ddg.y;
+        if (!col_wall(nx, ny)) {
+            ddg.x = nx;
+            ddg.img = load_image("resource/img/ddg_left.png");
+        }
+    }
+    if (key[ALLEGRO_KEY_UP]) {
+        nx = ddg.x;
+        ny = ddg.y - ddg.speed;
+        if (!col_wall(nx, ny)) {
+            ddg.y = ny;
+            ddg.img = load_image("resource/img/ddg_up.png");
+        }
+    }
+    if (key[ALLEGRO_KEY_DOWN]) {
+        nx = ddg.x;
+        ny = ddg.y + ddg.speed;
+        if (!col_wall(nx, ny)) {
+            ddg.y = ny;
+            ddg.img = load_image("resource/img/ddg_down.png");
+        }
+    }
+}
+
+//ÏÉÅÌÉú ÏóÖÎç∞Ïù¥Ìä∏
+static void update_stage1() {
+    update_ddg();
+}
+
+void run_stage1(Stage * s, ALLEGRO_DISPLAY * display, ALLEGRO_EVENT_QUEUE * queue, ALLEGRO_TIMER * timer, ALLEGRO_EVENT ev) {
+            bool redraw = true;
+
+            if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
+
+            if (ev.type != ALLEGRO_EVENT_TIMER) {
+                update_stage1();
+                redraw = true;
+            }
+            if (redraw) {
+                render_stage1();
+                redraw = false;
+            }
 }
