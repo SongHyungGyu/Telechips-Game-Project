@@ -90,34 +90,45 @@ static void render_stage1() {
     al_flip_display();
 
 }
-void update_npos() {
-    int nx = ddg.x + ddg.speed;
-    int ny = ddg.y + ddg.speed;
+static bool col_wall(int nx, int ny) {
+    int nxtile = nx / tile_h_num;
+    int nytile = ny / tile_w_num;
+    if (map[nxtile][nytile].type == 1) return true;
+    return false;
 }
 void update_ddg() {
     if (key[ALLEGRO_KEY_RIGHT]) {
         nx = ddg.x + ddg.speed;
-        ddg.x = nx;
-        ddg.img = load_image("resource/img/ddg_right.png");
+        ny = ddg.y;
+        if (!col_wall(nx, ny)) {
+            ddg.x = nx;
+            ddg.img = load_image("resource/img/ddg_right.png");
+        }
     }
     if (key[ALLEGRO_KEY_LEFT]) {
         nx = ddg.x - ddg.speed;
-        ddg.x = nx;
-        ddg.img = load_image("resource/img/ddg_left.png");
+        ny = ddg.y;
+        if (!col_wall(nx, ny)) {
+            ddg.x = nx;
+            ddg.img = load_image("resource/img/ddg_left.png");
+        }
     }
     if (key[ALLEGRO_KEY_UP]) {
+        nx = ddg.x;
         ny = ddg.y - ddg.speed;
-        ddg.y = ny;
-        ddg.img = load_image("resource/img/ddg_up.png");
+        if (!col_wall(nx, ny)) {
+            ddg.y = ny;
+            ddg.img = load_image("resource/img/ddg_up.png");
+        }
     }
     if (key[ALLEGRO_KEY_DOWN]) {
+        nx = ddg.x;
         ny = ddg.y + ddg.speed;
-        ddg.y = ny;
-        ddg.img = load_image("resource/img/ddg_down.png");
+        if (!col_wall(nx, ny)) {
+            ddg.y = ny;
+            ddg.img = load_image("resource/img/ddg_down.png");
+        }
     }
-}
-void col_wall() {
-    ;
 }
 void run_stage1(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
     bool redraw = true;

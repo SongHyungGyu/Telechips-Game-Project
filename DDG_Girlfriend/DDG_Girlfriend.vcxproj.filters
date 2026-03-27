@@ -27,6 +27,12 @@
     <ClCompile Include="stage1.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="stage2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stage3.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

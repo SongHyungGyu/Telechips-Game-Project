@@ -135,6 +135,8 @@
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />
+    <ClCompile Include="stage2.c" />
+    <ClCompile Include="stage3.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

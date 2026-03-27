@@ -49,4 +49,5 @@ typedef struct {
 	int h;
 	int type;
 } tile;
+static bool col_wall(int nx, int ny);
 #endif
