@@ -131,22 +131,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="for_ddg.c" />
     <ClCompile Include="LIB_ddg.c" />
+    <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />
     <ClCompile Include="stage2.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="stage3.c" />
+    <ClCompile Include="stage3.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="for_ddg.h" />
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
-    <ClInclude Include="LIB_login.h" />
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,10 @@ typedef struct {
 	int y;
 	int life;
 	int speed;
+	int w;
+	int h;
 }DDG;
+
 typedef struct {
 	int x;
 	int y;
@@ -71,19 +74,22 @@ typedef struct {
     ALLEGRO_BITMAP* wallTile;
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
+	int sx, sy;
 } Stage;
+
 void renderMap(Stage* s);
 void init_stage(Stage* s);
-Stage* Stage1();
-Stage* Stage2();
-Stage* Stage3();
 
-void run_stage1(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+Stage* init_stage1();
+//Stage* init_stage2();
+//Stage* init_stage3();
+
+void run_stage1(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+//void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+//void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 
 static bool col_wall(int nx, int ny);
 #endif

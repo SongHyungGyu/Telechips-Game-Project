@@ -32,12 +32,16 @@ static void initStage3Map(Map* m) {
     }
 }
 
-Stage* Stage3() {
+Stage* init_stage3() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
+    //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
     s->initMap = initStage3Map;
+    s->sx = 0;
+    s->sy = 0;
+    //나머지 초기화는 똑같기 때문에 공용함수 사용
+    init_stage(s);
     return s;
 }
-
 static void update_stage3() {
 }
 

@@ -21,9 +21,14 @@ static void initStage2Map(Map* m) {
     }
 }
 
-Stage* Stage2() {
+Stage* init_stage2() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
+    //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
     s->initMap = initStage2Map;
+    s->sx = 0;
+    s->sy = 0;
+    //나머지 초기화는 똑같기 때문에 공용함수 사용
+    init_stage(s);
     return s;
 }
 /*초기화*/
