@@ -11,6 +11,7 @@
 #define DISP_W 1200
 #define DISP_H 900
 
+unsigned char key[ALLEGRO_KEY_MAX];
 void must_init(bool test, const char* description);
 void init_system();
 ALLEGRO_DISPLAY* create_display();
