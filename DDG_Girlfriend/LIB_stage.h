@@ -10,7 +10,23 @@
 #define tile_w_num 20
 #define tile_h_num 15
 
+// 타일 크기
 #define TILE_SIZE 60  
+
+// 시작 위치
+#define sx1 60
+#define sy1 60
+#define sx2 60
+#define sy2 780
+#define sx3 60
+#define sy3 60
+// 도착 위치
+#define ax1 300
+#define ay1 300
+#define ax2 400
+#define ay2 400
+#define ax3 500
+#define ay3 500
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -106,5 +122,7 @@ void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEU
 void run_stage3(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
     ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 
-static bool col_wall(int nx, int ny);
+void set_stage1(DDG* ddg);
+void set_stage2(DDG* ddg);
+void set_stage3(DDG* ddg);
 #endif

@@ -23,7 +23,7 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image)
 }
 
 
-void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev, int* mode) {
+void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
     static char user_name[20] = "";
     static int name_len = 0;
     static ALLEGRO_BITMAP* first_page_image = NULL;
@@ -47,7 +47,7 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
             user_name[--name_len] = '\0';
         }
         else if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-            *mode = 1;
+            mode = 1;
         }
         else if (ev.keyboard.unichar >= 32 && ev.keyboard.unichar <= 126 && name_len < 19) {
             user_name[name_len++] = (char)ev.keyboard.unichar;

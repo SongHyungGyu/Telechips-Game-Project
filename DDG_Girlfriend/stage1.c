@@ -72,8 +72,14 @@ static void update_stage1_by_time(Stage* s) {
 void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display, 
     ALLEGRO_EVENT_QUEUE * queue, ALLEGRO_TIMER * timer, ALLEGRO_EVENT ev) {
           
-    bool redraw = true;
+    if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
+        (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
+        mode = 5;
+        return;
+    }
 
+    bool redraw = true;
+    
             
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage1_by_time(s);

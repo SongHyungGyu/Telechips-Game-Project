@@ -59,6 +59,12 @@ static void render_stage3(Stage* s, DDG* ddg) {
 void run_stage3(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
     ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
 
+    if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
+        (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2))) {
+        mode = 7;
+        return;
+    }
+
     bool redraw = true;
 
 

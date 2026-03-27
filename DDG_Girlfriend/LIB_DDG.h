@@ -10,8 +10,9 @@
 
 #define DISP_W 1200
 #define DISP_H 900
-#define PATH "C:/Telechips4/GameProjectPractice/x64/Debug/" //"resource/img/"
+#define PATH "resource/img/"
 
+int mode;
 
 unsigned char key[ALLEGRO_KEY_MAX];
 void must_init(bool test, const char* description);
