@@ -24,9 +24,6 @@
     <ClCompile Include="LIB_ddg.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LIB_login.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="stage1.c">
       <Filter>소스 파일</Filter>
     </ClCompile>

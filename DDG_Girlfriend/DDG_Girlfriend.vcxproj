@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
-    <ClCompile Include="LIB_login.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />

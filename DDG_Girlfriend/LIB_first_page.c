@@ -64,7 +64,7 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
         }
 
         if (font) {
-            al_draw_text(font, al_map_rgb(0, 0, 0), 130, 130, 0 , user_name);
+            al_draw_text(font, al_map_rgb(0, 0, 0), 160, 203, 0 , user_name);
         }
 
         al_flip_display();

@@ -9,19 +9,14 @@ int main()
     SYSTEM sys = init_game_system();
 
     ALLEGRO_EVENT ev;
-    int mode = 1;
+    int mode = 0;
     init_stage1();
 
     while (1) {
         al_wait_for_event(sys.queue, &ev);
         keyboard_update(&ev);
-        if(mode == 0) run_first_page(sys.display, sys.queue, sys.timer, ev);
-<<<<<<< HEAD
-        /*run_login_page(sys.display, sys.queue, sys.timer);*/
+        if(mode == 0) run_first_page(sys.display, sys.queue, sys.timer, ev, &mode);
         if(mode == 1) run_stage1(sys.display, sys.queue, sys.timer, ev);
-=======
-        if (mode == 1) run_stage1(sys.display, sys.queue, sys.timer, ev);
->>>>>>> origin/cys
     }
 
     return 0;
