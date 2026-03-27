@@ -1,6 +1,7 @@
 ﻿#include "LIB_DDG.h"
 #include "LIB_stage.h"
 #include "for_ddg.h"
+#include "for_worm.h"
 
 static void initStage1Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -24,8 +25,18 @@ Stage* init_stage1() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
     //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
     s->initMap = initStage1Map;
+
+    //4마리의 지렁이 초기화
+	s->worms = (worm**)malloc(sizeof(worm*) * 4);
+
+	s->worms[0] = init_worm(100, 100, 100, 100, 1000, 100, 0, 0, 0, 0, HORIZONTAL, 5, +1);
+    s->worms[1] = init_worm(1000, 300, 100, 300, 1000, 300, 0, 0, 0, 0, HORIZONTAL, 5, -1);
+    s->worms[2] = init_worm(100, 500, 100, 500, 1000, 500, 0, 0, 0, 0, HORIZONTAL, 5, +1);
+    s->worms[3] = init_worm(1000, 700, 100, 700, 1000, 700, 0, 0, 0, 0, HORIZONTAL, 5, -1);
+
     s->sx = 0;
     s ->sy = 0;
+
     //나머지 초기화는 똑같기 때문에 공용함수 사용
     init_stage(s);
     return s;
@@ -38,15 +49,24 @@ static void render_stage1(Stage* s, DDG * ddg) {
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
     //ddg 렌더
    // render_ddg(ddg);
-
+    for (int i = 0; i < 4; i++) {
+        render_worm(s->worms[i]);
+    }
+   
     al_flip_display();
 }
 
 
 
 //상태 업데이트
-static void update_stage1(DDG * ddg) {
+static void update_stage1( DDG * ddg) {
    // update_ddg(ddg);
+ 
+}
+static void update_stage1_by_time(Stage* s) {
+    for (int i = 0; i < 4; i++) {
+        update_worm(s->worms[i]);
+    }
 }
 
 void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display, 
@@ -55,13 +75,16 @@ void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display,
     bool redraw = true;
 
             
-    if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
+    if (ev.type == ALLEGRO_EVENT_TIMER) { 
+        update_stage1_by_time(s);
+        redraw = true; 
+    }
 
             
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
         update_stage1(ddg);
-                
+  
         redraw = true;
             
     }

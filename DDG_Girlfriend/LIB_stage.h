@@ -1,9 +1,7 @@
 #ifndef LIB_STAGE_H
 #define LIB_STAGE_H
-
 #include "LIB_ddg.h"
 #define ddg_size 60
-#define worm_size
 #define c_worm_size
 #define shot_size
 #define flower_size
@@ -16,6 +14,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+
 //두더지
 typedef struct {
 	ALLEGRO_BITMAP* img;
@@ -27,11 +26,7 @@ typedef struct {
 	int h;
 }DDG;
 
-typedef struct {
-	int x;
-	int y;
-	int speed;
-}worm;
+
 //shot의 출발 지점
 typedef struct {
 	int x;
@@ -66,6 +61,24 @@ typedef struct {
 typedef struct {
     tile tiles[tile_h_num][tile_w_num];
 } Map;
+typedef struct {
+	ALLEGRO_BITMAP* img;
+	int w;
+	int h;
+	int x;
+	int y;
+	int lx;
+	int ly; //왼쪽 경계 좌표
+	int rx;
+	int ry; //오른쪽 경계 좌표
+	int tx;
+	int ty; //위쪽 경계 좌표
+	int bx;
+	int by; //아래쪽 경계 좌표
+	int type; //수직 지렁이, 수평 지렁이, 네모 지렁이 구분
+	int dir;// +1: 오른쪽, 위쪽, -1: 왼쪽, 아래쪽
+	int speed;
+}worm;
 
 typedef struct {
     Map map;
@@ -75,6 +88,8 @@ typedef struct {
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
 	int sx, sy;
+	worm** worms; 
+	flower* flowers;
 } Stage;
 
 void renderMap(Stage* s);

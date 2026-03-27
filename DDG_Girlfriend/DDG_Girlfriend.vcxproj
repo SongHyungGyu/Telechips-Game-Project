@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="for_ddg.c" />
+    <ClCompile Include="for_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
     <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="for_ddg.h" />
+    <ClInclude Include="for_worm.h" />
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
     <ClInclude Include="LIB_stage.h" />

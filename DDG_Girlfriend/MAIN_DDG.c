@@ -16,7 +16,7 @@ int main()
     Stage* stage3 = init_stage3();
 
     ALLEGRO_EVENT ev;
-    int mode = 0;
+    int mode = 1;
 
     while (1) {
         al_wait_for_event(sys.queue, &ev);
