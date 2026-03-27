@@ -3,11 +3,16 @@
 #define tile_w_num 20
 #define tile_h_num 15
 
+#define TILE_SIZE 60  
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
-#define TILE_SIZE 60  
-  
+typedef enum {
+    WALL = 1,
+    ROAD = 0,
+    MARSH = 2
+} TileType;
 
 typedef struct {
     int x;
@@ -23,10 +28,22 @@ typedef struct {
 
 typedef struct {
     Map map;
-
+    ALLEGRO_BITMAP* mapCache;
     ALLEGRO_BITMAP* roadTile;
     ALLEGRO_BITMAP* wallTile;
-    ALLEGRO_BITMAP* marshTile; 
-
+    ALLEGRO_BITMAP* marshTile;
+    void (*initMap)(Map* m);
 } Stage;
+
+Stage* Stage1();
+Stage* Stage3();
+void renderMap(Stage* s);
+void init_stage(Stage* s);
+void run_stage1(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+//void init_stage2(Stage* s);
+//void run_stage2(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+//    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_stage3(Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
+    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
 #endif

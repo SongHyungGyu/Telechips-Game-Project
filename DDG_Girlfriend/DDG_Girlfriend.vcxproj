@@ -132,12 +132,11 @@
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
     <ClCompile Include="LIB_stage.c" />
-    <ClCompile Include="LIB_stage1.h" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />
     <ClCompile Include="stage2.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="stage3.c" />
   </ItemGroup>
@@ -148,7 +147,6 @@
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
     <ClInclude Include="LIB_stage.h" />
-    <ClInclude Include="LIB_stage2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\road.png" />
