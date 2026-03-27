@@ -14,6 +14,7 @@ void init_system()
     must_init(al_install_keyboard(), "keyboard");
     must_init(al_init_image_addon(), "image addon");
     must_init(al_init_font_addon(), "font addon");
+    must_init(al_init_ttf_addon(), "ttf addon");
 }
 
 SYSTEM init_game_system() {

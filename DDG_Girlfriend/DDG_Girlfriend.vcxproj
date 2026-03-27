@@ -76,6 +76,7 @@
     <Allegro_AddonAudio>true</Allegro_AddonAudio>
     <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
     <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,12 +132,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LIB_ddg.c" />
-    <ClCompile Include="LIB_stage.c" />
+    <ClCompile Include="LIB_login.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
     <ClCompile Include="stage1.c" />
-    <ClCompile Include="stage2.c" />
-    <ClCompile Include="stage3.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -144,17 +143,16 @@
   <ItemGroup>
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
+    <ClInclude Include="LIB_login.h" />
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\img\ddg_down.png" />
-    <Image Include="resource\img\ddg_left.png" />
-    <Image Include="resource\img\ddg_right.png" />
-    <Image Include="resource\img\ddg_up.png" />
+    <Image Include="page.png" />
     <Image Include="resource\img\first_page.png" />
     <Image Include="resource\img\login_page.png" />
-    <Image Include="resource\img\road.png" />
-    <Image Include="resource\img\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resource\font\Inkfree.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
