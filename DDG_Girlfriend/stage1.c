@@ -10,6 +10,7 @@ int ddg_w, ddg_h;
 DDG ddg;
 int sx1, sy1;
 int angle;
+int nx, ny;
 
 static void initMap() {
     for (int i = 0; i < tile_h_num; i++) {
@@ -89,23 +90,34 @@ static void render_stage1() {
     al_flip_display();
 
 }
+void update_npos() {
+    int nx = ddg.x + ddg.speed;
+    int ny = ddg.y + ddg.speed;
+}
 void update_ddg() {
     if (key[ALLEGRO_KEY_RIGHT]) {
-        ddg.x += ddg.speed;
+        nx = ddg.x + ddg.speed;
+        ddg.x = nx;
         ddg.img = load_image("resource/img/ddg_right.png");
     }
     if (key[ALLEGRO_KEY_LEFT]) {
-        ddg.x -= ddg.speed;
+        nx = ddg.x - ddg.speed;
+        ddg.x = nx;
         ddg.img = load_image("resource/img/ddg_left.png");
     }
     if (key[ALLEGRO_KEY_UP]) {
-        ddg.y -= ddg.speed;
+        ny = ddg.y - ddg.speed;
+        ddg.y = ny;
         ddg.img = load_image("resource/img/ddg_up.png");
     }
     if (key[ALLEGRO_KEY_DOWN]) {
-        ddg.y += ddg.speed;
+        ny = ddg.y + ddg.speed;
+        ddg.y = ny;
         ddg.img = load_image("resource/img/ddg_down.png");
     }
+}
+void col_wall() {
+    ;
 }
 void run_stage1(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
     bool redraw = true;
