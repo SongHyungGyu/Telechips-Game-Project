@@ -48,7 +48,8 @@ static void render_stage1(Stage* s, DDG * ddg) {
     //지도 이미 그려놓은거 출력
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
     //ddg 렌더
-   // render_ddg(ddg);
+    render_ddg(ddg);
+	//worm 렌더
     for (int i = 0; i < 4; i++) {
         render_worm(s->worms[i]);
     }
@@ -59,9 +60,8 @@ static void render_stage1(Stage* s, DDG * ddg) {
 
 
 //상태 업데이트
-static void update_stage1( DDG * ddg) {
-   // update_ddg(ddg);
- 
+static void update_stage1( DDG * ddg, Map m) {
+   update_ddg(ddg ,m);
 }
 static void update_stage1_by_time(Stage* s) {
     for (int i = 0; i < 4; i++) {
@@ -89,7 +89,7 @@ void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display,
             
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
-        update_stage1(ddg);
+        update_stage1(ddg, s->map);
   
         redraw = true;
             

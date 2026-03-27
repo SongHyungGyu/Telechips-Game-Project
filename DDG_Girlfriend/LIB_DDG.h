@@ -10,7 +10,7 @@
 
 #define DISP_W 1200
 #define DISP_H 900
-#define PATH "resource/img/"
+#define PATH "C:/Telechips4/GameProjectPractice/x64/Debug/"//"resource/img/"
 
 int mode;
 
