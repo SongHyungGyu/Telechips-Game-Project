@@ -17,23 +17,26 @@ void init_system()
     must_init(al_init_ttf_addon(), "ttf addon");
 }
 
-SYSTEM init_game_system() {
-    SYSTEM sys;
+SYSTEM* init_game_system() {
+	SYSTEM* sys = (SYSTEM*)malloc(sizeof(SYSTEM));
 
-    sys.display = create_display();
-    must_init(sys.display, "display");
-    sys.queue = al_create_event_queue();
-    must_init(sys.queue, "event queue");
-    /*ALLEGRO_FONT* font = al_create_builtin_font();
-    must_init(font, "font");*/
-    sys.timer = al_create_timer(1.0 / 60.0);
-    must_init(sys.timer, "timer");
+    sys->display = create_display();
+    must_init(sys->display, "display");
+    sys->queue = al_create_event_queue();
+    must_init(sys->queue, "event queue");
 
-    al_register_event_source(sys.queue, al_get_keyboard_event_source());
-    al_register_event_source(sys.queue, al_get_display_event_source(sys.display));
-    al_register_event_source(sys.queue, al_get_timer_event_source(sys.timer));
+    sys->font = al_create_builtin_font();
+    //sys->font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
+    must_init(sys->font, "font");
 
-    al_start_timer(sys.timer);
+    sys->timer = al_create_timer(1.0 / 60.0);
+    must_init(sys->timer, "timer");
+
+    al_register_event_source(sys->queue, al_get_keyboard_event_source());
+    al_register_event_source(sys->queue, al_get_display_event_source(sys->display));
+    al_register_event_source(sys->queue, al_get_timer_event_source(sys->timer));
+
+    al_start_timer(sys->timer);
 
     return sys;
 }
@@ -48,6 +51,7 @@ ALLEGRO_DISPLAY* create_display()
 ALLEGRO_BITMAP* load_image(const char* path)
 {
     ALLEGRO_BITMAP* img = al_load_bitmap(path);
+    //printf("%s\n", path);
     must_init(img, "image");
     return img;
 }

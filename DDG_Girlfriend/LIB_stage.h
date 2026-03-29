@@ -55,7 +55,7 @@ typedef struct {
 	int speed;
 	bool used;
 }shot;
-typedef struct flower {
+typedef struct {
 	int x;
 	int y;
 	bool used;
@@ -108,6 +108,10 @@ typedef struct {
 	flower* flowers;
 } Stage;
 
+typedef struct {
+	ALLEGRO_BITMAP* img;
+} HEART;
+
 void renderMap(Stage* s);
 void init_stage(Stage* s);
 
@@ -115,14 +119,13 @@ Stage* init_stage1();
 Stage* init_stage2();
 Stage* init_stage3();
 
-void run_stage1(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
-void run_stage3(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue,
-    ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_stage1(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_stage2(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev);
 
 void set_stage1(DDG* ddg);
 void set_stage2(DDG* ddg);
 void set_stage3(DDG* ddg);
+
+void render_play_time(SYSTEM* sys);
 #endif

@@ -47,7 +47,7 @@ static void update_stage3() {
 }
 
 
-static void render_stage3(Stage* s, DDG* ddg) {
+static void render_stage3(Stage* s, DDG* ddg, HEART* heart, SYSTEM* sys) {
     //나중에 다른 요소들도 렌더 시키는거 추가될꺼라 공용으로 안뻄
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0); // 종이 1장만 출력
@@ -56,32 +56,35 @@ static void render_stage3(Stage* s, DDG* ddg) {
     al_flip_display();
 }
 
-void run_stage3(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
-    ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
+void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev) {
 
     if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
         (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2))) {
-        mode = 7;
+        mode = 0;
         return;
     }
 
     bool redraw = true;
 
 
-    if (ev.type == ALLEGRO_EVENT_TIMER) redraw = true;
+    if (ev.type == ALLEGRO_EVENT_TIMER) {
+        redraw = true;
+        update_stage3(ddg);
+        play_time++;
+    }
 
 
     if (ev.type != ALLEGRO_EVENT_TIMER) {
 
-        update_stage3(ddg);
+        //update_stage3(ddg);
 
-        redraw = true;
+        //redraw = true;
 
     }
 
     if (redraw) {
 
-        render_stage3(s, ddg);
+        render_stage3(s, ddg, heart, sys);
 
         redraw = false;
 

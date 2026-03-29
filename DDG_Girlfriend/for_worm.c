@@ -25,8 +25,8 @@ worm* init_worm(int x, int y, int lx, int ly, int rx, int ry, int tx, int ty,
 
 
 void update_worm(worm* w) {
-	printf("%d\n", w->x);
-	printf("%d %d\n", w->lx, w->rx);
+	//printf("%d\n", w->x);
+	//printf("%d %d\n", w->lx, w->rx);
 	if (w->type == HORIZONTAL) {
 		w->x += w->speed * w->dir;
 

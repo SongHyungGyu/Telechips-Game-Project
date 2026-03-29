@@ -2,6 +2,7 @@
 #include "LIB_stage.h"
 #include "for_ddg.h"
 #include "for_worm.h"
+#include "LIB_hud.h"
 
 static void initStage1Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -42,7 +43,7 @@ Stage* init_stage1() {
     return s;
 }
 
-static void render_stage1(Stage* s, DDG * ddg) {
+static void render_stage1(Stage* s, DDG * ddg, HEART* heart, SYSTEM* sys) {
     //나중에 다른 요소들도 렌더 시키는거 추가될꺼라 공용으로 안M
     al_clear_to_color(al_map_rgb(0, 0, 0));
     //지도 이미 그려놓은거 출력
@@ -53,6 +54,9 @@ static void render_stage1(Stage* s, DDG * ddg) {
     for (int i = 0; i < 4; i++) {
         render_worm(s->worms[i]);
     }
+    // heart 렌더
+	render_hud(heart, ddg);
+    render_play_time(sys);
    
     al_flip_display();
 }
@@ -69,9 +73,9 @@ static void update_stage1_by_time(Stage* s) {
     }
 }
 
-void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display, 
-    ALLEGRO_EVENT_QUEUE * queue, ALLEGRO_TIMER * timer, ALLEGRO_EVENT ev) {
-          
+void run_stage1(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev) {
+    
+    // 도착 지점
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
         (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
         mode = 5;
@@ -83,21 +87,23 @@ void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display,
             
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage1_by_time(s);
-        redraw = true; 
+        update_stage1(ddg, s->map);
+        redraw = true;
+		play_time++;
     }
 
             
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
-        update_stage1(ddg, s->map);
+        //update_stage1(ddg, s->map);
   
-        redraw = true;
+        //redraw = true;
             
     }
             
     if (redraw) {
                 
-        render_stage1(s, ddg);
+        render_stage1(s, ddg, heart, sys);
                 
         redraw = false;
             

@@ -77,6 +77,11 @@
     <Allegro_AddonAcodec>true</Allegro_AddonAcodec>
     <Allegro_AddonFont>true</Allegro_AddonFont>
     <Allegro_AddonTTF>true</Allegro_AddonTTF>
+    <Allegro_AddonPhysfs>true</Allegro_AddonPhysfs>
+    <Allegro_AddonDialog>true</Allegro_AddonDialog>
+    <Allegro_AddonMemfile>true</Allegro_AddonMemfile>
+    <Allegro_AddonColor>true</Allegro_AddonColor>
+    <Allegro_AddonVideo>true</Allegro_AddonVideo>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,6 +139,7 @@
     <ClCompile Include="for_ddg.c" />
     <ClCompile Include="for_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
+    <ClCompile Include="LIB_hud.c" />
     <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
@@ -153,12 +159,17 @@
     <ClInclude Include="for_worm.h" />
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
+    <ClInclude Include="LIB_hud.h" />
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="page.png" />
+    <Image Include="resource\img\ddg.png" />
     <Image Include="resource\img\first_page.png" />
+    <Image Include="resource\img\heart.png" />
     <Image Include="resource\img\login_page.png" />
+    <Image Include="resource\img\marsh.png" />
+    <Image Include="resource\img\realWorm.png" />
     <Image Include="road.png" />
     <Image Include="wall.png" />
   </ItemGroup>

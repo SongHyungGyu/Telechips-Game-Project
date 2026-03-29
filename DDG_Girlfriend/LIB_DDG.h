@@ -1,6 +1,7 @@
 #ifndef __LIB_DDG__
 #define __LIB_DDG__
 // 공용
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,9 +11,11 @@
 
 #define DISP_W 1200
 #define DISP_H 900
-#define PATH "C:/Telechips4/GameProjectPractice/x64/Debug/"//"resource/img/"
+//#define PATH "C:/Telechips4/GameProjectPractice/x64/Debug/"
+#define PATH "resource/img/"
 
 int mode;
+int play_time;
 
 unsigned char key[ALLEGRO_KEY_MAX];
 void must_init(bool test, const char* description);
@@ -24,8 +27,9 @@ typedef struct SYSTEM {
 	ALLEGRO_DISPLAY* display;
 	ALLEGRO_EVENT_QUEUE* queue;
 	ALLEGRO_TIMER* timer;
+	ALLEGRO_FONT* font;
 }SYSTEM;
-SYSTEM init_game_system();
+SYSTEM* init_game_system();
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 
 // 키보드
