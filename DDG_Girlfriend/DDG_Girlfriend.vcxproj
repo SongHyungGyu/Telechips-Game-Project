@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="for_ddg.c" />
+    <ClCompile Include="for_flower.c" />
     <ClCompile Include="for_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
     <ClCompile Include="LIB_stage.c" />
@@ -150,15 +151,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="for_ddg.h" />
+    <ClInclude Include="for_flower.h" />
     <ClInclude Include="for_worm.h" />
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="page.png" />
+    <Image Include="resource\img\ddg_down.png" />
+    <Image Include="resource\img\ddg_left.png" />
+    <Image Include="resource\img\ddg_right.png" />
+    <Image Include="resource\img\ddg_up.png" />
     <Image Include="resource\img\first_page.png" />
+    <Image Include="resource\img\flower.png" />
     <Image Include="resource\img\login_page.png" />
+    <Image Include="resource\img\marsh.png" />
+    <Image Include="resource\img\page.png" />
     <Image Include="road.png" />
     <Image Include="wall.png" />
   </ItemGroup>

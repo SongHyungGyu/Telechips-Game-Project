@@ -23,7 +23,7 @@ int main()
         keyboard_update(&ev);
         if(mode == 0) run_first_page(sys.display, sys.queue, sys.timer, ev);
         if (mode == 1) run_stage1(ddg, stage1, sys.display, sys.queue, sys.timer, ev);
-        if (mode == 2) run_stage2(ddg, stage2,sys.display, sys.queue, sys.timer, ev);
+        if (mode == 2) run_stage2(ddg, stage2, sys.display, sys.queue, sys.timer, ev);
         if (mode == 3) run_stage3(ddg, stage3, sys.display, sys.queue, sys.timer, ev);
         if (mode == 4) set_stage1(ddg);
         if (mode == 5) set_stage2(ddg);

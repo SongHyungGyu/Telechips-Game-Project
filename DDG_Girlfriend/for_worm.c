@@ -4,7 +4,7 @@
 worm* init_worm(int x, int y, int lx, int ly, int rx, int ry, int tx, int ty,
     int bx, int by, int type, int speed, int dir) {
     worm* w = (worm*)malloc(sizeof(worm));
-    w->img = load_image(PATH "realWorm.png");
+    w->img = load_image(PATH "wall.png");
 	w->w = al_get_bitmap_width(w->img);
 	w->h = al_get_bitmap_height(w->img);
     w->x = x;
