@@ -10,17 +10,17 @@
 #define tile_w_num 20
 #define tile_h_num 15
 
-// Ÿ�� ũ��
+// 타일 크기
 #define TILE_SIZE 60  
 
-// ���� ��ġ
+// 시작 위치
 #define sx1 60
 #define sy1 60
 #define sx2 60
 #define sy2 780
 #define sx3 60
 #define sy3 60
-// ���� ��ġ
+// 도착 위치
 #define ax1 300
 #define ay1 300
 #define ax2 400
@@ -31,7 +31,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
-//�δ���
+//두더지
 typedef struct {
 	ALLEGRO_BITMAP* img;
 	int x;
@@ -43,7 +43,7 @@ typedef struct {
 }DDG;
 
 
-//shot�� ��� ����
+//shot의 출발 지점
 typedef struct {
 	int x;
 	int y;
@@ -71,7 +71,7 @@ typedef struct {
     int y;
     int w;
     int h;
-	int type; //0: ��, 1: ��, 2: ��
+	int type; //0: 벽, 1: 길, 2: 늪
 } tile;
 
 typedef struct {
@@ -85,10 +85,10 @@ typedef struct {
 	int y;
 	int lx;
 	int rx;
-	int ty; //���� ��� ��ǥ
-	int by; //�Ʒ��� ��� ��ǥ
-	int type; //���� ������, ���� ������, �׸� ������ ����
-	int dir;// +1: ������, ����, -1: ����, �Ʒ���
+	int ty; 
+	int by; 
+	int type; //수직 지렁이, 수평 지렁이, 네모 지렁이 구분
+	int dir;// +1: 오른쪽, 아래쪽, -1: 왼쪽, 위쪽
 	int speed;
 }worm;
 

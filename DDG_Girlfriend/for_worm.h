@@ -12,7 +12,7 @@
 #define WORM_LX_STAGE2 100
 #define WORM_RX_STAGE2 1000
 
-#define WORM_SPEED_STAGE3 15
+#define WORM_SPEED_STAGE3 10
 
 enum WormType {
 	HORIZONTAL = 0,
@@ -23,5 +23,5 @@ enum WormType {
 worm* init_worm(int x, int y, int lx, int rx, int ty, int by, int type, int speed, int dir);
 void render_worm(worm* w);
 void update_worm(worm* w);
-
+bool col_worms(DDG * ddg, int wormNum, worm ** worms);
 #endif

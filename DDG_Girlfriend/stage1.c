@@ -35,8 +35,8 @@ Stage* init_stage1() {
     s->worms[2] = init_worm(100, 500, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
     s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, -1);
 
-    s->sx = 0;
-    s ->sy = 0;
+    s->sx = sx1;
+    s ->sy = sy1;
 
     //나머지 초기화는 똑같기 때문에 공용함수 사용
     init_stage(s);
@@ -65,9 +65,13 @@ static void update_stage1( DDG * ddg, Map m) {
    update_ddg(ddg ,m);
 }
 
-static void update_stage1_by_time(Stage* s) {
+
+static void update_stage1_by_time(DDG* ddg, Stage* s) {
     for (int i = 0; i < s->wormNum; i++) {
         update_worm(s->worms[i]);
+    }
+    if(col_worms(ddg, s->wormNum, s->worms)){   
+        update_ddg_after_attack(ddg, s);
     }
 }
 
@@ -84,14 +88,14 @@ void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display,
     
             
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage1_by_time(s);
+        update_stage1_by_time(ddg , s);
         redraw = true; 
     }
 
             
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
-        update_stage1(ddg, s->map);
+        update_stage1(ddg,s->map);
   
         redraw = true;
             

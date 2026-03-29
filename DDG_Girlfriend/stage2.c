@@ -37,8 +37,8 @@ Stage* init_stage2() {
     s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, -1);
 
 
-    s->sx = 0;
-    s->sy = 0;
+    s->sx = sx2;
+    s->sy = sy2;
     //������ �ʱ�ȭ�� �Ȱ��� ������ �����Լ� ���
     init_stage(s);
     return s;
@@ -68,9 +68,12 @@ static void render_stage2(Stage* s, DDG* ddg) {
 static void update_stage2(DDG* ddg, Map m) {
     update_ddg(ddg, m);
 }
-static void update_stage2_by_time(Stage* s) {
+static void update_stage2_by_time(DDG * ddg, Stage* s) {
     for (int i = 0; i < s->wormNum; i++) {
         update_worm(s->worms[i]);
+    }
+    if(col_worms(ddg, s->wormNum, s->worms)){   
+        update_ddg_after_attack(ddg, s);
     }
 }
 
@@ -90,7 +93,7 @@ void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
 
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage2_by_time(s);
+        update_stage2_by_time(ddg ,s);
         redraw = true; 
     }
 

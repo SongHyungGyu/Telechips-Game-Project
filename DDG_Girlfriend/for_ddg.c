@@ -1,7 +1,8 @@
 #include "LIB_DDG.h"
 #include "LIB_stage.h"
+#include "for_worm.h"
 
-// main���� �ѹ��� ������ �ʱ�ȭ �Լ�
+// main에서 한번만 시작할 초기화 함수
 DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
     ddg->img = (ALLEGRO_BITMAP*)malloc(sizeof(ALLEGRO_BITMAP*));
@@ -76,7 +77,23 @@ void update_ddg(DDG* ddg, Map m) {
 }
 
 void render_ddg(DDG* ddg) {
-    // �δ��� �׸���
+     // 두더지 그리기
     al_draw_scaled_bitmap(ddg -> img, 0, 0, ddg ->w, ddg -> h,
         ddg -> x, ddg ->y, ddg_size, ddg_size, 0);
+}
+
+void update_ddg_after_attack(DDG* ddg, Stage * s){
+    //생명에 따라 현재 스테이지의 시작위치로 돌아가거나
+    //mode를 변경하며 스테이지1부터 시작
+    if(ddg -> life > 1){
+        ddg->x = s->sx;
+        ddg->y = s->sy;
+        --(ddg ->life); 
+        //이미지도 start 이미지로 변경해야 하는데 start 
+        //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
+    }else{
+        //무조건 stage1으로 가면됨
+        mode = 4;
+    }
+
 }
