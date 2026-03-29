@@ -1,5 +1,5 @@
 #include "LIB_DDG.h"
-// °ø¿ë
+// ï¿½ï¿½ï¿½ï¿½
 
 void must_init(bool test, const char* description)
 {

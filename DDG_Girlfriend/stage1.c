@@ -27,12 +27,13 @@ Stage* init_stage1() {
     s->initMap = initStage1Map;
 
     //4마리의 지렁이 초기화
-	s->worms = (worm**)malloc(sizeof(worm*) * 4);
+    s->wormNum = 4;
+	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
 
-	s->worms[0] = init_worm(100, 100, 100, 100, 1000, 100, 0, 0, 0, 0, HORIZONTAL, 5, +1);
-    s->worms[1] = init_worm(1000, 300, 100, 300, 1000, 300, 0, 0, 0, 0, HORIZONTAL, 5, -1);
-    s->worms[2] = init_worm(100, 500, 100, 500, 1000, 500, 0, 0, 0, 0, HORIZONTAL, 5, +1);
-    s->worms[3] = init_worm(1000, 700, 100, 700, 1000, 700, 0, 0, 0, 0, HORIZONTAL, 5, -1);
+	s->worms[0] = init_worm(100, 100, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
+    s->worms[1] = init_worm(1000, 300, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, -1);
+    s->worms[2] = init_worm(100, 500, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
+    s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, -1);
 
     s->sx = 0;
     s ->sy = 0;
@@ -50,7 +51,7 @@ static void render_stage1(Stage* s, DDG * ddg) {
     //ddg 렌더
     render_ddg(ddg);
 	//worm 렌더
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < s->wormNum; i++) {
         render_worm(s->worms[i]);
     }
    
@@ -63,8 +64,9 @@ static void render_stage1(Stage* s, DDG * ddg) {
 static void update_stage1( DDG * ddg, Map m) {
    update_ddg(ddg ,m);
 }
+
 static void update_stage1_by_time(Stage* s) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < s->wormNum; i++) {
         update_worm(s->worms[i]);
     }
 }

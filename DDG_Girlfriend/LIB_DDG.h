@@ -1,16 +1,17 @@
 #ifndef __LIB_DDG__
 #define __LIB_DDG__
-// °ø¿ë
+// ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 #define DISP_W 1200
 #define DISP_H 900
-#define PATH "C:/Telechips4/GameProjectPractice/x64/Debug/"//"resource/img/"
+#define PATH "./resource/img/" //"C:/Telechips4/GameProjectPractice/x64/Debug/"
 
 int mode;
 
@@ -28,7 +29,7 @@ typedef struct SYSTEM {
 SYSTEM init_game_system();
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 
-// Å°º¸µå
+// Å°ï¿½ï¿½ï¿½ï¿½
 #define KEY_SEEN     1
 #define KEY_DOWN     2
 unsigned char key[ALLEGRO_KEY_MAX];

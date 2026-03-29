@@ -10,17 +10,17 @@
 #define tile_w_num 20
 #define tile_h_num 15
 
-// Å¸ÀÏ Å©±â
+// Å¸ï¿½ï¿½ Å©ï¿½ï¿½
 #define TILE_SIZE 60  
 
-// ½ÃÀÛ À§Ä¡
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 #define sx1 60
 #define sy1 60
 #define sx2 60
 #define sy2 780
 #define sx3 60
 #define sy3 60
-// µµÂø À§Ä¡
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 #define ax1 300
 #define ay1 300
 #define ax2 400
@@ -31,7 +31,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
-//µÎ´õÁö
+//ï¿½Î´ï¿½ï¿½ï¿½
 typedef struct {
 	ALLEGRO_BITMAP* img;
 	int x;
@@ -43,7 +43,7 @@ typedef struct {
 }DDG;
 
 
-//shotÀÇ Ãâ¹ß ÁöÁ¡
+//shotï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 typedef struct {
 	int x;
 	int y;
@@ -71,7 +71,7 @@ typedef struct {
     int y;
     int w;
     int h;
-	int type; //0: º®, 1: ±æ, 2: ´Ë
+	int type; //0: ï¿½ï¿½, 1: ï¿½ï¿½, 2: ï¿½ï¿½
 } tile;
 
 typedef struct {
@@ -84,15 +84,11 @@ typedef struct {
 	int x;
 	int y;
 	int lx;
-	int ly; //¿ÞÂÊ °æ°è ÁÂÇ¥
 	int rx;
-	int ry; //¿À¸¥ÂÊ °æ°è ÁÂÇ¥
-	int tx;
-	int ty; //À§ÂÊ °æ°è ÁÂÇ¥
-	int bx;
-	int by; //¾Æ·¡ÂÊ °æ°è ÁÂÇ¥
-	int type; //¼öÁ÷ Áö··ÀÌ, ¼öÆò Áö··ÀÌ, ³×¸ð Áö··ÀÌ ±¸ºÐ
-	int dir;// +1: ¿À¸¥ÂÊ, À§ÂÊ, -1: ¿ÞÂÊ, ¾Æ·¡ÂÊ
+	int ty; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
+	int by; //ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
+	int type; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int dir;// +1: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, -1: ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½ï¿½ï¿½
 	int speed;
 }worm;
 
@@ -104,6 +100,7 @@ typedef struct {
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
 	int sx, sy;
+	int wormNum;
 	worm** worms; 
 	flower* flowers;
 } Stage;

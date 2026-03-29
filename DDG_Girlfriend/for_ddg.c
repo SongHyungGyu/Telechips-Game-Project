@@ -1,7 +1,7 @@
-#include "LIB_ddg.h"
+#include "LIB_DDG.h"
 #include "LIB_stage.h"
 
-// main¿¡¼­ ÇÑ¹ø¸¸ ½ÃÀÛÇÒ ÃÊ±âÈ­ ÇÔ¼ö
+// mainï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½
 DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
     ddg->img = (ALLEGRO_BITMAP*)malloc(sizeof(ALLEGRO_BITMAP*));
@@ -76,7 +76,7 @@ void update_ddg(DDG* ddg, Map m) {
 }
 
 void render_ddg(DDG* ddg) {
-    // µÎ´õÁö ±×¸®±â
+    // ï¿½Î´ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
     al_draw_scaled_bitmap(ddg -> img, 0, 0, ddg ->w, ddg -> h,
         ddg -> x, ddg ->y, ddg_size, ddg_size, 0);
 }

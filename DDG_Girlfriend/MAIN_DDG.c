@@ -1,11 +1,12 @@
 #if 1
-#include "LIB_ddg.h"
+#include "LIB_DDG.h"
 #include "LIB_stage.h"
 #include "LIB_first_page.h"
 #include "for_ddg.h"
 
 int main()
 {
+    
     init_system();
 
     SYSTEM sys = init_game_system();
@@ -16,7 +17,7 @@ int main()
     Stage* stage3 = init_stage3();
 
     ALLEGRO_EVENT ev;
-    mode = 0;
+    mode = 3;
 
     while (1) {
         al_wait_for_event(sys.queue, &ev);

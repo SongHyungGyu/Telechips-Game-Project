@@ -1,4 +1,4 @@
-// Ã¹¹øÂ° ÆäÀÌÁö ÇÔ¼ö ½ÇÇàºÎ
+// Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 #include "LIB_first_page.h"
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -31,7 +31,7 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
     static bool resources_loaded = false;
 
     if (!resources_loaded) {
-        first_page_image = al_load_bitmap("resource/img/page.png");
+        first_page_image = al_load_bitmap(PATH "page.png");
         font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
 
         resources_loaded = true;
