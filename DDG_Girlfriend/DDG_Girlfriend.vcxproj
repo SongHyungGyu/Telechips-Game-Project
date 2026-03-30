@@ -167,11 +167,7 @@
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\img\ddg_down.png" />
     <Image Include="resource\img\ddg_girl.png" />
-    <Image Include="resource\img\ddg_left.png" />
-    <Image Include="resource\img\ddg_right.png" />
-    <Image Include="resource\img\ddg_up.png" />
     <Image Include="resource\img\ddg.png" />
     <Image Include="resource\img\first_page.png" />
     <Image Include="resource\img\heart.png" />

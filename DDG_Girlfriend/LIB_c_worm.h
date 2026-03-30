@@ -3,8 +3,8 @@
 
 #include "LIB_shot.h"
 
-#define C_WORM_W 32
-#define C_WORM_H 32
+#define C_WORM_W 60
+#define C_WORM_H 60
 
 typedef struct C_WORM
 {

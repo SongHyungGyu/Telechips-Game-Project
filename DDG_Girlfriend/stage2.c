@@ -32,7 +32,8 @@ Stage* init_stage2() {
     s->wormNum = 4;
 	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
 
-	s->worms[0] = init_worm(100, 100, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
+	s->worms[0] = init_worm(TILE_SIZE * 2.5, TILE_SIZE * 2.5, WORM_LX_STAGE2, WORM_RX_STAGE2, 
+        0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
     s->worms[1] = init_worm(1000, 300, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, -1);
     s->worms[2] = init_worm(100, 500, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
     s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, -1);
@@ -41,10 +42,13 @@ Stage* init_stage2() {
     s->sx = sx2;
     s->sy = sy2;
     
-    s->flowers = (flower**)malloc(sizeof(flower*) * 3);
-    s->flowers[0] = init_flower(300, 300);
-    s->flowers[1] = init_flower(500, 500);
-    s->flowers[2] = init_flower(700, 200);
+    s->flowers = (flower**)malloc(sizeof(flower*) * 6);
+    s->flowers[0] = init_flower(TILE_SIZE * 5, TILE_SIZE * 2);
+    s->flowers[1] = init_flower(TILE_SIZE * 6, TILE_SIZE * 7);
+    s->flowers[2] = init_flower(TILE_SIZE * 5, TILE_SIZE * 12);
+    s->flowers[3] = init_flower(TILE_SIZE * 14, TILE_SIZE * 2);
+    s->flowers[4] = init_flower(TILE_SIZE * 13, TILE_SIZE * 7);
+    s->flowers[5] = init_flower(TILE_SIZE * 14, TILE_SIZE * 12);
 
     s->flower_cnt = FLOWER_TOT2;
 

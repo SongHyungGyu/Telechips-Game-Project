@@ -68,18 +68,6 @@
     <Image Include="resource\img\ddg.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="resource\img\ddg_down.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="resource\img\ddg_left.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="resource\img\ddg_right.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="resource\img\ddg_up.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
     <Image Include="resource\img\first_page.png">
       <Filter>리소스 파일</Filter>
     </Image>

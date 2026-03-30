@@ -21,18 +21,18 @@
 #define sx1 60
 #define sy1 60
 #define sx2 60
-#define sy2 780
+#define sy2 60
 #define sx3 60
 #define sy3 60
 // 도착 위치
-#define ax1 300
-#define ay1 300
-#define ax2 400
-#define ay2 400
+#define ax1 1080
+#define ay1 780
+#define ax2 1080
+#define ay2 780
 #define ax3 500
 #define ay3 500
 
-#define FLOWER_TOT2 3
+#define FLOWER_TOT2 6
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>

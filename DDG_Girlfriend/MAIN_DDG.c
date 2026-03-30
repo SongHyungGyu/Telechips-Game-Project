@@ -18,13 +18,13 @@ int main()
    /* ALLEGRO_FONT* time_font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);*/
 
     ALLEGRO_EVENT ev;
-    mode = 0;
+    mode = 6;
 	play_time = 0;
 
     while (1) {
         al_wait_for_event(sys->queue, &ev);
         keyboard_update(&ev);
-        if(mode == 0) run_first_page(sys->display, sys->queue, sys->timer, ev);
+        if(mode == 0) run_first_page(sys, ev);
         if (mode == 1) run_stage1(ddg, stage1, sys, ev);
         if (mode == 2) run_stage2(ddg, stage2, sys, ev);
         if (mode == 3) run_stage3(ddg, stage3, sys, ev);
