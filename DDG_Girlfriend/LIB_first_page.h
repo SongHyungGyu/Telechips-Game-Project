@@ -5,6 +5,6 @@
 #include "for_user.h"
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
-void run_first_page(User * user, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev);
+void run_first_page(SYSTEM* sys, ALLEGRO_EVENT ev);
 
 #endif

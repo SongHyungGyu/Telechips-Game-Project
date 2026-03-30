@@ -56,20 +56,24 @@ void set_stage1(DDG* ddg) {
     play_time = 0;
     mode = 1;
 }
-void set_stage2(DDG* ddg, Stage *s) {
+void set_stage2(DDG* ddg, Stage* s) {
     ddg->x = sx2;
     ddg->y = sy2;
     ddg->life = 3;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 6; i++) {
         s->flowers[i]->used = 0;
     }
     s->flower_cnt = FLOWER_TOT2;
     mode = 2;
 }
-void set_stage3(DDG* ddg) {
+void set_stage3(DDG* ddg, Stage* s) {
     ddg->x = sx3;
     ddg->y = sy3;
     ddg->life = 3;
+    for (int i = 0; i < 4; i++) {
+        s->flowers[i]->used = 0;
+    }
+    s->flower_cnt = FLOWER_TOT3;
     mode = 3;
 }
 

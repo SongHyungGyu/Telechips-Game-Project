@@ -2,7 +2,7 @@
 #define __FOR_WORM_H__
 
 #include "LIB_stage.h"
-#define WORM_SIZE 60
+#define WORM_SIZE 50
 
 #define WORM_SPEED_STAGE1 5
 #define WORM_LX_STAGE1 100
@@ -12,7 +12,7 @@
 #define WORM_LX_STAGE2 100
 #define WORM_RX_STAGE2 1000
 
-#define WORM_SPEED_STAGE3 10
+#define WORM_SPEED_STAGE3 3
 
 enum WormType {
 	HORIZONTAL = 0,

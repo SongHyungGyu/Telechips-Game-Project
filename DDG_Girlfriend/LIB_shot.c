@@ -2,24 +2,6 @@
 #include "LIB_DDG.h" 
 
 
-// bool col_c_worm_shots(DDG* ddg, Stage* s) {
-//     for (int i = 0; i < s->c_worm_count; i++) {
-//         if (s->c_worms[i] == NULL)
-//             continue;
-
-//         if (shots_collide_player(
-//             s->c_worms[i]->shots,
-//             ddg->x,
-//             ddg->y,
-//             ddg->w,
-//             ddg->h
-//         )) {
-//             return true;
-//         }
-//     }
-
-//     return false;
-// }
 static bool collide(
     int ax1, int ay1,
     int ax2, int ay2,
@@ -49,7 +31,7 @@ SHOT_SYSTEM* init_shots(const char* img_path)
 }
 
 
-bool shots_add(SHOT_SYSTEM* s,int x,int y,int dx,int dy)
+bool shots_add(SHOT_SYSTEM* s, int x, int y, int dx, int dy)
 {
     for (int i = 0; i < SHOTS_N; i++)
     {
