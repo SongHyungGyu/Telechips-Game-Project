@@ -2,6 +2,7 @@
 #include "LIB_stage.h"
 #include "for_ddg.h"
 #include "for_worm.h"
+#include "for_user.h"
 
 static void initStage1Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -23,6 +24,7 @@ static void initStage1Map(Map* m) {
 
 Stage* init_stage1() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
+	s->stage = 1;
     //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
     s->initMap = initStage1Map;
 
@@ -68,21 +70,22 @@ static void render_stage1(Stage* s, DDG * ddg, SYSTEM* sys) {
     al_flip_display();
 }
 
-static void update_stage1_by_time(DDG* ddg, Stage* s) {
+static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
     for (int i = 0; i < s->wormNum; i++) {
         update_worm(s->worms[i]);
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
-        update_ddg_after_attack(ddg, s);
+        update_ddg_after_attack(ddg, s, user);
     }
     update_ddg(ddg, s->map);
 }
 
-void run_stage1(DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev) {
+void run_stage1(User * user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev) {
     
     // 도착 지점
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
         (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
+        set_User(user, NULL, 1, play_time / 60);
         mode = 5;
         return;
     }
@@ -91,7 +94,7 @@ void run_stage1(DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev) {
     
     //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage1_by_time(ddg , s);
+        update_stage1_by_time(ddg , s , user);
         redraw = true;
 		play_time++;
     }

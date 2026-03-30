@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="for_ddg.c" />
     <ClCompile Include="for_flower.c" />
+    <ClCompile Include="for_user.c" />
     <ClCompile Include="for_worm.c" />
     <ClCompile Include="LIB_c_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="for_ddg.h" />
     <ClInclude Include="for_flower.h" />
+    <ClInclude Include="for_user.h" />
     <ClInclude Include="for_worm.h" />
     <ClInclude Include="LIB_c_worm.h" />
     <ClInclude Include="LIB_ddg.h" />

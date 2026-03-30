@@ -3,7 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "LIB_shot.h"
-
+#include "for_user.h"
 
 static int stage3_blueprint[tile_h_num][tile_w_num] = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -41,7 +41,7 @@ static void initStage3Map(Map* m) {
 
 Stage* init_stage3() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
-    
+    s->stage = 3;
     
     s->initMap = initStage3Map;
     //10마리의 지렁이 초기화
@@ -109,7 +109,7 @@ static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
 }
 
 
-static void update_stage3_by_time(DDG * ddg, Stage* s) {
+static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
     for (int i = 0; i < s->wormNum; i++) {
         update_worm(s->worms[i]);
     }
@@ -122,16 +122,18 @@ static void update_stage3_by_time(DDG * ddg, Stage* s) {
     //|| shots_collide_player()
     //|| col_c_worm_shots(ddg, s) 
     if(col_worms(ddg, s->wormNum, s->worms) ){   
-        update_ddg_after_attack(ddg, s);
+        update_ddg_after_attack(ddg, s , user);
     }
     update_ddg(ddg, s->map);
 }
 
-void run_stage3(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
+void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
 
     if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
         (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2)) &&
         (s->flower_cnt == 0)) {
+        set_User(user, NULL, 3, play_time / 60);
+        save_User(user);
         mode = 0;
         return;
     }
@@ -139,7 +141,7 @@ void run_stage3(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
     bool redraw = true;
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage3_by_time(ddg ,s);
+        update_stage3_by_time(ddg ,s ,user);
         redraw = true; 
         play_time++;
     }

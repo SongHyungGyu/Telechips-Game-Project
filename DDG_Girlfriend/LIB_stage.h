@@ -2,7 +2,7 @@
 #define LIB_STAGE_H
 #include "LIB_c_worm.h" 
 #include "LIB_DDG.h"
-
+#include "for_user.h"
 #define ddg_size 60
 #define c_worm_size
 #define shot_size
@@ -102,6 +102,7 @@ typedef struct {
 }worm;
 
 typedef struct {
+	int stage;
     Map map;
     ALLEGRO_BITMAP* mapCache;
     ALLEGRO_BITMAP* roadTile;
@@ -127,9 +128,9 @@ Stage* init_stage1();
 Stage* init_stage2();
 Stage* init_stage3();
 
-void run_stage1(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
-void run_stage2(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
-void run_stage3(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_stage1(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_stage2(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_stage3(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 
 void set_stage1(DDG* ddg);
 void set_stage2(DDG* ddg, Stage* s);

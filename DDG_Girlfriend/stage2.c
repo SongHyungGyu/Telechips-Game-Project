@@ -3,6 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "for_flower.h"
+#include "for_user.h"
 
 static void initStage2Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -27,6 +28,7 @@ static void initStage2Map(Map* m) {
 
 Stage* init_stage2() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
+    s->stage = 2;
     s->initMap = initStage2Map;
     //4마리의 지렁이 초기화
     s->wormNum = 4;
@@ -54,7 +56,7 @@ Stage* init_stage2() {
     return s;
 }
 
-static void update_stage2_by_time(DDG * ddg, Stage* s) {
+static void update_stage2_by_time(DDG * ddg, Stage* s, User * user) {
     for (int i = 0; i < FLOWER_TOT2; i++) {
         update_flower(s->flowers[i], ddg, s);
     }
@@ -62,7 +64,7 @@ static void update_stage2_by_time(DDG * ddg, Stage* s) {
         update_worm(s->worms[i]);
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
-        update_ddg_after_attack(ddg, s);
+        update_ddg_after_attack(ddg, s, user);
     }
     update_ddg(ddg, s->map);
 }
@@ -89,11 +91,12 @@ static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
 
 
 
-void run_stage2(DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
+void run_stage2(User* user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
 
     if ((ddg->x > ax2 - (TILE_SIZE / 2)) && (ddg->x < ax2 + (TILE_SIZE / 2)) &&
         (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2)) &&
         (s->flower_cnt == 0)) {
+        set_User(user, NULL, 2, play_time / 60);
         mode = 6;
         return;
     }
@@ -102,7 +105,7 @@ void run_stage2(DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
 
       //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage2_by_time(ddg , s);
+        update_stage2_by_time(ddg , s, user);
         redraw = true;
 		play_time++;
     }

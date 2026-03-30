@@ -1,4 +1,3 @@
-// ù��° ������ �Լ� �����
 #include "LIB_first_page.h"
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -23,17 +22,18 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image)
 }
 
 
-void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
+void run_first_page(User* user, ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* timer, ALLEGRO_EVENT ev) {
     static char user_name[20] = "";
     static int name_len = 0;
     static ALLEGRO_BITMAP* first_page_image = NULL;
     static ALLEGRO_FONT* font = NULL;
+    static ALLEGRO_FONT* rankingFont = NULL;
     static bool resources_loaded = false;
 
     if (!resources_loaded) {
         first_page_image = al_load_bitmap(PATH "page.png");
         font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
-
+		rankingFont = al_load_ttf_font("resource/font/Inkfree.ttf", 20, 0);
         resources_loaded = true;
     }
 
@@ -47,7 +47,13 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
             user_name[--name_len] = '\0';
         }
         else if (ev.keyboard.keycode == ALLEGRO_KEY_ENTER) {
-            mode = 4;
+            if (name_len > 0 && name_len <= 20) {
+                set_User(user, user_name, 0, 0);
+                user_name[0] = '\0';
+                name_len = 0;
+                mode = 4;
+            }
+
         }
         else if (ev.keyboard.unichar >= 32 && ev.keyboard.unichar <= 126 && name_len < 19) {
             user_name[name_len++] = (char)ev.keyboard.unichar;
@@ -65,6 +71,7 @@ void run_first_page(ALLEGRO_DISPLAY* display, ALLEGRO_EVENT_QUEUE* queue, ALLEGR
 
         if (font) {
             al_draw_text(font, al_map_rgb(0, 0, 0), 160, 203, 0 , user_name);
+            draw_top_Users(rankingFont);
         }
 
         al_flip_display();

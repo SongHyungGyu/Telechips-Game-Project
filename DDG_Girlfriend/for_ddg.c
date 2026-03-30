@@ -1,6 +1,7 @@
 #include "LIB_DDG.h"
 #include "LIB_stage.h"
 #include "for_worm.h"
+#include "for_user.h"
 
 #define heart_size 40
 #define	life_img_width 330
@@ -91,7 +92,11 @@ void render_ddg(DDG* ddg) {
     }
 }
 
-void update_ddg_after_attack(DDG* ddg, Stage * s){
+//void end_game(User* user) {
+//    save_User(user);
+//    print_all_Users();
+//}
+void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
     //생명에 따라 현재 스테이지의 시작위치로 돌아가거나
     //mode를 변경하며 스테이지1부터 시작
     if(ddg -> life > 1){
@@ -101,9 +106,11 @@ void update_ddg_after_attack(DDG* ddg, Stage * s){
         //이미지도 start 이미지로 변경해야 하는데 start 
         //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
     }else{
-        //무조건 stage1으로 가면됨
+        // 로그인 페이지로 가면됨
+        if (s->stage > 1) save_User(user);
         mode = 0;
     }
-
 }
+
+
 
