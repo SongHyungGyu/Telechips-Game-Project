@@ -90,13 +90,6 @@ static void render_stage2(Stage* s, DDG* ddg) {
 }
 /*������*/
 
-/*���¾�����Ʈ*/
-static void update_stage2(DDG* ddg, Map m) {
-    update_ddg(ddg, m);
-}
-
-
-/*���¾�����Ʈ*/
 
 /*stage2�� ���ϴ� �������̽�*/
 void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,

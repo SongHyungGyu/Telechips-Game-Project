@@ -112,7 +112,6 @@ typedef struct {
 
 	int wormNum;
 	worm** worms; 
-	//꽃이 여러개여서 더블포인터
 	flower** flowers;
 	int flower_cnt;
 } Stage;
