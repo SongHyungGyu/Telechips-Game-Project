@@ -1,6 +1,7 @@
 #ifndef __LIB_DDG__
 #define __LIB_DDG__
 // ����
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -14,6 +15,7 @@
 #define PATH "resource/img/"
 
 int mode;
+int play_time;
 
 unsigned char key[ALLEGRO_KEY_MAX];
 void must_init(bool test, const char* description);
@@ -25,8 +27,9 @@ typedef struct SYSTEM {
 	ALLEGRO_DISPLAY* display;
 	ALLEGRO_EVENT_QUEUE* queue;
 	ALLEGRO_TIMER* timer;
+	ALLEGRO_FONT* font;
 }SYSTEM;
-SYSTEM init_game_system();
+SYSTEM* init_game_system();
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 
 // Ű����

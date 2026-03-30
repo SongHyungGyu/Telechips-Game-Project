@@ -60,8 +60,13 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="for_ddg.h">
+    <ClInclude Include="LIB_stage.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="for_ddg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="for_worm.h">
     <ClInclude Include="for_worm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -95,12 +100,25 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="resource\img\ddg_up.png">
+    <Image Include="page.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="road.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="wall.png">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="resource\img\marsh.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="resource\img\flower.png">
+    <Image Include="resource\img\realWorm.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\road.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\marsh.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
