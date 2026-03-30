@@ -59,9 +59,15 @@ Stage* init_stage2() {
 static void update_stage2(DDG* ddg, Map m) {
     update_ddg(ddg, m);
 }
-static void update_stage2_by_time(Stage* s, DDG* ddg) {
+static void update_stage2_by_time(DDG * ddg, Stage* s) {
     for (int i = 0; i < FLOWER_TOT; i++) {
         update_flower(s->flowers[i], ddg, s);
+    }
+    for (int i = 0; i < s->wormNum; i++) {
+        update_worm(s->worms[i]);
+    }
+    if(col_worms(ddg, s->wormNum, s->worms)){   
+        update_ddg_after_attack(ddg, s);
     }
 }
 /*���¾�����Ʈ*/
@@ -88,14 +94,7 @@ static void render_stage2(Stage* s, DDG* ddg) {
 static void update_stage2(DDG* ddg, Map m) {
     update_ddg(ddg, m);
 }
-static void update_stage2_by_time(DDG * ddg, Stage* s) {
-    for (int i = 0; i < s->wormNum; i++) {
-        update_worm(s->worms[i]);
-    }
-    if(col_worms(ddg, s->wormNum, s->worms)){   
-        update_ddg_after_attack(ddg, s);
-    }
-}
+
 
 /*���¾�����Ʈ*/
 
@@ -113,7 +112,7 @@ void run_stage2(DDG* ddg, Stage* s, ALLEGRO_DISPLAY* display,
 
 
     if (ev.type == ALLEGRO_EVENT_TIMER) {
-        update_stage2_by_time(s, ddg);
+        update_stage2_by_time(ddg , s );
 
         //if (s->flower_cnt == 0) {
             //mode = 3;
