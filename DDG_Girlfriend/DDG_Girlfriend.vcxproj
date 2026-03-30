@@ -142,7 +142,7 @@
     <ClCompile Include="LIB_c_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
     <ClCompile Include="LIB_hud.c" />
-    <ClCompile Include="LIB_shot..c" />
+    <ClCompile Include="LIB_shot.c" />
     <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
     <ClCompile Include="LIB_first_page.c" />
@@ -180,7 +180,6 @@
     <Image Include="resource\img\login_page.png" />
     <Image Include="resource\img\marsh.png" />
     <Image Include="resource\img\realWorm.png" />
-    <Image Include="resource\img\marsh.png" />
     <Image Include="resource\img\page.png" />
     <Image Include="road.png" />
     <Image Include="wall.png" />

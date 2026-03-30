@@ -133,7 +133,8 @@ static void update_stage3_by_time(DDG * ddg, Stage* s) {
 void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev) {
 
     if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
-        (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2))) {
+        (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2)) &&
+        (s->flower_cnt == 0)) {
         mode = 0;
         return;
     }

@@ -31,7 +31,7 @@ Stage* init_stage1() {
     s->wormNum = 4;
 	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
 
-	s->worms[0] = init_worm(100, 100, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
+	s->worms[0] = init_worm(TILE_SIZE*2.5, TILE_SIZE * 2.5, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
     s->worms[1] = init_worm(1000, 300, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, -1);
     s->worms[2] = init_worm(100, 500, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, +1);
     s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE1, WORM_RX_STAGE1, 0, 0, HORIZONTAL, WORM_SPEED_STAGE1, -1);
@@ -83,7 +83,8 @@ void run_stage1(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev
     
     // 도착 지점
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
-        (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
+        (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2)) &&
+        (s->flower_cnt == 0)) {
         mode = 5;
         return;
     }

@@ -74,7 +74,7 @@ void render_play_time(SYSTEM* sys) {
     int seconds = play_time / 60;
     int minutes = seconds / 60;
     sprintf(c_play_time, "%02d:%02d", minutes, seconds % 60);
-	printf("%s\n", c_play_time);
+	//printf("%s\n", c_play_time);
 
     al_draw_text(sys->font, al_map_rgb(255, 255, 255), DISP_W / 2, TILE_SIZE/2,
         ALLEGRO_ALIGN_CENTER, c_play_time);

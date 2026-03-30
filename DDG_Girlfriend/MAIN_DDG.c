@@ -20,7 +20,7 @@ int main()
    /* ALLEGRO_FONT* time_font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);*/
 
     ALLEGRO_EVENT ev;
-    mode = 3;
+    mode = 0;
 	play_time = 0;
 
     while (1) {

@@ -94,7 +94,8 @@ static void render_stage2(Stage* s, DDG * ddg, HEART* heart, SYSTEM* sys) {
 void run_stage2(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev){
 
     if ((ddg->x > ax2 - (TILE_SIZE / 2)) && (ddg->x < ax2 + (TILE_SIZE / 2)) &&
-        (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2))) {
+        (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2)) &&
+        (s->flower_cnt == 0)) {
         mode = 6;
         return;
     }
@@ -105,9 +106,6 @@ void run_stage2(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage2_by_time(ddg , s);
         update_stage2(ddg, s->map);
-        //if (s->flower_cnt == 0) {
-        //mode = 3;
-        //}
         redraw = true;
 		play_time++;
     }
