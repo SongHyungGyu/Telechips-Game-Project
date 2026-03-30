@@ -3,7 +3,6 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "LIB_shot.h"
-#include "LIB_hud.h"
 
 
 static int stage3_blueprint[tile_h_num][tile_w_num] = {
@@ -76,6 +75,7 @@ Stage* init_stage3() {
     s->sx = sx3;
     s->sy = sy3;
 
+    s->ddg_girl = load_image(PATH "ddg_girl.png");
     
     init_stage(s);
     
@@ -85,10 +85,11 @@ Stage* init_stage3() {
 
 
 
-static void render_stage3(Stage* s, DDG* ddg, HEART* heart, SYSTEM* sys) {
+static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0);
-
+    al_draw_scaled_bitmap(s->ddg_girl, 0, 0, 400, 400,
+        ax3, ay3, TILE_SIZE, TILE_SIZE, 0);
   
     for (int i = 0; i < s->c_worm_count; i++) {
         if (s->c_worms[i] != NULL) {
@@ -103,13 +104,8 @@ static void render_stage3(Stage* s, DDG* ddg, HEART* heart, SYSTEM* sys) {
         render_worm(s->worms[i]);
     }
 
-    // heart 렌더
-	render_hud(heart, ddg);
     render_play_time(sys);
     al_flip_display();
-}
-static void update_stage3(DDG* ddg, Map m) {
-    update_ddg(ddg, m);
 }
 
 
@@ -128,9 +124,10 @@ static void update_stage3_by_time(DDG * ddg, Stage* s) {
     if(col_worms(ddg, s->wormNum, s->worms) ){   
         update_ddg_after_attack(ddg, s);
     }
+    update_ddg(ddg, s->map);
 }
 
-void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev) {
+void run_stage3(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
 
     if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
         (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2)) &&
@@ -142,8 +139,7 @@ void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev)
     bool redraw = true;
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage3_by_time(ddg ,s);       
-        update_stage3(ddg, s->map);
+        update_stage3_by_time(ddg ,s);
         redraw = true; 
         play_time++;
     }
@@ -151,16 +147,11 @@ void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev)
 
     if (ev.type != ALLEGRO_EVENT_TIMER) {
 
-        //update_stage3(ddg);
-        // update_stage3(ddg, s->map);
-
-        //redraw = true;
-
     }
 
     if (redraw) {
 
-        render_stage3(s, ddg, heart, sys);
+        render_stage3(s, ddg, sys);
 
         redraw = false;
 

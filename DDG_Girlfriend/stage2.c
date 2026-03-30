@@ -3,8 +3,6 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "for_flower.h"
-#include "LIB_hud.h"
-#define FLOWER_TOT 3
 
 static void initStage2Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -48,17 +46,16 @@ Stage* init_stage2() {
     s->flowers[1] = init_flower(500, 500);
     s->flowers[2] = init_flower(700, 200);
 
-    s->flower_cnt = FLOWER_TOT;
+    s->flower_cnt = FLOWER_TOT2;
+
+    s->ddg_girl = load_image(PATH "ddg_girl.png");
     init_stage(s);
 
     return s;
 }
 
-static void update_stage2(DDG* ddg, Map m) {
-    update_ddg(ddg, m);
-}
 static void update_stage2_by_time(DDG * ddg, Stage* s) {
-    for (int i = 0; i < FLOWER_TOT; i++) {
+    for (int i = 0; i < FLOWER_TOT2; i++) {
         update_flower(s->flowers[i], ddg, s);
     }
     for (int i = 0; i < s->wormNum; i++) {
@@ -67,14 +64,17 @@ static void update_stage2_by_time(DDG * ddg, Stage* s) {
     if(col_worms(ddg, s->wormNum, s->worms)){   
         update_ddg_after_attack(ddg, s);
     }
+    update_ddg(ddg, s->map);
 }
 
-static void render_stage2(Stage* s, DDG * ddg, HEART* heart, SYSTEM* sys) {
+static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     al_draw_bitmap(s->mapCache, 0, 0, 0);
+    al_draw_scaled_bitmap(s->ddg_girl, 0, 0, 400, 400,
+        ax2, ay2, TILE_SIZE, TILE_SIZE, 0);
     //ddg 렌더
     render_ddg(ddg);
-    for (int i = 0; i < FLOWER_TOT; i++) {
+    for (int i = 0; i < FLOWER_TOT2; i++) {
         render_flower(s->flowers[i]);
     }
 
@@ -82,8 +82,6 @@ static void render_stage2(Stage* s, DDG * ddg, HEART* heart, SYSTEM* sys) {
     for (int i = 0; i < s->wormNum; i++) {
         render_worm(s->worms[i]);
     }
-     // heart 렌더
-	render_hud(heart, ddg);
     render_play_time(sys);
 
     al_flip_display();
@@ -91,7 +89,7 @@ static void render_stage2(Stage* s, DDG * ddg, HEART* heart, SYSTEM* sys) {
 
 
 
-void run_stage2(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev){
+void run_stage2(DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
 
     if ((ddg->x > ax2 - (TILE_SIZE / 2)) && (ddg->x < ax2 + (TILE_SIZE / 2)) &&
         (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2)) &&
@@ -105,7 +103,6 @@ void run_stage2(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev
       //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage2_by_time(ddg , s);
-        update_stage2(ddg, s->map);
         redraw = true;
 		play_time++;
     }
@@ -121,7 +118,7 @@ void run_stage2(DDG* ddg, Stage * s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev
 
     if (redraw) {
 
-        render_stage2(s, ddg, heart, sys);
+        render_stage2(s, ddg, sys);
 
         redraw = false;
 

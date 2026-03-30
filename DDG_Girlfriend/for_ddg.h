@@ -11,4 +11,4 @@ bool col_wall(int nx, int ny, Map m);
 bool col_marsh(int nx, int ny, Map m);
 void update_ddg_after_attack(DDG* ddg, Stage * s);
 
-#endif#pragma once
+#endif

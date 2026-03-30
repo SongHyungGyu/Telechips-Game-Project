@@ -141,7 +141,6 @@
     <ClCompile Include="for_worm.c" />
     <ClCompile Include="LIB_c_worm.c" />
     <ClCompile Include="LIB_ddg.c" />
-    <ClCompile Include="LIB_hud.c" />
     <ClCompile Include="LIB_shot.c" />
     <ClCompile Include="LIB_stage.c" />
     <ClCompile Include="MAIN_ddg.c" />
@@ -164,12 +163,12 @@
     <ClInclude Include="LIB_c_worm.h" />
     <ClInclude Include="LIB_ddg.h" />
     <ClInclude Include="LIB_first_page.h" />
-    <ClInclude Include="LIB_hud.h" />
     <ClInclude Include="LIB_shot.h" />
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\ddg_down.png" />
+    <Image Include="resource\img\ddg_girl.png" />
     <Image Include="resource\img\ddg_left.png" />
     <Image Include="resource\img\ddg_right.png" />
     <Image Include="resource\img\ddg_up.png" />

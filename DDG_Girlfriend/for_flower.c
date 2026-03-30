@@ -40,7 +40,7 @@ void update_flower(flower* f, DDG* ddg, Stage* s) {
 	if (f->used) return;
 
 	//�̶����� �ȸԾ��� �� �� �浹�̸� f->used = 1�� ���� �� ������ �ϳ� ����
-	if (collide(f->x, f->y, f->w, f->h,
+	if (collide(f->x, f->y, FLOWER_SIZE, FLOWER_SIZE,
 		ddg->x, ddg->y, ddg_size, ddg_size)) {
 		f->used = 1;   // �� ���� ó��
 		s->flower_cnt--;

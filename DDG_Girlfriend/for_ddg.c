@@ -2,6 +2,10 @@
 #include "LIB_stage.h"
 #include "for_worm.h"
 
+#define heart_size 40
+#define	life_img_width 330
+#define life_img_height 290
+
 // main에서 한번만 시작할 초기화 함수
 DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
@@ -14,6 +18,7 @@ DDG* init_ddg(){
 	ddg->speed = 5;
 	ddg->w = 0;
 	ddg->h = 0;
+    ddg->heart_img = load_image(PATH "heart.png");
 	return ddg;
 }
 
@@ -34,39 +39,41 @@ bool col_marsh(int nx, int ny, Map m) {
 }
 
 void update_ddg(DDG* ddg, Map m) {
+    int cx = ddg->x + ddg_size / 2;
+    int cy = ddg->y + ddg_size / 2;
     int nx, ny;
     //printf("x : %d, y : %d\n", ddg->x, ddg->y);
     if (key[ALLEGRO_KEY_RIGHT]) {
-        nx = ddg->x + ddg_size / 2 + ddg ->speed;
-        ny = ddg->y + ddg_size / 2;
-        if (!col_wall(nx, ny, m)) {
+        nx = cx + ddg ->speed;
+        ny = cy;
+        if (!col_wall(nx + ddg_size / 2, ny, m)) {
             if(col_marsh(nx, ny, m)) ddg->x += ddg->speed / 2;
             else ddg ->x += ddg->speed;
         }
         ddg->w = 200;
     }
     if (key[ALLEGRO_KEY_LEFT]) {
-        nx = ddg ->x + ddg_size / 2 - ddg ->speed;
-        ny = ddg ->y + ddg_size / 2;
-        if (!col_wall(nx, ny, m)) {
+        nx = cx - ddg ->speed;
+        ny = cy;
+        if (!col_wall(nx - ddg_size / 2, ny, m)) {
             if (col_marsh(nx, ny, m)) ddg->x -= ddg->speed/2;
             else ddg->x -= ddg->speed;;
         }
         ddg->w = 100;
     }
     if (key[ALLEGRO_KEY_UP]) {
-        nx = ddg ->x + ddg_size / 2;
-        ny = ddg ->y + ddg_size / 2 - ddg ->speed;
-        if (!col_wall(nx, ny, m)) {
+        nx = cx;
+        ny = cy - ddg ->speed;
+        if (!col_wall(nx, ny- ddg_size / 2, m)) {
             if (col_marsh(nx, ny, m)) ddg->y -= ddg->speed / 2;
             else ddg->y -= ddg->speed;
         }
         ddg->w = 300;
     }
     if (key[ALLEGRO_KEY_DOWN]) {
-        nx = ddg ->x + ddg_size / 2;
-        ny = ddg ->y + ddg_size / 2 + ddg ->speed;
-        if (!col_wall(nx, ny, m)) {
+        nx = cx;
+        ny = cy + ddg ->speed;
+        if (!col_wall(nx, ny+ ddg_size / 2, m)) {
             if(col_marsh(nx, ny, m)) ddg ->y += ddg->speed/2;
             else ddg->y += ddg->speed;
         }
@@ -78,6 +85,10 @@ void render_ddg(DDG* ddg) {
     // �δ��� �׸���
     al_draw_scaled_bitmap(ddg -> img, ddg->w, 0, 100, 100,
         ddg -> x, ddg ->y, ddg_size, ddg_size, 0);
+    for (int i = 0; i < ddg->life; ++i) {
+        al_draw_scaled_bitmap(ddg->heart_img, 460, 190, life_img_width, life_img_height,
+            TILE_SIZE * 16 + heart_size * i, 10, heart_size, heart_size, 0);
+    }
 }
 
 void update_ddg_after_attack(DDG* ddg, Stage * s){
@@ -95,3 +106,4 @@ void update_ddg_after_attack(DDG* ddg, Stage * s){
     }
 
 }
+
