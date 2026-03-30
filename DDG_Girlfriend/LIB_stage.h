@@ -13,6 +13,8 @@
 // 타일 크기
 #define TILE_SIZE 60  
 
+#define C_WORM_N 10
+
 // 시작 위치
 #define sx1 60
 #define sy1 60
@@ -99,6 +101,11 @@ typedef struct {
     ALLEGRO_BITMAP* wallTile;
     ALLEGRO_BITMAP* marshTile;
     void (*initMap)(Map* m);
+    int sx, sy;
+
+    C_WORM** c_worms;
+    int c_worm_count;
+
 	int sx, sy;
 	int wormNum;
 	worm** worms; 
