@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define MAX_UserS 10
-#define FILE_NAME "data_user.txt"
+#define FILE_NAME "ranking.txt"
 
 // 정렬 기준:
 // 1. stage 내림차순
@@ -85,8 +85,9 @@ void save_User(User* u) {
             count++;
         }
         else {
-            // 배열이 가득 찼으면 일단 정렬 후 마지막보다 더 좋은 기록일 때만 교체
-            qsort(Users, count, sizeof(User), compare_User);
+            // 배열은 무조건 정렬된 상태
+			//마지막 꺼 보다 기록 이 좋으면 마지막 꺼 대신 저장
+            //그리고 정렬
             if (compare_User(u, &Users[count - 1]) < 0) {
                 Users[count - 1] = *u;
             }

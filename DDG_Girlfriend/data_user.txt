@@ -1,6 +1,10 @@
 hahaha 2 16
 gaf 2 17
+king 2 30
+choiyouhyeon 2 37
 shg 1 1
 dsc 1 3
+t 1 3
+a 1 3
 chayounseo 1 4
-iamhappy 1 6
+b 1 4

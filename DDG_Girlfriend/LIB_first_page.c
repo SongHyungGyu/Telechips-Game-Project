@@ -22,7 +22,7 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image)
 }
 
 
-void run_first_page(SYSTEM* sys, ALLEGRO_EVENT ev) {
+void run_first_page(User * user, SYSTEM* sys, ALLEGRO_EVENT ev) {
     static char user_name[20] = "";
     static int name_len = 0;
     static ALLEGRO_BITMAP* first_page_image = NULL;

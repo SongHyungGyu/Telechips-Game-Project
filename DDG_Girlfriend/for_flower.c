@@ -1,8 +1,6 @@
 #include "for_flower.h"
 #include "LIB_stage.h"
 
-
-
 flower* init_flower(int x, int y){
 	flower* f = (flower*)malloc(sizeof(flower));
 	

@@ -38,7 +38,7 @@ static void initStage3Map(Map* m) {
 
 Stage* init_stage3() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
-    
+	s->stage = 3;
     s->initMap = initStage3Map;
     //10마리의 지렁이 초기화
     s->wormNum = 10;
@@ -140,7 +140,7 @@ static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
     //|| shots_collide_player()
     //|| col_c_worm_shots(ddg, s) 
     if(col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)){
-        update_ddg_after_attack(ddg, s);
+        update_ddg_after_attack(ddg, s , user);
     }
     update_ddg(ddg, s->map);
 }

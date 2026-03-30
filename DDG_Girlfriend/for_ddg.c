@@ -92,10 +92,6 @@ void render_ddg(DDG* ddg) {
     }
 }
 
-//void end_game(User* user) {
-//    save_User(user);
-//    print_all_Users();
-//}
 void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
     //생명에 따라 현재 스테이지의 시작위치로 돌아가거나
     //mode를 변경하며 스테이지1부터 시작
@@ -107,7 +103,7 @@ void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
         //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
     }else{
         // 로그인 페이지로 가면됨
-        if (s->stage > 1) save_User(user);
+        if (s-> stage > 1) save_User(user);
         mode = 0;
     }
 }
