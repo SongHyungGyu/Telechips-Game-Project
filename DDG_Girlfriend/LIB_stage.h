@@ -3,7 +3,7 @@
 #include "LIB_c_worm.h" 
 #include "LIB_DDG.h"
 
-#define ddg_size 60
+#define ddg_size 50
 #define c_worm_size
 #define shot_size
 #define flower_size
@@ -29,10 +29,11 @@
 #define ay1 780
 #define ax2 1080
 #define ay2 780
-#define ax3 500
-#define ay3 500
+#define ax3 1020
+#define ay3 780
 
 #define FLOWER_TOT2 6
+#define FLOWER_TOT3 4
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -133,7 +134,9 @@ void run_stage3(DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 
 void set_stage1(DDG* ddg);
 void set_stage2(DDG* ddg, Stage* s);
-void set_stage3(DDG* ddg);
+void set_stage3(DDG* ddg, Stage* s);
+
+bool col_c_worm_shots(DDG* ddg, Stage* s);
 
 void render_play_time(SYSTEM* sys);
 #endif

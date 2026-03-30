@@ -6,8 +6,8 @@
 
 #define SHOTS_N 128
 
-#define C_WORM_SHOT_W 8
-#define C_WORM_SHOT_H 8
+#define C_WORM_SHOT_W 20
+#define C_WORM_SHOT_H 20
 
 typedef struct SHOT
 {

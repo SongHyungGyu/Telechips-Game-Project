@@ -3,6 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "LIB_shot.h"
+#include "for_flower.h"
 
 
 static int stage3_blueprint[tile_h_num][tile_w_num] = {
@@ -35,10 +36,6 @@ static void initStage3Map(Map* m) {
     }
 }
 
-
-
-
-
 Stage* init_stage3() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
     
@@ -48,29 +45,30 @@ Stage* init_stage3() {
     s->wormNum = 10;
 	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
 
-	s->worms[0] = init_worm(50, 200, 0, 0, 600, 200, VERTICAL, WORM_SPEED_STAGE3, +1);
-    s->worms[1] = init_worm(120, 600, 0, 0, 600, 200, VERTICAL, WORM_SPEED_STAGE3, -1);
-    s->worms[2] = init_worm(50, 720, 50, 550, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, +1);
-    s->worms[3] = init_worm(550, 780,50, 550, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, -1);
-    s->worms[4] = init_worm(550, 300, 0, 0, 600, 300, VERTICAL, WORM_SPEED_STAGE3, +1);
-    s->worms[5] = init_worm(610, 600, 0, 0, 600, 300, VERTICAL, WORM_SPEED_STAGE3, -1);
-    s->worms[6] = init_worm(550, 100, 550, 950, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, +1);
-    s->worms[7] = init_worm(950, 160, 550, 950, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, -1);
-    s->worms[8] = init_worm(950, 300, 0, 0, 600, 300, VERTICAL, WORM_SPEED_STAGE3, +1);
-    s->worms[9] = init_worm(1010, 600, 0, 0, 600, 300, VERTICAL, WORM_SPEED_STAGE3, -1);
-
-
-    init_stage(s);
-
+	s->worms[0] = init_worm(TILE_SIZE, TILE_SIZE*4, 0, 0, TILE_SIZE*10, TILE_SIZE*4, VERTICAL, WORM_SPEED_STAGE3, +1);
+    s->worms[1] = init_worm(TILE_SIZE*2+10, TILE_SIZE*10, 0, 0, TILE_SIZE*10, TILE_SIZE*4, VERTICAL, WORM_SPEED_STAGE3, -1);
+    s->worms[2] = init_worm(TILE_SIZE, TILE_SIZE*12, TILE_SIZE, TILE_SIZE*9, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, +1);
+    s->worms[3] = init_worm(TILE_SIZE*9, TILE_SIZE*13+10, TILE_SIZE, TILE_SIZE*9, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, -1);
+    s->worms[4] = init_worm(TILE_SIZE*9, TILE_SIZE*5, 0, 0, TILE_SIZE*10, TILE_SIZE*5, VERTICAL, WORM_SPEED_STAGE3, +1);
+    s->worms[5] = init_worm(TILE_SIZE*10, TILE_SIZE*10, 0, 0, TILE_SIZE*10, TILE_SIZE*5, VERTICAL, WORM_SPEED_STAGE3, -1);
+    s->worms[6] = init_worm(TILE_SIZE*9, TILE_SIZE*2, TILE_SIZE*9, TILE_SIZE*16, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, +1);
+    s->worms[7] = init_worm(TILE_SIZE*16, TILE_SIZE*3, TILE_SIZE*9, TILE_SIZE*16, 0, 0, HORIZONTAL, WORM_SPEED_STAGE3, -1);
+    s->worms[8] = init_worm(TILE_SIZE*16, TILE_SIZE*5, 0, 0, TILE_SIZE*10, TILE_SIZE*5, VERTICAL, WORM_SPEED_STAGE3, +1);
+    s->worms[9] = init_worm(TILE_SIZE*17, TILE_SIZE*10, 0, 0, TILE_SIZE*10, TILE_SIZE*5, VERTICAL, WORM_SPEED_STAGE3, -1);
     
     s->c_worm_count = 3;
     s->c_worms = (C_WORM**)malloc(sizeof(C_WORM*) * s->c_worm_count);
 
-    
     s->c_worms[0] = init_c_worm(200, 150);
     s->c_worms[1] = init_c_worm(500, 300);
     s->c_worms[2] = init_c_worm(800, 450);
 
+    s->flowers = (flower**)malloc(sizeof(flower*) * 4);
+    s->flowers[0] = init_flower(TILE_SIZE * 1, TILE_SIZE * 13);
+    s->flowers[1] = init_flower(TILE_SIZE * 10, TILE_SIZE * 13);
+    s->flowers[2] = init_flower(TILE_SIZE * 9, TILE_SIZE * 2);
+    s->flowers[3] = init_flower(TILE_SIZE * 17, TILE_SIZE * 2);
+    s->flower_cnt = FLOWER_TOT3;
 
     s->sx = sx3;
     s->sy = sy3;
@@ -81,9 +79,6 @@ Stage* init_stage3() {
     
     return s;
 }
-
-
-
 
 static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
     al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -96,7 +91,9 @@ static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
             render_c_worm(s->c_worms[i]);
         }
     }
-
+    for (int i = 0; i < FLOWER_TOT3; i++) {
+        render_flower(s->flowers[i]);
+    }
     //ddg 렌더
     render_ddg(ddg);
     //worm 렌더
@@ -108,6 +105,24 @@ static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
     al_flip_display();
 }
 
+bool col_c_worm_shots(DDG* ddg, Stage* s) {
+    for (int i = 0; i < s->c_worm_count; i++) {
+        if (s->c_worms[i] == NULL)
+            continue;
+
+        if (shots_collide_player(
+            s->c_worms[i]->shots,
+            ddg->x,
+            ddg->y,
+            ddg_size,
+            ddg_size
+        )) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 static void update_stage3_by_time(DDG * ddg, Stage* s) {
     for (int i = 0; i < s->wormNum; i++) {
@@ -119,9 +134,13 @@ static void update_stage3_by_time(DDG * ddg, Stage* s) {
             update_c_worm(s->c_worms[i]);
         }
     }
+
+    for (int i = 0; i < FLOWER_TOT3; i++) {
+        update_flower(s->flowers[i], ddg, s);
+    }
     //|| shots_collide_player()
     //|| col_c_worm_shots(ddg, s) 
-    if(col_worms(ddg, s->wormNum, s->worms) ){   
+    if(col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)){
         update_ddg_after_attack(ddg, s);
     }
     update_ddg(ddg, s->map);

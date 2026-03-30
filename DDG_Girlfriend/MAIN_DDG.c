@@ -30,7 +30,7 @@ int main()
         if (mode == 3) run_stage3(ddg, stage3, sys, ev);
         if (mode == 4) set_stage1(ddg);
         if (mode == 5) set_stage2(ddg, stage2);
-        if (mode == 6) set_stage3(ddg);
+        if (mode == 6) set_stage3(ddg, stage3);
     }
     return 0;
 }
