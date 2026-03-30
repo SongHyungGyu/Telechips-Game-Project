@@ -101,7 +101,30 @@ static void render_stage3(Stage* s, DDG* ddg, HEART* heart, SYSTEM* sys) {
     for (int i = 0; i < s->wormNum; i++) {
         render_worm(s->worms[i]);
     }
+
+    // heart 렌더
+	render_hud(heart, ddg);
+    render_play_time(sys);
     al_flip_display();
+}
+static void update_stage3(DDG* ddg, Map m) {
+    update_ddg(ddg, m);
+}
+
+
+static void update_stage3_by_time(DDG * ddg, Stage* s) {
+    for (int i = 0; i < s->wormNum; i++) {
+        update_worm(s->worms[i]);
+    }
+
+    for (int i = 0; i < s->c_worm_count; i++) {
+        if (s->c_worms[i] != NULL) {
+            update_c_worm(s->c_worms[i]);
+        }
+    }
+    if(col_worms(ddg, s->wormNum, s->worms)){   
+        update_ddg_after_attack(ddg, s);
+    }
 }
 
 void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev) {
@@ -115,10 +138,9 @@ void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev)
     bool redraw = true;
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
-        update_stage3_by_time(ddg ,s);
-        {
+        update_stage3_by_time(ddg ,s);       
+        update_stage3(ddg);
         redraw = true; 
-    }        update_stage3(ddg);
         play_time++;
     }
 
@@ -126,7 +148,7 @@ void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev)
     if (ev.type != ALLEGRO_EVENT_TIMER) {
 
         //update_stage3(ddg);
-        update_stage3(ddg, s->map);
+        // update_stage3(ddg, s->map);
 
         //redraw = true;
 
