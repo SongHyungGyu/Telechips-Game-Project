@@ -36,8 +36,14 @@
     <ClCompile Include="LIB_stage.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LIB_stage1.h">
-      <Filter>헤더 파일</Filter>
+    <ClCompile Include="for_ddg.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="for_worm.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="for_flower.c">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,13 +56,16 @@
     <ClInclude Include="LIB_first_page.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="LIB_login.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="LIB_stage.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="LIB_stage2.h">
+    <ClInclude Include="for_ddg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="for_worm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="for_flower.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,13 +76,31 @@
     <Image Include="resource\img\login_page.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\wall.png">
+    <Image Include="road.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\..\Telechips4\GameProjectPractice\x64\Debug\road.png">
+    <Image Include="wall.png">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\..\Downloads\marsh.png">
+    <Image Include="resource\img\page.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\ddg_down.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\ddg_left.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\ddg_right.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\ddg_up.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\marsh.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="resource\img\flower.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

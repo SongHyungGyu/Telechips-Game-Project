@@ -86,13 +86,13 @@ void run_stage1(DDG* ddg, Stage * s, ALLEGRO_DISPLAY * display,
 
     bool redraw = true;
     
-            
+    //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage1_by_time(ddg , s);
         redraw = true; 
     }
 
-            
+    //타이머 이벤트가 아닌 경우에 실행 -> 키보드 입력 ex) 두더지 움직이기
     if (ev.type != ALLEGRO_EVENT_TIMER) {
                 
         update_stage1(ddg,s->map);

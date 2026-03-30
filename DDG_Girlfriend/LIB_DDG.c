@@ -24,8 +24,8 @@ SYSTEM init_game_system() {
     must_init(sys.display, "display");
     sys.queue = al_create_event_queue();
     must_init(sys.queue, "event queue");
-    /*ALLEGRO_FONT* font = al_create_builtin_font();
-    must_init(font, "font");*/
+    ALLEGRO_FONT* font = al_create_builtin_font();
+    must_init(font, "font");
     sys.timer = al_create_timer(1.0 / 60.0);
     must_init(sys.timer, "timer");
 

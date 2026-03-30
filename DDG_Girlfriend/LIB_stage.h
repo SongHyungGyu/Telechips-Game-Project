@@ -59,8 +59,11 @@ typedef struct {
 	bool used;
 }shot;
 typedef struct flower {
+	ALLEGRO_BITMAP* img;
 	int x;
 	int y;
+	int w;
+	int h;
 	bool used;
 }flower;
 typedef enum {
@@ -109,7 +112,9 @@ typedef struct {
 
 	int wormNum;
 	worm** worms; 
-	flower* flowers;
+	//꽃이 여러개여서 더블포인터
+	flower** flowers;
+	int flower_cnt;
 } Stage;
 
 void renderMap(Stage* s);
