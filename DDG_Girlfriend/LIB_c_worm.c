@@ -2,7 +2,7 @@
 #include "LIB_DDG.h"
 #include "LIB_shot.h"
 
-#define FIRE_DELAY 40
+#define FIRE_DELAY 80
 
 
 C_WORM* init_c_worm(int x, int y)
