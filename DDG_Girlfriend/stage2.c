@@ -3,6 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "for_flower.h"
+#include "LIB_hud.h"
 #define FLOWER_TOT 3
 
 static void initStage2Map(Map* m) {

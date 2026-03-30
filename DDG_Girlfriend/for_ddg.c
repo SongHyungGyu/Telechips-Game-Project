@@ -91,7 +91,7 @@ void update_ddg_after_attack(DDG* ddg, Stage * s){
         //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
     }else{
         //무조건 stage1으로 가면됨
-        mode = 4;
+        mode = 0;
     }
 
 }

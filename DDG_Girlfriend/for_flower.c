@@ -16,33 +16,33 @@ flower* init_flower(int x, int y){
 	return f;
 }
 
-//1Àº ²É 2´Â µÎ´õÁö
+//1ï¿½ï¿½ ï¿½ï¿½ 2ï¿½ï¿½ ï¿½Î´ï¿½ï¿½ï¿½
 bool collide(int x1, int y1, int w1, int h1,
 	int x2, int y2, int w2, int h2) {
 
-	//°¢ Áß½É ÁÂÇ¥ ±¸ÇÏ±â ²ÉÀÇ Áß½ÉÁÂÇ¥´Â cx1, cy1, µÎ´õÁöÀÇ Áß½É ÁÂÇ¥´Â cx2, cy2
+	//ï¿½ï¿½ ï¿½ß½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ cx1, cy1, ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ cx2, cy2
 	int cx1 = x1 + w1 / 2;
 	int cy1 = y1 + h1 / 2;
 
 	int cx2 = x2 + w2 / 2;
 	int cy2 = y2 + h2 / 2;
 
-	//µÎ °´Ã¼ Áß½É »çÀÌÀÌÀÇ °Å¸® Â÷ÀÌ dx, dy
+	//ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ß½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ dx, dy
 	int dx = cx1 - cx2;
 	int dy = cy1 - cy2;
 
-	//µÎ °´Ã¤ Áß½É »çÀÌ °Å¸®°¡ 30(¹ÝÁö¸§)º¸´Ù ÀÛÀ¸¸é Ãæµ¹
-	return (dx * dx + dy * dy) < 30 * 30; // ¹ÝÁö¸§ 30
+	//ï¿½ï¿½ ï¿½ï¿½Ã¤ ï¿½ß½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ 30(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹
+	return (dx * dx + dy * dy) < 30 * 30; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 30
 }
 
 void update_flower(flower* f, DDG* ddg, Stage* s) {
-	// ÀÌ¹Ì ¸ÔÀº ²ÉÀÌ¸é ¹ÝÈ¯ÇÔ
+	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½È¯ï¿½ï¿½
 	if (f->used) return;
 
-	//ÀÌ¶§±îÁö ¾È¸Ô¾ú´ø ²É Áß Ãæµ¹ÀÌ¸é f->used = 1°ú ³²Àº ²É °³¼ö¸¦ ÇÏ³ª ÁÙÀÓ
+	//ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¸Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½æµ¹ï¿½Ì¸ï¿½ f->used = 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (collide(f->x, f->y, f->w, f->h,
-		ddg->x, ddg->y, ddg->w, ddg->h)) {
-		f->used = 1;   // ²É ¸ÔÈû Ã³¸®
+		ddg->x, ddg->y, ddg_size, ddg_size)) {
+		f->used = 1;   // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		s->flower_cnt--;
 		printf("\nflower_current_cnt = %d\n", s->flower_cnt);
 	}

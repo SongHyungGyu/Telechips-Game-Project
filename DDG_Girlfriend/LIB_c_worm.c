@@ -1,5 +1,6 @@
 #include "LIB_c_worm.h"
-#include "LIB_ddg.h"
+#include "LIB_DDG.h"
+#include "LIB_shot.h"
 
 #define FIRE_DELAY 40
 
@@ -8,7 +9,7 @@ C_WORM* init_c_worm(int x, int y)
 {
     C_WORM* worm = (C_WORM*)malloc(sizeof(C_WORM));
 
-    worm->img = load_image(PATH "c_worm.jpeg");
+    worm->img = load_image(PATH "c_worm.png");
     worm->shots = init_shots(PATH "worm_shot.png");
 
     worm->w = al_get_bitmap_width(worm->img);
@@ -26,7 +27,7 @@ static void fire_left(C_WORM* w)
 {
     int sx = w->x;
 
-    int sy =  w->y + w->h / 2;
+    int sy =  w->y + C_WORM_H / 2 - C_WORM_SHOT_H/2 ;
 
     shots_add(w->shots, sx, sy,-3,0);
 }

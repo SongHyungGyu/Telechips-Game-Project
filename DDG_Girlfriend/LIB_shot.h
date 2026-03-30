@@ -1,6 +1,6 @@
 #ifndef LIB_SHOT_H
 #define LIB_SHOT_H
-
+// #include "LIB_stage.h"
 #include <stdbool.h>
 #include <allegro5/allegro.h>
 
@@ -24,6 +24,13 @@ typedef struct SHOT_SYSTEM
 
 } SHOT_SYSTEM;
 
+bool shots_collide_player(
+    SHOT_SYSTEM* s,
+    int x,
+    int y,
+    int w,
+    int h
+);
 
 SHOT_SYSTEM* init_shots(const char* img_path);
 
@@ -46,5 +53,5 @@ bool shots_collide_player(
     int w,
     int h
 );
-
+// bool col_c_worm_shots(DDG* ddg, Stage* s);
 #endif

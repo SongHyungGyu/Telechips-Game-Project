@@ -15,7 +15,8 @@ SRC = \
 	stage3.c \
 	LIB_c_worm.c \
 	LIB_shot.c \
-	for_flower.c
+	for_flower.c \
+	LIB_hud.c
 
 OBJ = $(SRC:.c=.o)
 

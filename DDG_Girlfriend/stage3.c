@@ -3,6 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "LIB_shot.h"
+#include "LIB_hud.h"
 
 
 static int stage3_blueprint[tile_h_num][tile_w_num] = {
@@ -122,7 +123,9 @@ static void update_stage3_by_time(DDG * ddg, Stage* s) {
             update_c_worm(s->c_worms[i]);
         }
     }
-    if(col_worms(ddg, s->wormNum, s->worms)){   
+    //|| shots_collide_player()
+    //|| col_c_worm_shots(ddg, s) 
+    if(col_worms(ddg, s->wormNum, s->worms) ){   
         update_ddg_after_attack(ddg, s);
     }
 }
@@ -139,7 +142,7 @@ void run_stage3(DDG* ddg, Stage* s, HEART* heart, SYSTEM* sys, ALLEGRO_EVENT ev)
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage3_by_time(ddg ,s);       
-        update_stage3(ddg);
+        update_stage3(ddg, s->map);
         redraw = true; 
         play_time++;
     }

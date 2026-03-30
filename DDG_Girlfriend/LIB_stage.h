@@ -1,7 +1,8 @@
 #ifndef LIB_STAGE_H
 #define LIB_STAGE_H
-#include "LIB_ddg.h"
-#include "LIB_c_worm.h"
+#include "LIB_c_worm.h" 
+#include "LIB_DDG.h"
+
 #define ddg_size 60
 #define c_worm_size
 #define shot_size
@@ -33,7 +34,6 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-
 //두더지
 typedef struct {
 	ALLEGRO_BITMAP* img;
