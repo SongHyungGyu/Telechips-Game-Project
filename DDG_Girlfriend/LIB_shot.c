@@ -1,5 +1,5 @@
 #include "LIB_shot.h"
-#include "LIB_ddg.h"   // load_image »ç¿ëÁßÀÌ¸é ÇÊ¿ä
+#include "LIB_DDG.h"   // load_image ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ê¿ï¿½
 
 static bool collide(
     int ax1, int ay1,
@@ -64,11 +64,11 @@ void shots_update(SHOT_SYSTEM* s)
         s->shots[i].x += s->shots[i].dx;
         s->shots[i].y += s->shots[i].dy;
 
-        if ( // ÃÑ¾Ë »ç¶óÁö´Â
+        if ( // ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             s->shots[i].x < -C_WORM_SHOT_W ||
-            s->shots[i].x > BUFFER_W ||
+            s->shots[i].x > DISP_W ||
             s->shots[i].y < -C_WORM_SHOT_H ||
-            s->shots[i].y > BUFFER_H
+            s->shots[i].y > DISP_H
             )
         {
             s->shots[i].used = false;

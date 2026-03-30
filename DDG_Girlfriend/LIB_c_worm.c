@@ -8,7 +8,7 @@ C_WORM* init_c_worm(int x, int y)
 {
     C_WORM* worm = (C_WORM*)malloc(sizeof(C_WORM));
 
-    worm->img = load_image(PATH "c_worm.png");
+    worm->img = load_image(PATH "c_worm.jpeg");
     worm->shots = init_shots(PATH "worm_shot.png");
 
     worm->w = al_get_bitmap_width(worm->img);
@@ -47,7 +47,8 @@ void update_c_worm(C_WORM* w)
 
 void render_c_worm(C_WORM* w)
 {
-    al_draw_bitmap(w->img, w->x, w->y, 0 );
-
+    // al_draw_bitmap(w->img, w->x, w->y, 0 );
+    al_draw_scaled_bitmap(w ->img, 0, 0, w-> w, w->h,
+        w->x, w->y, C_WORM_W, C_WORM_H, 0);
     shots_draw(w->shots);
 }

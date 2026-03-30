@@ -1,6 +1,7 @@
 #ifndef LIB_STAGE_H
 #define LIB_STAGE_H
 #include "LIB_ddg.h"
+#include "LIB_c_worm.h"
 #define ddg_size 60
 #define c_worm_size
 #define shot_size
@@ -106,7 +107,6 @@ typedef struct {
     C_WORM** c_worms;
     int c_worm_count;
 
-	int sx, sy;
 	int wormNum;
 	worm** worms; 
 	flower* flowers;
