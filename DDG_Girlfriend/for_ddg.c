@@ -10,9 +10,13 @@
 // main에서 한번만 시작할 초기화 함수
 DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
-    //ddg->img = (ALLEGRO_BITMAP*)malloc(sizeof(ALLEGRO_BITMAP*));
 
     ddg->img = load_image(PATH "ddg.png");
+    ddg-> wormSound = load_aud(AUDIOPATH "wormSound.wav");
+	if (!ddg->wormSound) printf("wormSound load failed\n");
+    ddg-> flowerSound= load_aud(AUDIOPATH "flowerSound.wav");
+    if (!ddg->flowerSound) printf("flowerSound load failed\n");
+
 	ddg->x = TILE_SIZE * 1;
 	ddg->y = TILE_SIZE * 1;
 	ddg->life = 3;
@@ -83,7 +87,6 @@ void update_ddg(DDG* ddg, Map m) {
 }
 
 void render_ddg(DDG* ddg) {
-    // �δ��� �׸���
     al_draw_scaled_bitmap(ddg -> img, ddg->w, 0, 100, 100,
         ddg -> x, ddg ->y, ddg_size, ddg_size, 0);
     for (int i = 0; i < ddg->life; ++i) {
@@ -93,6 +96,9 @@ void render_ddg(DDG* ddg) {
 }
 
 void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
+    if (ddg->wormSound) {
+        al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+    }
     //생명에 따라 현재 스테이지의 시작위치로 돌아가거나
     //mode를 변경하며 스테이지1부터 시작
     if(ddg -> life > 1){

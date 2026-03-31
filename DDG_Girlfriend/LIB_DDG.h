@@ -9,9 +9,15 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+
+
 
 #define DISP_W 1200
 #define DISP_H 900
+
+#define AUDIOPATH "resource/aud/"
 #define PATH "resource/img/"
 
 int mode;
@@ -22,6 +28,7 @@ void must_init(bool test, const char* description);
 void init_system();
 ALLEGRO_DISPLAY* create_display();
 ALLEGRO_BITMAP* load_image(const char* path);
+ALLEGRO_SAMPLE* load_aud(const char* path);
 void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp);
 typedef struct SYSTEM {
 	ALLEGRO_DISPLAY* display;
