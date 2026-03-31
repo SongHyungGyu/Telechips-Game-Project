@@ -27,17 +27,17 @@ DDG* init_ddg(){
 	return ddg;
 }
 
-bool col_wall(int nx, int ny, Map m) {
+bool col_wall(int nx, int ny, Map * m) {
     int nxtile = nx / TILE_SIZE;
     int nytile = ny / TILE_SIZE;
-    if (m.tiles[nytile][nxtile].type == WALL) return true;
+    if (m -> tiles[nytile][nxtile].type == WALL) return true;
     return false;
 }
 
-bool col_marsh(int nx, int ny, Map m) {
+bool col_marsh(int nx, int ny, Map * m) {
     int nxtile = nx / TILE_SIZE;
     int nytile = ny / TILE_SIZE;
-    if (m.tiles[nytile][nxtile].type == MARSH) return true;
+    if (m -> tiles[nytile][nxtile].type == MARSH) return true;
     return false;
 }
 
@@ -48,8 +48,8 @@ void update_ddg(DDG* ddg, Stage* s) {
     if (key[ALLEGRO_KEY_RIGHT]) {
         nx = cx + ddg ->speed;
         ny = cy;
-        if (!col_wall(nx + ddg_size / 2, ny, s->map)) {
-            if(col_marsh(nx, ny, s->map)) ddg->x += ddg->speed / 2;
+        if (!col_wall(nx + ddg_size / 2, ny, &s->map)) {
+            if(col_marsh(nx, ny, &s->map)) ddg->x += ddg->speed / 2;
             else ddg ->x += ddg->speed;
         }
         ddg->w = 200;
@@ -57,8 +57,8 @@ void update_ddg(DDG* ddg, Stage* s) {
     if (key[ALLEGRO_KEY_LEFT]) {
         nx = cx - ddg ->speed;
         ny = cy;
-        if (!col_wall(nx - ddg_size / 2, ny, s->map)) {
-            if (col_marsh(nx, ny, s->map)) ddg->x -= ddg->speed/2;
+        if (!col_wall(nx - ddg_size / 2, ny, &s->map)) {
+            if (col_marsh(nx, ny, &s->map)) ddg->x -= ddg->speed/2;
             else ddg->x -= ddg->speed;;
         }
         ddg->w = 100;
@@ -66,8 +66,8 @@ void update_ddg(DDG* ddg, Stage* s) {
     if (key[ALLEGRO_KEY_UP]) {
         nx = cx;
         ny = cy - ddg ->speed;
-        if (!col_wall(nx, ny- ddg_size / 2, s->map)) {
-            if (col_marsh(nx, ny, s->map)) ddg->y -= ddg->speed / 2;
+        if (!col_wall(nx, ny- ddg_size / 2, &s->map)) {
+            if (col_marsh(nx, ny, &s->map)) ddg->y -= ddg->speed / 2;
             else ddg->y -= ddg->speed;
         }
         ddg->w = 300;
@@ -75,8 +75,8 @@ void update_ddg(DDG* ddg, Stage* s) {
     if (key[ALLEGRO_KEY_DOWN]) {
         nx = cx;
         ny = cy + ddg ->speed;
-        if (!col_wall(nx, ny+ ddg_size / 2, s->map)) {
-            if(col_marsh(nx, ny, s->map)) ddg ->y += ddg->speed/2;
+        if (!col_wall(nx, ny+ ddg_size / 2, &s->map)) {
+            if(col_marsh(nx, ny, &s->map)) ddg ->y += ddg->speed/2;
             else ddg->y += ddg->speed;
         }
         ddg->w = 0;
