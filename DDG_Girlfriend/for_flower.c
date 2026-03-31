@@ -34,7 +34,10 @@ void update_flower(flower* f, DDG* ddg, Stage* s) {
 
 	if (collide(f->x, f->y, FLOWER_SIZE, FLOWER_SIZE,
 		ddg->x, ddg->y, ddg_size, ddg_size)) {
-		f->used = 1;
+		if (ddg->flowerSound) {
+			al_play_sample(ddg->flowerSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+		}
+		f->used = 1;   // ?? ???? ???
 		s->flower_cnt--;
 		printf("\nflower_current_cnt = %d\n", s->flower_cnt);
 	}

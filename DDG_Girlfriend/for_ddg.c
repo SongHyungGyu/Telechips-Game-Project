@@ -12,6 +12,11 @@ DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
 
     ddg->img = load_image(PATH "ddg.png");
+    ddg-> wormSound = load_aud(AUDIOPATH "wormSound.wav");
+	if (!ddg->wormSound) printf("wormSound load failed\n");
+    ddg-> flowerSound= load_aud(AUDIOPATH "flowerSound.wav");
+    if (!ddg->flowerSound) printf("flowerSound load failed\n");
+
 	ddg->x = TILE_SIZE * 1;
 	ddg->y = TILE_SIZE * 1;
 	ddg->life = 3;
@@ -100,6 +105,9 @@ void render_hud(DDG* ddg) {
 }
 
 void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
+    if (ddg->wormSound) {
+        al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+    }
     //생명에 따라 현재 스테이지의 시작위치로 돌아가거나
     //mode를 변경하며 스테이지1부터 시작
     if(ddg -> life > 1){

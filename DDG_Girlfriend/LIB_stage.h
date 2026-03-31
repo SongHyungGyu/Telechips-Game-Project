@@ -40,6 +40,8 @@
 //두더지
 typedef struct {
 	ALLEGRO_BITMAP* img;
+	ALLEGRO_SAMPLE* wormSound;
+	ALLEGRO_SAMPLE* flowerSound;
 	int x;
 	int y;
 	int life;
