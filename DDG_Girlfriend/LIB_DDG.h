@@ -51,6 +51,11 @@ typedef struct SYSTEM {
 SYSTEM* init_game_system();
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 
+ALLEGRO_AUDIO_STREAM* load_stream(const char* path);
+void play_stream(ALLEGRO_AUDIO_STREAM* stream);
+void detach_stream(ALLEGRO_AUDIO_STREAM* stream);
+void destroy_stream(ALLEGRO_AUDIO_STREAM* stream);
+
 #define KEY_SEEN     1
 #define KEY_DOWN     2
 void keyboard_init();

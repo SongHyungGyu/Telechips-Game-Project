@@ -112,6 +112,7 @@ typedef struct {
     ALLEGRO_BITMAP* roadTile;
     ALLEGRO_BITMAP* wallTile;
     ALLEGRO_BITMAP* marshTile;
+	ALLEGRO_AUDIO_STREAM* bgm;
     void (*initMap)(Map* m);
     int sx, sy;
 
@@ -136,7 +137,7 @@ void run_stage1(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 void run_stage2(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 void run_stage3(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 
-void set_stage1(DDG* ddg);
+void set_stage1(DDG* ddg, Stage* s);
 void set_stage2(DDG* ddg, Stage* s);
 void set_stage3(DDG* ddg, Stage* s);
 

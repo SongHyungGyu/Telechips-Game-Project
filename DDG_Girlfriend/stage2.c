@@ -59,6 +59,9 @@ Stage* init_stage2() {
 
     s->flower_cnt = FLOWER_TOT2;
 
+    s->bgm = load_stream(AUDIOPATH "secondBGM.mp3");
+    if (!s->bgm) printf("secondBGM load failed\n");
+
     s->ddg_girl = load_image(PATH "ddg_girl.png");
     init_stage(s);
 
@@ -74,7 +77,7 @@ static void update_stage2_by_time(DDG * ddg, Stage* s, User * user) {
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
         if (ddg->wormSound) {
-            al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(ddg->wormSound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
         }
         update_ddg_after_attack(ddg, s, user);
     }
@@ -111,6 +114,8 @@ void run_stage2(User* user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
         (s->flower_cnt == 0)) {
         set_User(user, NULL, 2, play_time / 60);
         mode = MODE_SET_STAGE3;
+        if (s->bgm) detach_stream(s->bgm);
+        mode = 6;
         return;
     }
 

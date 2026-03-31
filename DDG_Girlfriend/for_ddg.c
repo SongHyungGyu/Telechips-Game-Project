@@ -116,6 +116,8 @@ void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
     }else   {    // 로그인 페이지로 가면됨
         if (s-> stage > 1) save_User(user);
         mode = MODE_FIRST_PAGE;
+        if(s->bgm) detach_stream(s->bgm);
+        mode = 0;
     }
     ddg->hit_time = play_time;
 }

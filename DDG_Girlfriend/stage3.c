@@ -72,6 +72,9 @@ Stage* init_stage3() {
     s->sx = sx3;
     s->sy = sy3;
 
+    s->bgm = load_stream(AUDIOPATH "thirdBGM.mp3");
+    if (!s->bgm) printf("thirdBGM load failed\n");
+
     s->ddg_girl = load_image(PATH "ddg_girl.png");
     
     init_stage(s);
@@ -141,7 +144,7 @@ static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
     }
     if(col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)){
         if (ddg->wormSound) {
-            al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(ddg->wormSound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
         }
         update_ddg_after_attack(ddg, s , user);
     }
@@ -157,6 +160,8 @@ void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) 
         save_User(user);
         mode = MODE_FIRST_PAGE;
         render_ending();
+        if (s->bgm) detach_stream(s->bgm);
+        mode = 0;
         return;
     }
 
