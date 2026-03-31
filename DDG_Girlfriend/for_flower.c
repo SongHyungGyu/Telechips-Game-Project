@@ -45,7 +45,7 @@ void update_flower(flower* f, DDG* ddg, Stage* s) {
 		}
 		f->used = 1;   // �� ���� ó��
 		s->flower_cnt--;
-		printf("\nflower_current_cnt = %d\n", s->flower_cnt);
+	/*	printf("\nflower_current_cnt = %d\n", s->flower_cnt);*/
 	}
 }
 
