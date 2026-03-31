@@ -101,6 +101,7 @@ static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
     }
 
     render_play_time(sys);
+    render_h(sys, play_time);
     al_flip_display();
 }
 

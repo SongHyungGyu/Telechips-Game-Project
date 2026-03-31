@@ -86,12 +86,28 @@ void update_ddg(DDG* ddg, Map m) {
     }
 }
 
-void render_ddg(DDG* ddg) {
-    al_draw_scaled_bitmap(ddg -> img, ddg->w, 0, 100, 100,
-        ddg -> x, ddg ->y, ddg_size, ddg_size, 0);
+void render_ddg(DDG* ddg, Stage* s) {
+    /*al_draw_scaled_bitmap(ddg->img, ddg->w, 0, 100, 100,
+        ddg->x, ddg->y, ddg_size, ddg_size, 0);*/
+        //printf("ddg->hit_time : %d\n", ddg->hit_time);
+    int draw = 1;
+
+    if (play_time - ddg->hit_time < 60) {
+        if ((play_time / 10) % 2 != 0) {
+            //printf("no_draw\n");
+            draw = 0;  // 이 프레임은 안 그림
+        }
+    }
+    if (draw) {
+        al_draw_scaled_bitmap(ddg->img, ddg->w, 0, 100, 100,
+            ddg->x, ddg->y, ddg_size, ddg_size, 0);
+    }
+}
+
+void render_hud(DDG* ddg) {
     for (int i = 0; i < ddg->life; ++i) {
         al_draw_scaled_bitmap(ddg->heart_img, 460, 190, life_img_width, life_img_height,
-            TILE_SIZE * 16 + heart_size * i, 10, heart_size, heart_size, 0);
+            TILE_SIZE * 16 + i * heart_size, 10, heart_size, heart_size, 0);
     }
 }
 
@@ -107,11 +123,11 @@ void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
         --(ddg ->life); 
         //이미지도 start 이미지로 변경해야 하는데 start 
         //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
-    }else{
-        // 로그인 페이지로 가면됨
+    }else   {    // 로그인 페이지로 가면됨
         if (s-> stage > 1) save_User(user);
         mode = 0;
     }
+    ddg->hit_time = play_time;
 }
 
 
