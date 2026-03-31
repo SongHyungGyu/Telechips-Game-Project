@@ -171,6 +171,7 @@
   <ItemGroup>
     <Image Include="resource\img\ddg_girl.png" />
     <Image Include="resource\img\ddg.png" />
+    <Image Include="resource\img\ending.png" />
     <Image Include="resource\img\first_page.png" />
     <Image Include="resource\img\heart.png" />
     <Image Include="resource\img\flower.png" />
@@ -183,6 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="resource\font\Inkfree.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resource\aud\flowerSound.wav" />
+    <Media Include="resource\aud\wormSound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

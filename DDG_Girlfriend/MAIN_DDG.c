@@ -18,6 +18,7 @@ int main()
 
     ALLEGRO_EVENT ev;
     mode = MODE_FIRST_PAGE;
+    //mode = 6;
 	play_time = 0;
 
     while (1) {

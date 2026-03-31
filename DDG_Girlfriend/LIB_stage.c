@@ -96,3 +96,22 @@ void render_h(SYSTEM* sys, int play_time) {
         al_draw_text(sys->font, white, 20, 20, ALLEGRO_ALIGN_LEFT, ">> ESC: Back to first <<");
     }
 }
+
+void render_ending()
+{
+    ALLEGRO_BITMAP* ending_img = al_load_bitmap("resource/img/ending.png");
+    if (!ending_img) return;
+
+    double start_time = al_get_time();
+
+    while (al_get_time() - start_time < 3.0)
+    {
+        al_clear_to_color(al_map_rgb(0, 0, 0));
+        al_draw_bitmap(ending_img, 0, 0, 0);
+        al_flip_display();
+
+        al_rest(1.0 / 60.0);  // CPU 점유율 완화
+    }
+
+    al_destroy_bitmap(ending_img);
+}
