@@ -24,4 +24,7 @@ worm* init_worm(int x, int y, int lx, int rx, int ty, int by, int type, int spee
 void render_worm(worm* w);
 void update_worm(worm* w);
 bool col_worms(DDG * ddg, int wormNum, worm ** worms);
+
+void destroy_worm(worm* w);
+void destroy_worms_array(worm** worms, int count);
 #endif

@@ -34,6 +34,8 @@ bool shots_collide_player(
 
 SHOT_SYSTEM* init_shots(const char* img_path);
 
+void destroy_shots(SHOT_SYSTEM* s);
+
 void shots_update(SHOT_SYSTEM* s);
 
 void shots_draw(SHOT_SYSTEM* s);

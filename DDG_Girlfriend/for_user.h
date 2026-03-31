@@ -10,4 +10,6 @@ typedef struct {
 User* init_User();
 void set_User(User* u, char* name, int stage, int time);
 void draw_top_Users(ALLEGRO_FONT* font);
+void destroy_User(User* u);
+
 #endif

@@ -14,6 +14,17 @@ flower* init_flower(int x, int y){
 	return f;
 }
 
+void destroy_flowers_array(flower** flowers, int count) {
+	if (flowers == NULL) return;
+	for (int i = 0; i < count; i++) {
+		if (flowers[i]) {
+			if (flowers[i]->img) al_destroy_bitmap(flowers[i]->img);
+			free(flowers[i]);
+		}
+	}
+	free(flowers); 
+}
+
 bool collide(int x1, int y1, int w1, int h1,
 	int x2, int y2, int w2, int h2) {
 
@@ -37,9 +48,9 @@ void update_flower(flower* f, DDG* ddg, Stage* s) {
 		if (ddg->flowerSound) {
 			al_play_sample(ddg->flowerSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 		}
-		f->used = 1;   // ?? ???? ???
+		f->used = 1;   
 		s->flower_cnt--;
-	/*	printf("\nflower_current_cnt = %d\n", s->flower_cnt);*/
+	
 	}
 }
 

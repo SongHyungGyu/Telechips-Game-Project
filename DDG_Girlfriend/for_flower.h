@@ -7,5 +7,6 @@
 flower* init_flower(int x, int y);
 void render_flower(flower* f);
 void update_flower(flower* f, DDG* ddg, Stage* s);
+void destroy_flowers_array(flower** flowers, int count);
 
 #endif

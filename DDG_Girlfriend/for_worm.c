@@ -18,6 +18,28 @@ worm* init_worm(int x, int y, int lx, int rx, int ty,int by, int type, int speed
     return w;
 }
 
+void destroy_worm(worm* w) {
+	if (w == NULL) return;
+
+	// 1. 지렁이 이미지 해제
+	if (w->img) {
+		al_destroy_bitmap(w->img);
+	}
+	// 2. 지렁이 구조체 메모리 해제
+	free(w);
+}
+
+void destroy_worms_array(worm** worms, int count) {
+	if (worms == NULL) return;
+
+	for (int i = 0; i < count; i++) {
+		if (worms[i]) {
+			destroy_worm(worms[i]); // 개별 지렁이 해제 호출
+		}
+	}
+	free(worms); // 지렁이 포인터 배열 자체를 해제
+}
+
 
 void update_worm(worm* w) {
 	if (w->type == HORIZONTAL) {

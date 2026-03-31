@@ -30,6 +30,11 @@ User* init_User() {
     return u;
 }
 
+void destroy_User(User* u) {
+    if (u == NULL) return;
+    free(u);
+}
+
 //이름 입력했을 떄나 stage 중간에 끝났을 때 혹은 stage 3 다 꺴을 떄 User 정보 세팅하는 함수
 void set_User(User* u, char* name, int stage, int time) {
     printf("set_User called with name=%s, stage=%d, time=%d\n", name, stage, time);

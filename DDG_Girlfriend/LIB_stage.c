@@ -1,5 +1,7 @@
 #include "LIB_DDG.h"
 #include "LIB_stage.h"
+#include "for_flower.h"
+#include "for_ddg.h"
 
 //디버깅용
 static void printMap(Stage* s) {
@@ -134,4 +136,39 @@ void render_ending()
 
     al_destroy_sample(ending_bgm);
     al_destroy_bitmap(ending_img);
+}
+
+void destroy_stage(Stage* s) {
+    if (s == NULL) return;
+
+    if (s->flowers != NULL) {
+        destroy_flowers_array(s->flowers, s->flower_cnt);
+        s->flowers = NULL;
+    }
+
+    if (s->worms != NULL) {
+        destroy_worms_array(s->worms, s->wormNum); 
+        s->worms = NULL;
+    }
+
+    if (s->c_worms != NULL) {
+        destroy_c_worms_array(s->c_worms, s->c_worm_count);
+        s->c_worms = NULL;
+    }
+
+    if (s->roadTile) al_destroy_bitmap(s->roadTile);
+    if (s->marshTile) al_destroy_bitmap(s->marshTile);
+    if (s->wallTile) al_destroy_bitmap(s->wallTile);
+    if (s->mapCache) al_destroy_bitmap(s->mapCache);
+
+    if (s->bgm) al_destroy_audio_stream(s->bgm);
+    if (s->ddg_girl) al_destroy_bitmap(s->ddg_girl);
+
+    
+    if (s->chaser) {
+        destroy_chaser(s->chaser); 
+        s->chaser = NULL;
+    }
+
+    free(s);
 }

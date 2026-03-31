@@ -25,6 +25,9 @@ typedef struct C_WORM
 
 C_WORM* init_c_worm(int x, int y);
 
+void destroy_c_worm(C_WORM* w);
+void destroy_c_worms_array(C_WORM** worms, int count);
+
 void update_c_worm(C_WORM* worm);
 
 void render_c_worm(C_WORM* worm);

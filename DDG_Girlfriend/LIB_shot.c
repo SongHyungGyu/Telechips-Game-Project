@@ -30,6 +30,18 @@ SHOT_SYSTEM* init_shots(const char* img_path)
     return s;
 }
 
+void destroy_shots(SHOT_SYSTEM* s)
+{
+    if (s == NULL) return;
+
+    if (s->img)
+    {
+        al_destroy_bitmap(s->img);
+    }
+
+    free(s);
+}
+
 
 bool shots_add(SHOT_SYSTEM* s, int x, int y, int dx, int dy)
 {

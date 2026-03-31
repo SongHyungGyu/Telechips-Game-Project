@@ -41,7 +41,7 @@ void init_system();
 ALLEGRO_DISPLAY* create_display();
 ALLEGRO_BITMAP* load_image(const char* path);
 ALLEGRO_SAMPLE* load_aud(const char* path);
-void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp);
+
 typedef struct SYSTEM {
 	ALLEGRO_DISPLAY* display;
 	ALLEGRO_EVENT_QUEUE* queue;
@@ -54,7 +54,7 @@ void draw_scaled_crop(ALLEGRO_BITMAP* image);
 ALLEGRO_AUDIO_STREAM* load_stream(const char* path);
 void play_stream(ALLEGRO_AUDIO_STREAM* stream);
 void detach_stream(ALLEGRO_AUDIO_STREAM* stream);
-void destroy_stream(ALLEGRO_AUDIO_STREAM* stream);
+
 
 #define KEY_SEEN     1
 #define KEY_DOWN     2

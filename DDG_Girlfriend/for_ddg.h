@@ -10,6 +10,9 @@ Chaser* init_chaser(int start_x, int start_y);
 void update_ddg(DDG* ddg, Stage* s);
 void update_chaser(Chaser* chaser, DDG* ddg, Map m);
 
+void destroy_ddg(DDG* ddg);
+void destroy_chaser(Chaser* chaser);
+
 void render_ddg(DDG* ddg);
 void render_chaser(Chaser* chaser);
 bool check_collision_with_chaser(DDG* ddg, Chaser* chaser);

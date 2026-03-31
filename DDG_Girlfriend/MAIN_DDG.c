@@ -8,22 +8,31 @@ int main()
 {
     
     init_system();
+    keyboard_init();
 
     SYSTEM* sys = init_game_system();
     User* user = init_User();
     DDG* ddg = init_ddg();
+
     Stage* stage1 = init_stage1();
     Stage* stage2 = init_stage2();
     Stage* stage3 = init_stage3();
 
     ALLEGRO_EVENT ev;
+
+    bool running = true;
+
     mode = MODE_FIRST_PAGE;
     //mode = 6;
 	play_time = 0;
 
-    while (1) {
+    while (running) {
         al_wait_for_event(sys->queue, &ev);
         keyboard_update(&ev);
+
+        if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+            running = false;
+        }
 
         if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
             if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
@@ -42,6 +51,22 @@ int main()
         if (mode == MODE_SET_STAGE3) set_stage3(ddg, stage3);
         if (mode == MODE_EXPLAIN) run_explanation_page(ev);
     }
+
+    destroy_stage(stage1);
+    destroy_stage(stage2);
+    destroy_stage(stage3);
+
+    destroy_ddg(ddg);
+
+    destroy_User(user);
+
+    if (sys->font) al_destroy_font(sys->font);
+    if (sys->queue) al_destroy_event_queue(sys->queue);
+    if (sys->timer) al_destroy_timer(sys->timer);
+    if (sys->display) al_destroy_display(sys->display);
+    
+    free(sys);
+
     return 0;
 }
 #endif

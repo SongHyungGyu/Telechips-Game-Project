@@ -163,4 +163,6 @@ void render_play_time(SYSTEM* sys);
 void render_h(SYSTEM* sys, int play_time);
 void render_ending();
 
+void destroy_stage(Stage* s);
+
 #endif

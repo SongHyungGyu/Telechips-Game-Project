@@ -1,5 +1,5 @@
 #include "LIB_DDG.h"
-// ����
+
 
 void must_init(bool test, const char* description)
 {
@@ -24,7 +24,6 @@ SYSTEM* init_game_system() {
 	SYSTEM* sys = (SYSTEM*)malloc(sizeof(SYSTEM));
 
     sys->display = create_display();
-    must_init(sys->display, "display");
     sys->queue = al_create_event_queue();
     must_init(sys->queue, "event queue");
 
@@ -86,16 +85,6 @@ void play_stream(ALLEGRO_AUDIO_STREAM* stream)
 void detach_stream(ALLEGRO_AUDIO_STREAM* stream)
 {
     al_detach_audio_stream(stream);
-}
-void destroy_stream(ALLEGRO_AUDIO_STREAM* stream)
-{
-    al_destroy_audio_stream(stream);
-}
-
-void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp)
-{
-    al_destroy_bitmap(img);
-    al_destroy_display(disp);
 }
 
 void keyboard_init() {

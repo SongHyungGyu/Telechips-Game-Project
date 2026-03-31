@@ -28,15 +28,39 @@ DDG* init_ddg(){
 	return ddg;
 }
 
+void destroy_ddg(DDG* ddg) {
+    if (ddg == NULL) return; 
+
+    // 1. 알맹이(리소스)부터 파괴
+    if (ddg->img) al_destroy_bitmap(ddg->img);
+    if (ddg->heart_img) al_destroy_bitmap(ddg->heart_img);
+    if (ddg->wormSound) al_destroy_sample(ddg->wormSound);
+    if (ddg->flowerSound) al_destroy_sample(ddg->flowerSound);
+
+    // 2. 마지막에 껍데기(구조체) 파괴
+    free(ddg);
+}
+
+
 Chaser* init_chaser(int start_x, int start_y) {
 
     Chaser* chaser = (Chaser*)malloc(sizeof(Chaser));
     chaser->x = start_x;
     chaser->y = start_y;
-    chaser->speed = 2; // 플레이어보다 느린 속도
-    chaser->img = load_image(PATH "fox.png"); // 적 이미지 로드
+    chaser->speed = 2;
+    chaser->img = load_image(PATH "fox.png");
     return chaser;
 
+}
+
+void destroy_chaser(Chaser* chaser) {
+    if (chaser == NULL) return;
+
+    // 1. 알맹이 파괴
+    if (chaser->img) al_destroy_bitmap(chaser->img);
+
+    // 2. 껍데기 파괴
+    free(chaser);
 }
 
 bool col_wall(int nx, int ny, Map* m) {

@@ -1,3 +1,5 @@
 shg 2 33
-sdf 2 36
-hi 1 4
+hi 2 36
+clear 1 4
+sdf 1 4
+hello 1 4

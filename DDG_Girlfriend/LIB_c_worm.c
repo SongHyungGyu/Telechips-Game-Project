@@ -23,6 +23,38 @@ C_WORM* init_c_worm(int x, int y)
     return worm;
 }
 
+void destroy_c_worm(C_WORM* w)
+{
+    if (w == NULL) return;
+
+    if (w->img)
+    {
+        al_destroy_bitmap(w->img);
+    }
+
+    if (w->shots)
+    {
+        destroy_shots(w->shots);
+    }
+
+    free(w);
+}
+
+void destroy_c_worms_array(C_WORM** worms, int count)
+{
+    if (worms == NULL) return;
+
+    for (int i = 0; i < count; i++)
+    {
+        if (worms[i])
+        {
+            destroy_c_worm(worms[i]);
+        }
+    }
+
+    free(worms);
+}
+
 static void fire_left(C_WORM* w)
 {
     int sx = w->x;
