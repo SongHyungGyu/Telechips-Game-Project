@@ -2,6 +2,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+bool has_seen_explanation = false;
+
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image)
 {
@@ -51,7 +53,15 @@ void run_first_page(User * user, SYSTEM* sys, ALLEGRO_EVENT ev) {
                 set_User(user, user_name, 0, 0);
                 user_name[0] = '\0';
                 name_len = 0;
-                mode = 4;
+
+
+                if (!has_seen_explanation) {
+                    mode = 7;                   // 1. 본 적이 없다면 설명 페이지(mode 7)로 이동
+                    has_seen_explanation = true; // 2. 이제 봤다고 표시 (true로 변경)
+                }
+                else {
+                    mode = 4;                   // 3. 이미 본 적이 있다면 바로 스테이지 1 세팅(mode 4)으로 이동
+                }
             }
 
         }
@@ -72,6 +82,43 @@ void run_first_page(User * user, SYSTEM* sys, ALLEGRO_EVENT ev) {
         if (font) {
             al_draw_text(font, al_map_rgb(0, 0, 0), 160, 203, 0 , user_name);
             draw_top_Users(rankingFont);
+        }
+
+        al_flip_display();
+    }
+}
+
+void run_explanation_page(ALLEGRO_EVENT ev) {
+    // 리소스 로드용 static 변수
+    static ALLEGRO_BITMAP* expl_image = NULL;
+    static bool resources_loaded = false;
+
+    // 1. 리소스 초기 로드
+    if (!resources_loaded) {
+        expl_image = al_load_bitmap(PATH "explanation_bg.png"); // 설명 배경 이미지
+        resources_loaded = true;
+    }
+
+    bool redraw = false;
+
+    // 2. 이벤트 처리
+    if (ev.type == ALLEGRO_EVENT_TIMER) {
+        redraw = true;
+    }
+    else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+        // Space 키를 누르면 게임 시작 (mode 1로 변경)
+        if (ev.keyboard.keycode == ALLEGRO_KEY_SPACE) {
+            mode = 4;
+        }
+    }
+
+    // 3. 화면 그리기
+    if (redraw ) {
+        al_clear_to_color(al_map_rgb(0, 0, 0));
+
+        if (expl_image) {
+            draw_scaled_crop(expl_image);
+            
         }
 
         al_flip_display();

@@ -87,3 +87,12 @@ void render_play_time(SYSTEM* sys) {
     al_draw_text(sys->font, al_map_rgb(255, 255, 255), DISP_W / 2, TILE_SIZE/2,
         ALLEGRO_ALIGN_CENTER, c_play_time);
 }
+
+void render_hud(SYSTEM* sys, int play_time) {
+    
+    if ((play_time / 30) % 2 == 0) {
+        ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
+       
+        al_draw_text(sys->font, white, 20, 20, ALLEGRO_ALIGN_LEFT, ">> ESC: Back to first <<");
+    }
+}

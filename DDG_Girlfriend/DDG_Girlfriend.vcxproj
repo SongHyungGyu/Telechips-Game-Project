@@ -169,6 +169,7 @@
     <ClInclude Include="LIB_stage.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\explanation_bg.png" />
     <Image Include="resource\img\ddg_girl.png" />
     <Image Include="resource\img\ddg.png" />
     <Image Include="resource\img\first_page.png" />
