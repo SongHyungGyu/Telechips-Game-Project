@@ -32,7 +32,7 @@
 #define ax3 1020
 #define ay3 780
 
-#define FLOWER_TOT2 6
+#define FLOWER_TOT2 12
 #define FLOWER_TOT3 4
 
 #include <allegro5/allegro.h>

@@ -140,6 +140,9 @@ static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
         update_flower(s->flowers[i], ddg, s);
     }
     if(col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)){
+        if (ddg->wormSound) {
+            al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
         update_ddg_after_attack(ddg, s , user);
     }
     update_ddg(ddg, s);

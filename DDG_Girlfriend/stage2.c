@@ -34,8 +34,7 @@ Stage* init_stage2() {
     s->wormNum = 4;
 	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
 
-	s->worms[0] = init_worm(TILE_SIZE * 2.5, TILE_SIZE * 2.5, WORM_LX_STAGE2, WORM_RX_STAGE2, 
-        0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
+	s->worms[0] = init_worm(TILE_SIZE * 2.5, TILE_SIZE * 2.5, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
     s->worms[1] = init_worm(1000, 300, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, -1);
     s->worms[2] = init_worm(100, 500, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, +1);
     s->worms[3] = init_worm(1000, 700, WORM_LX_STAGE2, WORM_RX_STAGE2, 0, 0, HORIZONTAL, WORM_SPEED_STAGE2, -1);
@@ -44,13 +43,19 @@ Stage* init_stage2() {
     s->sx = sx2;
     s->sy = sy2;
     
-    s->flowers = (flower**)malloc(sizeof(flower*) * 6);
+    s->flowers = (flower**)malloc(sizeof(flower*) * FLOWER_TOT2);
     s->flowers[0] = init_flower(TILE_SIZE * 5, TILE_SIZE * 2);
     s->flowers[1] = init_flower(TILE_SIZE * 6, TILE_SIZE * 7);
     s->flowers[2] = init_flower(TILE_SIZE * 5, TILE_SIZE * 12);
     s->flowers[3] = init_flower(TILE_SIZE * 14, TILE_SIZE * 2);
     s->flowers[4] = init_flower(TILE_SIZE * 13, TILE_SIZE * 7);
     s->flowers[5] = init_flower(TILE_SIZE * 14, TILE_SIZE * 12);
+    s->flowers[6] = init_flower(TILE_SIZE * 17, TILE_SIZE * 1);
+    s->flowers[7] = init_flower(TILE_SIZE * 1, TILE_SIZE * 13);
+    s->flowers[8] = init_flower(TILE_SIZE * 16, TILE_SIZE * 9);
+    s->flowers[9] = init_flower(TILE_SIZE * 10, TILE_SIZE * 3);
+    s->flowers[10] = init_flower(TILE_SIZE * 2, TILE_SIZE * 9);
+    s->flowers[11] = init_flower(TILE_SIZE * 3, TILE_SIZE * 6);
 
     s->flower_cnt = FLOWER_TOT2;
 
@@ -68,6 +73,9 @@ static void update_stage2_by_time(DDG * ddg, Stage* s, User * user) {
         update_worm(s->worms[i]);
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
+        if (ddg->wormSound) {
+            al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
         update_ddg_after_attack(ddg, s, user);
     }
     update_ddg(ddg, s);

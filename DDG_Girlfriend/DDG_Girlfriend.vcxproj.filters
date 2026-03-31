@@ -131,4 +131,9 @@
       <Filter>리소스 파일</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="ranking.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
