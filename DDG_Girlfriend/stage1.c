@@ -49,6 +49,9 @@ Stage* init_stage1() {
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");
 
+    s->bgm = load_stream(AUDIOPATH "firstBGM.mp3");
+    if (!s->bgm) printf("firstBGM load failed\n");
+
     //나머지 초기화는 똑같기 때문에 공용함수 사용
     init_stage(s);
     return s;
@@ -71,8 +74,8 @@ static void render_stage1(Stage* s, DDG * ddg, SYSTEM* sys) {
 
     render_chaser(s->chaser);
     render_play_time(sys);
-    render_hud(sys, play_time);
-   
+    render_h(sys, play_time);
+    render_hud(ddg);
     al_flip_display();
 }
 
@@ -83,6 +86,9 @@ static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
         update_worm(s->worms[i]);
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
+        if (ddg->wormSound) {
+            al_play_sample(ddg->wormSound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
         update_ddg_after_attack(ddg, s, user);
     }
     
@@ -94,7 +100,7 @@ static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
         s->chaser->y = 800;
     }
     update_chaser(s->chaser, ddg, s->map);
-    update_ddg(ddg, s->map);
+    update_ddg(ddg, s);
 }
 
 void run_stage1(User * user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev) {
@@ -103,26 +109,17 @@ void run_stage1(User * user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev)
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
         (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
         set_User(user, NULL, 1, play_time / 60);
-        mode = 5;
+        after_stage(s, MODE_SET_STAGE2);
         return;
     }
 
-    bool redraw = true;
+    bool redraw = false;
     
     //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage1_by_time(ddg , s , user);
         redraw = true;
 		play_time++;
-    }
-
-    //타이머 이벤트가 아닌 경우에 실행 -> 키보드 입력 ex) 두더지 움직이기
-    if (ev.type != ALLEGRO_EVENT_TIMER) {
-                
-        //update_stage1(ddg, s->map);
-  
-        //redraw = true;
-            
     }
             
     if (redraw) {

@@ -48,7 +48,6 @@ void update_c_worm(C_WORM* w)
 
 void render_c_worm(C_WORM* w)
 {
-    // al_draw_bitmap(w->img, w->x, w->y, 0 );
     al_draw_scaled_bitmap(w->img, 0, 0, w->w, w->h,
         w->x, w->y, C_WORM_W, C_WORM_H, 0);
     shots_draw(w->shots);

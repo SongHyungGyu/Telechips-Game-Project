@@ -15,6 +15,9 @@ void init_system()
     must_init(al_init_image_addon(), "image addon");
     must_init(al_init_font_addon(), "font addon");
     must_init(al_init_ttf_addon(), "ttf addon");
+    must_init(al_install_audio(), "audio");
+    must_init(al_init_acodec_addon(), "audio codecs");
+    must_init(al_reserve_samples(16), "reserve samples");;
 }
 
 SYSTEM* init_game_system() {
@@ -25,8 +28,7 @@ SYSTEM* init_game_system() {
     sys->queue = al_create_event_queue();
     must_init(sys->queue, "event queue");
 
-    sys->font = al_create_builtin_font();
-    //sys->font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
+    sys->font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
     must_init(sys->font, "font");
 
     sys->timer = al_create_timer(1.0 / 60.0);
@@ -51,9 +53,43 @@ ALLEGRO_DISPLAY* create_display()
 ALLEGRO_BITMAP* load_image(const char* path)
 {
     ALLEGRO_BITMAP* img = al_load_bitmap(path);
-    //printf("%s\n", path);
     must_init(img, "image");
     return img;
+}
+
+ALLEGRO_SAMPLE* load_aud(const char* path)
+{
+    ALLEGRO_SAMPLE* aud = al_load_sample(path);
+    //printf("%s\n", path);
+    //must_init(aud, "audio");
+    return aud;
+}
+
+
+ALLEGRO_AUDIO_STREAM* load_stream(const char* path)
+{
+    ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(path, 4, 2048);
+    //printf("%
+    // s\n", path);
+    //must_init(aud, "audio");
+    return stream;
+}
+
+void play_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    if (!stream) return;
+    al_set_audio_stream_playmode(stream, ALLEGRO_PLAYMODE_LOOP);
+    al_seek_audio_stream_secs(stream, 0.0);
+    al_attach_audio_stream_to_mixer(stream, al_get_default_mixer());
+}
+
+void detach_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    al_detach_audio_stream(stream);
+}
+void destroy_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    al_destroy_audio_stream(stream);
 }
 
 void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp)

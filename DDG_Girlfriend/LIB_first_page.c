@@ -28,13 +28,11 @@ void run_first_page(User * user, SYSTEM* sys, ALLEGRO_EVENT ev) {
     static char user_name[20] = "";
     static int name_len = 0;
     static ALLEGRO_BITMAP* first_page_image = NULL;
-    static ALLEGRO_FONT* font = NULL;
     static ALLEGRO_FONT* rankingFont = NULL;
     static bool resources_loaded = false;
 
     if (!resources_loaded) {
         first_page_image = al_load_bitmap(PATH "page.png");
-        font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
 		rankingFont = al_load_ttf_font("resource/font/Inkfree.ttf", 20, 0);
         resources_loaded = true;
     }
@@ -79,8 +77,8 @@ void run_first_page(User * user, SYSTEM* sys, ALLEGRO_EVENT ev) {
             draw_scaled_crop(first_page_image);
         }
 
-        if (font) {
-            al_draw_text(font, al_map_rgb(0, 0, 0), 160, 203, 0 , user_name);
+        if (sys->font) {
+            al_draw_text(sys->font, al_map_rgb(0, 0, 0), 160, 203, 0 , user_name);
             draw_top_Users(rankingFont);
         }
 

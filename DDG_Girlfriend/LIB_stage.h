@@ -24,6 +24,8 @@
 #define sy2 60
 #define sx3 60
 #define sy3 60
+//#define sx3 960
+//#define sy3 780
 // 도착 위치
 #define ax1 1080
 #define ay1 780
@@ -32,7 +34,7 @@
 #define ax3 1020
 #define ay3 780
 
-#define FLOWER_TOT2 6
+#define FLOWER_TOT2 12
 #define FLOWER_TOT3 4
 
 #include <allegro5/allegro.h>
@@ -40,13 +42,15 @@
 //두더지
 typedef struct {
 	ALLEGRO_BITMAP* img;
+	ALLEGRO_SAMPLE* wormSound;
+	ALLEGRO_SAMPLE* flowerSound;
 	int x;
 	int y;
 	int life;
 	int speed;
 	int w;
 	int h;
-	
+	int hit_time;
 	ALLEGRO_BITMAP* heart_img;
 }DDG;
 
@@ -117,6 +121,7 @@ typedef struct {
     ALLEGRO_BITMAP* roadTile;
     ALLEGRO_BITMAP* wallTile;
     ALLEGRO_BITMAP* marshTile;
+	ALLEGRO_AUDIO_STREAM* bgm;
     void (*initMap)(Map* m);
     int sx, sy;
 
@@ -144,13 +149,18 @@ void run_stage1(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 void run_stage2(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 void run_stage3(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 
-void set_stage1(DDG* ddg);
+void set_stage1(DDG* ddg, Stage* s);
 void set_stage2(DDG* ddg, Stage* s);
 void set_stage3(DDG* ddg, Stage* s);
+
+void after_stage(Stage* s, GameMode toGo);
 
 bool col_c_worm_shots(DDG* ddg, Stage* s);
 
 
 void render_play_time(SYSTEM* sys);
-void render_hud(SYSTEM* sys, int play_time);
+
+void render_h(SYSTEM* sys, int play_time);
+void render_ending();
+
 #endif

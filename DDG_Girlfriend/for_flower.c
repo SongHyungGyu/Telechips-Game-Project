@@ -14,35 +14,32 @@ flower* init_flower(int x, int y){
 	return f;
 }
 
-//1�� �� 2�� �δ���
 bool collide(int x1, int y1, int w1, int h1,
 	int x2, int y2, int w2, int h2) {
 
-	//�� �߽� ��ǥ ���ϱ� ���� �߽���ǥ�� cx1, cy1, �δ����� �߽� ��ǥ�� cx2, cy2
 	int cx1 = x1 + w1 / 2;
 	int cy1 = y1 + h1 / 2;
 
 	int cx2 = x2 + w2 / 2;
 	int cy2 = y2 + h2 / 2;
 
-	//�� ��ü �߽� �������� �Ÿ� ���� dx, dy
 	int dx = cx1 - cx2;
 	int dy = cy1 - cy2;
 
-	//�� ��ä �߽� ���� �Ÿ��� 30(������)���� ������ �浹
-	return (dx * dx + dy * dy) < 30 * 30; // ������ 30
+	return (dx * dx + dy * dy) < 30 * 30; 
 }
 
 void update_flower(flower* f, DDG* ddg, Stage* s) {
-	// �̹� ���� ���̸� ��ȯ��
 	if (f->used) return;
 
-	//�̶����� �ȸԾ��� �� �� �浹�̸� f->used = 1�� ���� �� ������ �ϳ� ����
 	if (collide(f->x, f->y, FLOWER_SIZE, FLOWER_SIZE,
 		ddg->x, ddg->y, ddg_size, ddg_size)) {
-		f->used = 1;   // �� ���� ó��
+		if (ddg->flowerSound) {
+			al_play_sample(ddg->flowerSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+		}
+		f->used = 1;   // ?? ???? ???
 		s->flower_cnt--;
-		printf("\nflower_current_cnt = %d\n", s->flower_cnt);
+	/*	printf("\nflower_current_cnt = %d\n", s->flower_cnt);*/
 	}
 }
 

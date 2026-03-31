@@ -100,6 +100,9 @@
     <Image Include="resource\img\ddg_girl.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="resource\img\ending.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
     <Image Include="..\..\..\..\Downloads\explanation_bg.png">
       <Filter>리소스 파일</Filter>
     </Image>
@@ -125,5 +128,18 @@
     <Font Include="resource\font\Inkfree.ttf">
       <Filter>리소스 파일</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resource\aud\flowerSound.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="resource\aud\wormSound.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ranking.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

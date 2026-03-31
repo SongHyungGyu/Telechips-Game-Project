@@ -73,6 +73,8 @@ Stage* init_stage3() {
     s->sx = sx3;
     s->sy = sy3;
 
+    s->bgm = load_stream(AUDIOPATH "thirdBGM.mp3");
+    if (!s->bgm) printf("thirdBGM load failed\n");
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");
     
@@ -105,7 +107,8 @@ static void render_stage3(Stage* s, DDG* ddg, SYSTEM* sys) {
 
 
     render_play_time(sys);
-    render_hud(sys, play_time);
+    render_h(sys, play_time);
+    render_hud(ddg);
     al_flip_display();
 }
 
@@ -142,14 +145,13 @@ static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
     for (int i = 0; i < FLOWER_TOT3; i++) {
         update_flower(s->flowers[i], ddg, s);
     }
-    
-
-    // 기존 적(지렁이, 총알) 피격 체크
-    if (col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)) {
-        update_ddg_after_attack(ddg, s, user);
+    if(col_worms(ddg, s->wormNum, s->worms) || col_c_worm_shots(ddg, s)){
+        if (ddg->wormSound) {
+            al_play_sample(ddg->wormSound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+        }
+        update_ddg_after_attack(ddg, s , user);
     }
-
-    update_ddg(ddg, s->map);
+    update_ddg(ddg, s);
 }
 
 void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
@@ -159,21 +161,18 @@ void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) 
         (s->flower_cnt == 0)) {
         set_User(user, NULL, 3, play_time / 60);
         save_User(user);
-        mode = 0;
+        after_stage(s, MODE_FIRST_PAGE);
+        render_ending();
+       
         return;
     }
 
-    bool redraw = true;
+    bool redraw = false;
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage3_by_time(ddg ,s ,user);
         redraw = true; 
         play_time++;
-    }
-
-
-    if (ev.type != ALLEGRO_EVENT_TIMER) {
-
     }
 
     if (redraw) {

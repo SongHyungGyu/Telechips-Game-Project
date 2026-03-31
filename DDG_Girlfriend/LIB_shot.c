@@ -65,7 +65,7 @@ void shots_update(SHOT_SYSTEM* s)
         s->shots[i].x += s->shots[i].dx;
         s->shots[i].y += s->shots[i].dy;
 
-        if ( // �Ѿ� �������
+        if (
             s->shots[i].x < -C_WORM_SHOT_W ||
             s->shots[i].x > DISP_W ||
             s->shots[i].y < -C_WORM_SHOT_H ||

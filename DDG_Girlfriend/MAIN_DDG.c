@@ -15,10 +15,10 @@ int main()
     Stage* stage1 = init_stage1();
     Stage* stage2 = init_stage2();
     Stage* stage3 = init_stage3();
-   /* ALLEGRO_FONT* time_font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);*/
 
     ALLEGRO_EVENT ev;
-    mode = 0;
+    mode = MODE_FIRST_PAGE;
+    //mode = 6;
 	play_time = 0;
 
     while (1) {
@@ -27,18 +27,20 @@ int main()
 
         if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
             if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-                mode = 0;
+                if (mode == MODE_STAGE1) after_stage(stage1, MODE_FIRST_PAGE);
+                if (mode == MODE_STAGE2) after_stage(stage2, MODE_FIRST_PAGE);
+                if (mode == MODE_STAGE3) after_stage(stage3, MODE_FIRST_PAGE);
             }
         }
 
-        if(mode == 0) run_first_page(user, sys, ev);
-        if (mode == 1) run_stage1(user, ddg, stage1, sys, ev);
-        if (mode == 2) run_stage2(user, ddg, stage2, sys, ev);
-        if (mode == 3) run_stage3(user, ddg, stage3, sys, ev);
-        if (mode == 4) set_stage1(ddg);
-        if (mode == 5) set_stage2(ddg, stage2);
-        if (mode == 6) set_stage3(ddg, stage3);
-        if (mode == 7) run_explanation_page(ev);
+        if(mode == MODE_FIRST_PAGE) run_first_page(user, sys, ev);
+        if (mode == MODE_STAGE1) run_stage1(user, ddg, stage1, sys, ev);
+        if (mode == MODE_STAGE2) run_stage2(user, ddg, stage2, sys, ev);
+        if (mode == MODE_STAGE3) run_stage3(user, ddg, stage3, sys, ev);
+        if (mode == MODE_SET_STAGE1) set_stage1(ddg, stage1);
+        if (mode == MODE_SET_STAGE2) set_stage2(ddg, stage2);
+        if (mode == MODE_SET_STAGE3) set_stage3(ddg, stage3);
+        if (mode == MODE_EXPLAIN) run_explanation_page(ev);
     }
     return 0;
 }
