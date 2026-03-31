@@ -22,8 +22,10 @@
 #define sy1 60
 #define sx2 60
 #define sy2 60
-#define sx3 60
-#define sy3 60
+//#define sx3 60
+//#define sy3 60
+#define sx3 960
+#define sy3 780
 // 도착 위치
 #define ax1 1080
 #define ay1 780

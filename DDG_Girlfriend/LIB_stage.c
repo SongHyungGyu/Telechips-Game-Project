@@ -106,16 +106,27 @@ void render_ending()
     ALLEGRO_BITMAP* ending_img = al_load_bitmap("resource/img/ending.png");
     if (!ending_img) return;
 
+    ALLEGRO_SAMPLE* ending_bgm = al_load_sample("resource/aud/ending.mp3");
+    if (!ending_bgm) {
+        al_destroy_bitmap(ending_img);
+        return;
+    }
+
+    ALLEGRO_SAMPLE_ID bgm_id;
+    al_play_sample(ending_bgm, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, &bgm_id);
+
     double start_time = al_get_time();
 
-    while (al_get_time() - start_time < 3.0)
+    while (al_get_time() - start_time < 10.0)
     {
         al_clear_to_color(al_map_rgb(0, 0, 0));
-        al_draw_bitmap(ending_img, 0, 0, 0);
+        al_draw_bitmap(ending_img, 90, 0, 0);
         al_flip_display();
 
         al_rest(1.0 / 60.0);  // CPU 점유율 완화
     }
+    al_stop_sample(&bgm_id);
 
+    al_destroy_sample(ending_bgm);
     al_destroy_bitmap(ending_img);
 }

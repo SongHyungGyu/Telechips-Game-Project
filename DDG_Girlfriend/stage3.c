@@ -154,13 +154,13 @@ static void update_stage3_by_time(DDG * ddg, Stage* s, User * user) {
 void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) {
 
     if ((ddg->x > ax3 - (TILE_SIZE / 2)) && (ddg->x < ax3 + (TILE_SIZE / 2)) &&
-        (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2)) /*&&
-        (s->flower_cnt == 0)*/) {
+        (ddg->y > ay3 - (TILE_SIZE / 2)) && (ddg->y < ay3 + (TILE_SIZE / 2)) &&
+        (s->flower_cnt == 0)) {
         set_User(user, NULL, 3, play_time / 60);
         save_User(user);
         
-        render_ending();
         if (s->bgm) detach_stream(s->bgm);
+        render_ending();
         mode = MODE_FIRST_PAGE;
         return;
     }

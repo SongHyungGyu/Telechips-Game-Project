@@ -1,10 +1,1 @@
-SADFSG 3 67
-asdfag 2 25
-asdf 2 30
-mmmm 2 34
-b 2 35
-sadf 2 39
-alomost 2 39
-check 1 3
-m 1 4
-hmmm 1 4
+ 3 1

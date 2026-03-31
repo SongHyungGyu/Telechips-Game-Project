@@ -187,6 +187,7 @@
     <Font Include="resource\font\Inkfree.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="resource\aud\ending.mp3" />
     <Media Include="resource\aud\flowerSound.wav" />
     <Media Include="resource\aud\wormSound.wav" />
   </ItemGroup>
