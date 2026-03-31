@@ -15,7 +15,6 @@ int main()
     Stage* stage1 = init_stage1();
     Stage* stage2 = init_stage2();
     Stage* stage3 = init_stage3();
-   /* ALLEGRO_FONT* time_font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);*/
 
     ALLEGRO_EVENT ev;
     mode = 0;

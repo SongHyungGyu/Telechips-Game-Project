@@ -25,8 +25,8 @@ SYSTEM* init_game_system() {
     sys->queue = al_create_event_queue();
     must_init(sys->queue, "event queue");
 
-    sys->font = al_create_builtin_font();
-    //sys->font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
+    /*sys->font = al_create_builtin_font();*/
+    sys->font = al_load_ttf_font("resource/font/Inkfree.ttf", 30, 0);
     must_init(sys->font, "font");
 
     sys->timer = al_create_timer(1.0 / 60.0);

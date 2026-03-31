@@ -54,6 +54,7 @@ void set_stage1(DDG* ddg) {
     ddg->y = sy1;
     ddg->life = 3;
     play_time = 0;
+    ddg->hit_time = 0;
     mode = 1;
 }
 void set_stage2(DDG* ddg, Stage* s) {

@@ -46,6 +46,7 @@ typedef struct {
 	int speed;
 	int w;
 	int h;
+	int hit_time;
 	ALLEGRO_BITMAP* heart_img;
 }DDG;
 
