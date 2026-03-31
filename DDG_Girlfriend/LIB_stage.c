@@ -57,7 +57,6 @@ void set_stage1(DDG* ddg, Stage* s) {
     play_time = 0;
     ddg->hit_time = 0;
     play_stream(s->bgm);
-    mode = 1;
     mode = MODE_STAGE1;
 }
 void set_stage2(DDG* ddg, Stage* s) {
@@ -69,7 +68,6 @@ void set_stage2(DDG* ddg, Stage* s) {
     }
     s->flower_cnt = FLOWER_TOT2;
     play_stream(s->bgm);
-    mode = 2;
     mode = MODE_STAGE2;
 }
 void set_stage3(DDG* ddg, Stage* s) {
@@ -81,7 +79,6 @@ void set_stage3(DDG* ddg, Stage* s) {
     }
     s->flower_cnt = FLOWER_TOT3;
     play_stream(s->bgm);
-    mode = 3;
     mode = MODE_STAGE3;
 }
 

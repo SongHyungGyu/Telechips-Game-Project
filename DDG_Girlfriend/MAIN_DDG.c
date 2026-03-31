@@ -35,7 +35,7 @@ int main()
         if (mode == MODE_STAGE1) run_stage1(user, ddg, stage1, sys, ev);
         if (mode == MODE_STAGE2) run_stage2(user, ddg, stage2, sys, ev);
         if (mode == MODE_STAGE3) run_stage3(user, ddg, stage3, sys, ev);
-        if (mode == MODE_SET_STAGE1) set_stage1(ddg);
+        if (mode == MODE_SET_STAGE1) set_stage1(ddg, stage1);
         if (mode == MODE_SET_STAGE2) set_stage2(ddg, stage2);
         if (mode == MODE_SET_STAGE3) set_stage3(ddg, stage3);
         if (mode == MODE_EXPLAIN) run_explanation_page(ev);

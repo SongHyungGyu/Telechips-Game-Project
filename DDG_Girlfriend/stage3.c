@@ -158,10 +158,10 @@ void run_stage3(User * user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev) 
         (s->flower_cnt == 0)*/) {
         set_User(user, NULL, 3, play_time / 60);
         save_User(user);
-        mode = MODE_FIRST_PAGE;
+        
         render_ending();
         if (s->bgm) detach_stream(s->bgm);
-        mode = 0;
+        mode = MODE_FIRST_PAGE;
         return;
     }
 
