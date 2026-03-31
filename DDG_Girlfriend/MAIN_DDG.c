@@ -27,7 +27,9 @@ int main()
 
         if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
             if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-                mode = MODE_FIRST_PAGE;
+                if (mode == MODE_STAGE1) after_stage(stage1, MODE_FIRST_PAGE);
+                if (mode == MODE_STAGE2) after_stage(stage2, MODE_FIRST_PAGE);
+                if (mode == MODE_STAGE3) after_stage(stage3, MODE_FIRST_PAGE);
             }
         }
 

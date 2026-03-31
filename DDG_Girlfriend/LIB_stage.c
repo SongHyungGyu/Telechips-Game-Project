@@ -82,6 +82,11 @@ void set_stage3(DDG* ddg, Stage* s) {
     mode = MODE_STAGE3;
 }
 
+void after_stage(Stage* s, GameMode toGo) {
+    if (s->bgm) detach_stream(s->bgm);
+    mode = toGo;
+}
+
 void render_play_time(SYSTEM* sys) {
     char c_play_time[20] = "";
     int seconds = play_time / 60;

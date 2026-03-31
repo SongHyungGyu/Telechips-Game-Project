@@ -93,8 +93,7 @@ void run_stage1(User * user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev)
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
         (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
         set_User(user, NULL, 1, play_time / 60);
-        if(s ->bgm) detach_stream(s->bgm);
-        mode = MODE_SET_STAGE2;
+        after_stage(s, MODE_SET_STAGE2);
         return;
     }
 

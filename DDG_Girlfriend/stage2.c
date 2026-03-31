@@ -113,8 +113,7 @@ void run_stage2(User* user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
         (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2)) &&
         (s->flower_cnt == 0)) {
         set_User(user, NULL, 2, play_time / 60);
-        if (s->bgm) detach_stream(s->bgm);
-        mode = MODE_SET_STAGE3;
+        after_stage(s, MODE_SET_STAGE3);
         return;
     }
 

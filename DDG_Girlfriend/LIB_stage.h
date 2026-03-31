@@ -22,10 +22,10 @@
 #define sy1 60
 #define sx2 60
 #define sy2 60
-//#define sx3 60
-//#define sy3 60
-#define sx3 960
-#define sy3 780
+#define sx3 60
+#define sy3 60
+//#define sx3 960
+//#define sy3 780
 // 도착 위치
 #define ax1 1080
 #define ay1 780
@@ -142,6 +142,8 @@ void run_stage3(User* user, DDG* ddg, Stage* s, SYSTEM* sys, ALLEGRO_EVENT ev);
 void set_stage1(DDG* ddg, Stage* s);
 void set_stage2(DDG* ddg, Stage* s);
 void set_stage3(DDG* ddg, Stage* s);
+
+void after_stage(Stage* s, GameMode toGo);
 
 bool col_c_worm_shots(DDG* ddg, Stage* s);
 
