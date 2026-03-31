@@ -10,7 +10,6 @@
 // main에서 한번만 시작할 초기화 함수
 DDG* init_ddg(){
 	DDG* ddg = (DDG*)malloc(sizeof(DDG));
-    //ddg->img = (ALLEGRO_BITMAP*)malloc(sizeof(ALLEGRO_BITMAP*));
 
     ddg->img = load_image(PATH "ddg.png");
 	ddg->x = TILE_SIZE * 1;
@@ -26,7 +25,6 @@ DDG* init_ddg(){
 bool col_wall(int nx, int ny, Map m) {
     int nxtile = nx / TILE_SIZE;
     int nytile = ny / TILE_SIZE;
-    //printf("nxtile : %d, nytile : %d, type : %d\n", nxtile, nytile, m.tiles[nytile][nxtile].type);
     if (m.tiles[nytile][nxtile].type == WALL) return true;
     return false;
 }
@@ -34,21 +32,19 @@ bool col_wall(int nx, int ny, Map m) {
 bool col_marsh(int nx, int ny, Map m) {
     int nxtile = nx / TILE_SIZE;
     int nytile = ny / TILE_SIZE;
-    //printf("nxtile : %d, nytile : %d, type : %d\n", nxtile, nytile, m.tiles[nytile][nxtile].type);
     if (m.tiles[nytile][nxtile].type == MARSH) return true;
     return false;
 }
 
-void update_ddg(DDG* ddg, Map m) {
+void update_ddg(DDG* ddg, Stage* s) {
     int cx = ddg->x + ddg_size / 2;
     int cy = ddg->y + ddg_size / 2;
     int nx, ny;
-    //printf("x : %d, y : %d\n", ddg->x, ddg->y);
     if (key[ALLEGRO_KEY_RIGHT]) {
         nx = cx + ddg ->speed;
         ny = cy;
-        if (!col_wall(nx + ddg_size / 2, ny, m)) {
-            if(col_marsh(nx, ny, m)) ddg->x += ddg->speed / 2;
+        if (!col_wall(nx + ddg_size / 2, ny, s->map)) {
+            if(col_marsh(nx, ny, s->map)) ddg->x += ddg->speed / 2;
             else ddg ->x += ddg->speed;
         }
         ddg->w = 200;
@@ -56,8 +52,8 @@ void update_ddg(DDG* ddg, Map m) {
     if (key[ALLEGRO_KEY_LEFT]) {
         nx = cx - ddg ->speed;
         ny = cy;
-        if (!col_wall(nx - ddg_size / 2, ny, m)) {
-            if (col_marsh(nx, ny, m)) ddg->x -= ddg->speed/2;
+        if (!col_wall(nx - ddg_size / 2, ny, s->map)) {
+            if (col_marsh(nx, ny, s->map)) ddg->x -= ddg->speed/2;
             else ddg->x -= ddg->speed;;
         }
         ddg->w = 100;
@@ -65,8 +61,8 @@ void update_ddg(DDG* ddg, Map m) {
     if (key[ALLEGRO_KEY_UP]) {
         nx = cx;
         ny = cy - ddg ->speed;
-        if (!col_wall(nx, ny- ddg_size / 2, m)) {
-            if (col_marsh(nx, ny, m)) ddg->y -= ddg->speed / 2;
+        if (!col_wall(nx, ny- ddg_size / 2, s->map)) {
+            if (col_marsh(nx, ny, s->map)) ddg->y -= ddg->speed / 2;
             else ddg->y -= ddg->speed;
         }
         ddg->w = 300;
@@ -74,23 +70,19 @@ void update_ddg(DDG* ddg, Map m) {
     if (key[ALLEGRO_KEY_DOWN]) {
         nx = cx;
         ny = cy + ddg ->speed;
-        if (!col_wall(nx, ny+ ddg_size / 2, m)) {
-            if(col_marsh(nx, ny, m)) ddg ->y += ddg->speed/2;
+        if (!col_wall(nx, ny+ ddg_size / 2, s->map)) {
+            if(col_marsh(nx, ny, s->map)) ddg ->y += ddg->speed/2;
             else ddg->y += ddg->speed;
         }
         ddg->w = 0;
     }
 }
 
-void render_ddg(DDG* ddg, Stage* s) {
-    /*al_draw_scaled_bitmap(ddg->img, ddg->w, 0, 100, 100,
-        ddg->x, ddg->y, ddg_size, ddg_size, 0);*/
-        //printf("ddg->hit_time : %d\n", ddg->hit_time);
+void render_ddg(DDG* ddg) {
     int draw = 1;
 
     if (play_time - ddg->hit_time < 60) {
         if ((play_time / 10) % 2 != 0) {
-            //printf("no_draw\n");
             draw = 0;  // 이 프레임은 안 그림
         }
     }
@@ -118,7 +110,7 @@ void update_ddg_after_attack(DDG* ddg, Stage * s, User * user){
         //이미지도 스테이지마다 다르니 s에 저장해두면 좋을듯
     }else   {    // 로그인 페이지로 가면됨
         if (s-> stage > 1) save_User(user);
-        mode = 0;
+        mode = MODE_FIRST_PAGE;
     }
     ddg->hit_time = play_time;
 }

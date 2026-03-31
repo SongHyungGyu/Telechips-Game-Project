@@ -13,13 +13,13 @@ static void initStage2Map(Map* m) {
             m->tiles[i][j].w = TILE_SIZE;
             m->tiles[i][j].h = TILE_SIZE;
             if (i == 0 || i == tile_h_num - 1 || j == 0 || j == tile_w_num - 1) {
-                m->tiles[i][j].type = WALL; // ��
+                m->tiles[i][j].type = WALL;
             }
             else if (j == 5 || j == 6 || j == 13 || j == 14) {
-                m->tiles[i][j].type = MARSH; // ������
+                m->tiles[i][j].type = MARSH;
             }
             else {
-                m->tiles[i][j].type = ROAD; // ��
+                m->tiles[i][j].type = ROAD;
             }
         }
     }
@@ -70,7 +70,7 @@ static void update_stage2_by_time(DDG * ddg, Stage* s, User * user) {
     if(col_worms(ddg, s->wormNum, s->worms)){   
         update_ddg_after_attack(ddg, s, user);
     }
-    update_ddg(ddg, s->map);
+    update_ddg(ddg, s);
 }
 
 static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
@@ -90,6 +90,7 @@ static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
     }
     render_play_time(sys);
     render_h(sys, play_time);
+    render_hud(ddg);
     al_flip_display();
 }
 
@@ -101,26 +102,17 @@ void run_stage2(User* user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev){
         (ddg->y > ay2 - (TILE_SIZE / 2)) && (ddg->y < ay2 + (TILE_SIZE / 2)) &&
         (s->flower_cnt == 0)) {
         set_User(user, NULL, 2, play_time / 60);
-        mode = 6;
+        mode = MODE_SET_STAGE3;
         return;
     }
 
-    bool redraw = true;
+    bool redraw = false;
 
       //타이머 이벤트인 경우에 실행
     if (ev.type == ALLEGRO_EVENT_TIMER) { 
         update_stage2_by_time(ddg , s, user);
         redraw = true;
 		play_time++;
-    }
-
-
-    if (ev.type != ALLEGRO_EVENT_TIMER) {
-
-        //update_stage2(ddg, s->map);
-
-        //redraw = true;
-
     }
 
     if (redraw) {

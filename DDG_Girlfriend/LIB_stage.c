@@ -39,9 +39,9 @@ void init_stage(Stage* s) {
 
     s->mapCache = al_create_bitmap(tile_w_num * TILE_SIZE, tile_h_num * TILE_SIZE);
 
-    al_set_target_bitmap(s->mapCache);  // "����"�� �׸��� ���
-    renderMap(s);                     // 300�� �׸��� (�� 1ȸ)
-    al_set_target_backbuffer(al_get_current_display()); // �ٽ� ȭ�鿡 �׸��� ���
+    al_set_target_bitmap(s->mapCache);
+    renderMap(s);
+    al_set_target_backbuffer(al_get_current_display());
 }
 
 void set_stage1(DDG* ddg) {
@@ -55,7 +55,7 @@ void set_stage1(DDG* ddg) {
     ddg->life = 3;
     play_time = 0;
     ddg->hit_time = 0;
-    mode = 1;
+    mode = MODE_STAGE1;
 }
 void set_stage2(DDG* ddg, Stage* s) {
     ddg->x = sx2;
@@ -65,7 +65,7 @@ void set_stage2(DDG* ddg, Stage* s) {
         s->flowers[i]->used = 0;
     }
     s->flower_cnt = FLOWER_TOT2;
-    mode = 2;
+    mode = MODE_STAGE2;
 }
 void set_stage3(DDG* ddg, Stage* s) {
     ddg->x = sx3;
@@ -75,7 +75,7 @@ void set_stage3(DDG* ddg, Stage* s) {
         s->flowers[i]->used = 0;
     }
     s->flower_cnt = FLOWER_TOT3;
-    mode = 3;
+    mode = MODE_STAGE3;
 }
 
 void render_play_time(SYSTEM* sys) {
@@ -83,7 +83,6 @@ void render_play_time(SYSTEM* sys) {
     int seconds = play_time / 60;
     int minutes = seconds / 60;
     sprintf(c_play_time, "%02d:%02d", minutes, seconds % 60);
-	//printf("%s\n", c_play_time);
 
     al_draw_text(sys->font, al_map_rgb(255, 255, 255), DISP_W / 2, TILE_SIZE/2,
         ALLEGRO_ALIGN_CENTER, c_play_time);

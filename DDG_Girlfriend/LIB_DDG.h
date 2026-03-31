@@ -1,6 +1,6 @@
 #ifndef __LIB_DDG__
 #define __LIB_DDG__
-// ����
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,6 +13,17 @@
 #define DISP_W 1200
 #define DISP_H 900
 #define PATH "resource/img/"
+
+typedef enum {
+    MODE_FIRST_PAGE = 0,
+    MODE_STAGE1,
+    MODE_STAGE2,
+    MODE_STAGE3,
+    MODE_SET_STAGE1,
+    MODE_SET_STAGE2,
+    MODE_SET_STAGE3,
+    MODE_COUNT   // 총 개수 (배열 크기 관리용)
+} GameMode;
 
 int mode;
 int play_time;
@@ -32,10 +43,8 @@ typedef struct SYSTEM {
 SYSTEM* init_game_system();
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 
-// Ű����
 #define KEY_SEEN     1
 #define KEY_DOWN     2
-unsigned char key[ALLEGRO_KEY_MAX];
 void keyboard_init();
 void keyboard_update(ALLEGRO_EVENT* event);
 #endif

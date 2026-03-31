@@ -6,7 +6,7 @@
 #include "for_user.h"
 
 DDG* init_ddg();
-void update_ddg(DDG* ddg, Map m);
+void update_ddg(DDG* ddg, Stage* s);
 void render_ddg(DDG* ddg);
 bool col_wall(int nx, int ny, Map m);
 bool col_marsh(int nx, int ny, Map m);
