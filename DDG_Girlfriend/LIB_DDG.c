@@ -15,9 +15,9 @@ void init_system()
     must_init(al_init_image_addon(), "image addon");
     must_init(al_init_font_addon(), "font addon");
     must_init(al_init_ttf_addon(), "ttf addon");
-    must_init(al_install_audio(), "audio");
-    must_init(al_init_acodec_addon(), "audio codecs");
-    must_init(al_reserve_samples(16), "reserve samples");;
+    //must_init(al_install_audio(), "audio");
+    //must_init(al_init_acodec_addon(), "audio codecs");
+    //must_init(al_reserve_samples(16), "reserve samples");;
 }
 
 SYSTEM* init_game_system() {

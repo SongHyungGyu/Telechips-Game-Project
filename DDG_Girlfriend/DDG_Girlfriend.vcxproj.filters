@@ -37,6 +37,7 @@
     <ClCompile Include="stage3.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="for_user.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="for_ddg.h">
@@ -63,6 +64,7 @@
     <ClInclude Include="LIB_stage.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="for_user.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\img\ddg.png">
