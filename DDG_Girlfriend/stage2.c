@@ -89,7 +89,7 @@ static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
         render_worm(s->worms[i]);
     }
     render_play_time(sys);
-
+    render_h(sys, play_time);
     al_flip_display();
 }
 

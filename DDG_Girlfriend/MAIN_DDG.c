@@ -23,6 +23,13 @@ int main()
     while (1) {
         al_wait_for_event(sys->queue, &ev);
         keyboard_update(&ev);
+
+        if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+            if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+                mode = 0;
+            }
+        }
+
         if(mode == 0) run_first_page(user, sys, ev);
         if (mode == 1) run_stage1(user, ddg, stage1, sys, ev);
         if (mode == 2) run_stage2(user, ddg, stage2, sys, ev);
