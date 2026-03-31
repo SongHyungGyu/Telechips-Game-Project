@@ -46,8 +46,16 @@ typedef struct {
 	int speed;
 	int w;
 	int h;
+	
 	ALLEGRO_BITMAP* heart_img;
 }DDG;
+
+typedef struct {
+	int x;
+	int y;
+	int speed;
+	ALLEGRO_BITMAP* img;
+} Chaser;
 
 
 //shot의 출발 지점
@@ -119,7 +127,10 @@ typedef struct {
 	worm** worms; 
 	flower** flowers;
 	int flower_cnt;
+
+	Chaser* chaser;
 	ALLEGRO_BITMAP* ddg_girl;
+
 } Stage;
 
 void renderMap(Stage* s);

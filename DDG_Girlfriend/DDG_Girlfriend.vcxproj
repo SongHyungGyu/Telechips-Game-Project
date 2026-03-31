@@ -173,6 +173,7 @@
     <Image Include="resource\img\ddg_girl.png" />
     <Image Include="resource\img\ddg.png" />
     <Image Include="resource\img\first_page.png" />
+    <Image Include="resource\img\fox.png" />
     <Image Include="resource\img\heart.png" />
     <Image Include="resource\img\flower.png" />
     <Image Include="resource\img\login_page.png" />

@@ -30,6 +30,8 @@ Stage* init_stage2() {
     Stage* s = (Stage*)malloc(sizeof(Stage));
     s->stage = 2;
     s->initMap = initStage2Map;
+
+    s->chaser = init_chaser(800, 800);
     //4마리의 지렁이 초기화
     s->wormNum = 4;
 	s->worms = (worm**)malloc(sizeof(worm*) * s->wormNum);
@@ -70,6 +72,14 @@ static void update_stage2_by_time(DDG * ddg, Stage* s, User * user) {
     if(col_worms(ddg, s->wormNum, s->worms)){   
         update_ddg_after_attack(ddg, s, user);
     }
+
+    if (check_collision_with_chaser(ddg, s->chaser)) {
+        update_ddg_after_attack(ddg, s, user);
+        // 플레이어가 시작점으로 갔으니 추적자도 원래 위치로 돌려보냄
+        s->chaser->x = 800;
+        s->chaser->y = 800;
+    }
+    update_chaser(s->chaser, ddg, s->map);
     update_ddg(ddg, s->map);
 }
 
@@ -88,6 +98,7 @@ static void render_stage2(Stage* s, DDG * ddg, SYSTEM* sys) {
     for (int i = 0; i < s->wormNum; i++) {
         render_worm(s->worms[i]);
     }
+    render_chaser(s->chaser);
     render_play_time(sys);
     render_hud(sys, play_time);
 

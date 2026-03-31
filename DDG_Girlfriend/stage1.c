@@ -3,6 +3,7 @@
 #include "for_ddg.h"
 #include "for_worm.h"
 #include "for_user.h"
+#include <math.h>
 
 static void initStage1Map(Map* m) {
     for (int i = 0; i < tile_h_num; i++) {
@@ -27,6 +28,8 @@ Stage* init_stage1() {
 	s->stage = 1;
     //각 stage마다 맵 배열 다르고 시작 위치 달라서 얘네만 여기서 일케 함
     s->initMap = initStage1Map;
+
+    s->chaser = init_chaser(800, 800);
 
     //4마리의 지렁이 초기화
     s->wormNum = 4;
@@ -65,11 +68,15 @@ static void render_stage1(Stage* s, DDG * ddg, SYSTEM* sys) {
     for (int i = 0; i < s->wormNum; i++) {
         render_worm(s->worms[i]);
     }
+
+    render_chaser(s->chaser);
     render_play_time(sys);
     render_hud(sys, play_time);
    
     al_flip_display();
 }
+
+
 
 static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
     for (int i = 0; i < s->wormNum; i++) {
@@ -78,6 +85,15 @@ static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
     if(col_worms(ddg, s->wormNum, s->worms)){   
         update_ddg_after_attack(ddg, s, user);
     }
+    
+    
+    if (check_collision_with_chaser(ddg, s->chaser)) {
+        update_ddg_after_attack(ddg, s, user);
+        // 플레이어가 시작점으로 갔으니 추적자도 원래 위치로 돌려보냄
+        s->chaser->x = 800;
+        s->chaser->y = 800;
+    }
+    update_chaser(s->chaser, ddg, s->map);
     update_ddg(ddg, s->map);
 }
 
