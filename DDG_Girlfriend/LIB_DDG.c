@@ -67,6 +67,33 @@ ALLEGRO_SAMPLE* load_aud(const char* path)
     return aud;
 }
 
+
+ALLEGRO_AUDIO_STREAM* load_stream(const char* path)
+{
+    ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(path, 4, 2048);
+    //printf("%
+    // s\n", path);
+    //must_init(aud, "audio");
+    return stream;
+}
+
+void play_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    if (!stream) return;
+    al_set_audio_stream_playmode(stream, ALLEGRO_PLAYMODE_LOOP);
+    al_seek_audio_stream_secs(stream, 0.0);
+    al_attach_audio_stream_to_mixer(stream, al_get_default_mixer());
+}
+
+void detach_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    al_detach_audio_stream(stream);
+}
+void destroy_stream(ALLEGRO_AUDIO_STREAM* stream)
+{
+    al_destroy_audio_stream(stream);
+}
+
 void shutdown(ALLEGRO_BITMAP* img, ALLEGRO_DISPLAY* disp)
 {
     al_destroy_bitmap(img);

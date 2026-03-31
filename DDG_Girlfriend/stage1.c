@@ -46,6 +46,9 @@ Stage* init_stage1() {
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");
 
+    s->bgm = load_stream(AUDIOPATH "firstBGM.mp3");
+    if (!s->bgm) printf("firstBGM load failed\n");
+
     //나머지 초기화는 똑같기 때문에 공용함수 사용
     init_stage(s);
     return s;
@@ -76,7 +79,7 @@ static void update_stage1_by_time(DDG* ddg, Stage* s, User* user) {
     }
     if(col_worms(ddg, s->wormNum, s->worms)){   
         if (ddg->wormSound) {
-            al_play_sample(ddg->wormSound, 0.3, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(ddg->wormSound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
         }
         update_ddg_after_attack(ddg, s, user);
     }
@@ -89,6 +92,7 @@ void run_stage1(User * user, DDG* ddg, Stage * s, SYSTEM* sys, ALLEGRO_EVENT ev)
     if ((ddg->x > ax1 - (TILE_SIZE/2)) && (ddg->x < ax1 + (TILE_SIZE / 2)) &&
         (ddg->y > ay1 - (TILE_SIZE / 2)) && (ddg->y < ay1 + (TILE_SIZE / 2))) {
         set_User(user, NULL, 1, play_time / 60);
+        if(s ->bgm) detach_stream(s->bgm);
         mode = 5;
         return;
     }

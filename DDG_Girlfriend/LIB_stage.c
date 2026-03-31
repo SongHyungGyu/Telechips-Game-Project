@@ -44,7 +44,8 @@ void init_stage(Stage* s) {
     al_set_target_backbuffer(al_get_current_display()); // �ٽ� ȭ�鿡 �׸��� ���
 }
 
-void set_stage1(DDG* ddg) {
+void set_stage1(DDG* ddg, Stage* s) {
+	
     //각 stage 요소들도 초기화
     //매개변수로 Stage * s받으면 될듯
     //지렁이들...꽃...대포지렁이...
@@ -55,6 +56,7 @@ void set_stage1(DDG* ddg) {
     ddg->life = 3;
     play_time = 0;
     ddg->hit_time = 0;
+    play_stream(s->bgm);
     mode = 1;
 }
 void set_stage2(DDG* ddg, Stage* s) {
@@ -65,6 +67,7 @@ void set_stage2(DDG* ddg, Stage* s) {
         s->flowers[i]->used = 0;
     }
     s->flower_cnt = FLOWER_TOT2;
+    play_stream(s->bgm);
     mode = 2;
 }
 void set_stage3(DDG* ddg, Stage* s) {
@@ -75,6 +78,7 @@ void set_stage3(DDG* ddg, Stage* s) {
         s->flowers[i]->used = 0;
     }
     s->flower_cnt = FLOWER_TOT3;
+    play_stream(s->bgm);
     mode = 3;
 }
 

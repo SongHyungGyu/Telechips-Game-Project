@@ -34,7 +34,7 @@ int main()
         if (mode == 1) run_stage1(user, ddg, stage1, sys, ev);
         if (mode == 2) run_stage2(user, ddg, stage2, sys, ev);
         if (mode == 3) run_stage3(user, ddg, stage3, sys, ev);
-        if (mode == 4) set_stage1(ddg);
+        if (mode == 4) set_stage1(ddg, stage1);
         if (mode == 5) set_stage2(ddg, stage2);
         if (mode == 6) set_stage3(ddg, stage3);
     }
