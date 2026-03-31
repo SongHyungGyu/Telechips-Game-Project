@@ -142,6 +142,7 @@ void set_stage3(DDG* ddg, Stage* s);
 
 bool col_c_worm_shots(DDG* ddg, Stage* s);
 
+
 void render_play_time(SYSTEM* sys);
 
 void render_h(SYSTEM* sys, int play_time);

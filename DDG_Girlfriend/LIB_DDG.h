@@ -28,6 +28,7 @@ typedef enum {
     MODE_SET_STAGE1,
     MODE_SET_STAGE2,
     MODE_SET_STAGE3,
+    MODE_EXPLAIN,
     MODE_COUNT   // 총 개수 (배열 크기 관리용)
 } GameMode;
 

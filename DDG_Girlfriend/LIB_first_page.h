@@ -6,5 +6,6 @@
 
 void draw_scaled_crop(ALLEGRO_BITMAP* image);
 void run_first_page(User* user, SYSTEM* sys, ALLEGRO_EVENT ev);
+void run_explanation_page(ALLEGRO_EVENT ev);
 
 #endif

@@ -38,6 +38,7 @@ int main()
         if (mode == MODE_SET_STAGE1) set_stage1(ddg);
         if (mode == MODE_SET_STAGE2) set_stage2(ddg, stage2);
         if (mode == MODE_SET_STAGE3) set_stage3(ddg, stage3);
+        if (mode == MODE_EXPLAIN) run_explanation_page(ev);
     }
     return 0;
 }
