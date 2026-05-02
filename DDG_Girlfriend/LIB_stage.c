@@ -2,6 +2,7 @@
 #include "LIB_stage.h"
 #include "for_flower.h"
 #include "for_ddg.h"
+#include "for_worm.h"
 
 //디버깅용
 static void printMap(Stage* s) {
@@ -113,7 +114,7 @@ void render_ending()
     ALLEGRO_BITMAP* ending_img = al_load_bitmap("resource/img/ending.png");
     if (!ending_img) return;
 
-    ALLEGRO_SAMPLE* ending_bgm = al_load_sample("resource/aud/ending.mp3");
+    ALLEGRO_SAMPLE* ending_bgm = al_load_sample("resource/aud/ending.ogg");
     if (!ending_bgm) {
         al_destroy_bitmap(ending_img);
         return;

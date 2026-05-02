@@ -12,7 +12,7 @@ void update_chaser(Chaser* chaser, DDG* ddg, Map m);
 
 void destroy_ddg(DDG* ddg);
 void destroy_chaser(Chaser* chaser);
-
+void render_hud(DDG* ddg);
 void render_ddg(DDG* ddg);
 void render_chaser(Chaser* chaser);
 bool check_collision_with_chaser(DDG* ddg, Chaser* chaser);

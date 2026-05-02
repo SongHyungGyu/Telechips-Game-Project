@@ -61,7 +61,7 @@ Stage* init_stage2() {
 
     s->flower_cnt = FLOWER_TOT2;
 
-    s->bgm = load_stream(AUDIOPATH "secondBGM.mp3");
+    s->bgm = load_stream(AUDIOPATH "secondBGM.ogg");
     if (!s->bgm) printf("secondBGM load failed\n");
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");

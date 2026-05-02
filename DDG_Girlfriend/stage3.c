@@ -73,7 +73,7 @@ Stage* init_stage3() {
     s->sx = sx3;
     s->sy = sy3;
 
-    s->bgm = load_stream(AUDIOPATH "thirdBGM.mp3");
+    s->bgm = load_stream(AUDIOPATH "thirdBGM.ogg");
     if (!s->bgm) printf("thirdBGM load failed\n");
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");

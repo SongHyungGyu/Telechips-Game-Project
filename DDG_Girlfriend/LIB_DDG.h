@@ -17,8 +17,8 @@
 #define DISP_W 1200
 #define DISP_H 900
 
-#define AUDIOPATH "resource/aud/"
-#define PATH "resource/img/"
+#define AUDIOPATH "./resource/aud/"
+#define PATH "./resource/img/"
 
 typedef enum {
     MODE_FIRST_PAGE = 0,

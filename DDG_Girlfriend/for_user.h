@@ -4,12 +4,12 @@
 
 typedef struct {
 	char name[21];
-	int stage; //±ü ½ºÅ×ÀÌÁö
-	int time; //ÇØ´ç ½ºÅ×ÀÌÁö¸¦ ²£À» ¶§ÀÇ ½Ã°£
+	int stage; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int time; //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 }User;
 User* init_User();
 void set_User(User* u, char* name, int stage, int time);
 void draw_top_Users(ALLEGRO_FONT* font);
 void destroy_User(User* u);
-
+void save_User(User* u);
 #endif

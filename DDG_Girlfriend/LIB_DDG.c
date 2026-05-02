@@ -1,4 +1,7 @@
 #include "LIB_DDG.h"
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 
 void must_init(bool test, const char* description)
@@ -65,12 +68,36 @@ ALLEGRO_SAMPLE* load_aud(const char* path)
 }
 
 
+// ALLEGRO_AUDIO_STREAM* load_stream(const char* path)
+// {
+//     ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(path, 4, 2048);
+//     //printf("%
+//     // s\n", path);
+//     //must_init(aud, "audio");
+//     return stream;
+// }
+
+
 ALLEGRO_AUDIO_STREAM* load_stream(const char* path)
 {
+    printf("[TRY LOAD STREAM] %s\n", path);
+
+    FILE* fp = fopen(path, "rb");
+    if (fp == NULL) {
+        printf("[FILE NOT FOUND] %s\n", path);
+        printf("[errno] %s\n", strerror(errno));
+        return NULL;
+    }
+    fclose(fp);
+
     ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(path, 4, 2048);
-    //printf("%
-    // s\n", path);
-    //must_init(aud, "audio");
+
+    if (stream == NULL) {
+        printf("[AUDIO STREAM LOAD FAIL] %s\n", path);
+        return NULL;
+    }
+
+    printf("[AUDIO STREAM LOAD OK] %s\n", path);
     return stream;
 }
 

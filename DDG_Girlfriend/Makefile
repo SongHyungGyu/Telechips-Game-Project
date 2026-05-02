@@ -10,20 +10,21 @@ SRC = \
 	LIB_stage.c \
 	for_ddg.c \
 	for_worm.c \
+	for_user.c \
 	stage1.c \
 	stage2.c \
 	stage3.c \
 	LIB_c_worm.c \
 	LIB_shot.c \
-	for_flower.c \
-	LIB_hud.c
+	for_flower.c 
 
 OBJ = $(SRC:.c=.o)
 
-ALLEGRO_CFLAGS = $(shell pkg-config --cflags allegro-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5)
-ALLEGRO_LIBS = $(shell pkg-config --libs allegro-5 allegro_main-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5)
+# ALLEGRO_CFLAGS = $(shell pkg-config --cflags allegro-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5)
+# ALLEGRO_LIBS = $(shell pkg-config --libs allegro-5 allegro_main-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5)
 
-
+ALLEGRO_CFLAGS = $(shell pkg-config --cflags allegro-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5)
+ALLEGRO_LIBS = $(shell pkg-config --libs allegro-5 allegro_main-5 allegro_image-5 allegro_primitives-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5)
 all: $(TARGET)
 
 $(TARGET): $(OBJ)

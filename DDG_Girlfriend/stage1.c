@@ -49,7 +49,7 @@ Stage* init_stage1() {
 
     s->ddg_girl = load_image(PATH "ddg_girl.png");
 
-    s->bgm = load_stream(AUDIOPATH "firstBGM.mp3");
+    s->bgm = load_stream(AUDIOPATH "firstBGM.ogg");
     if (!s->bgm) printf("firstBGM load failed\n");
 
     //나머지 초기화는 똑같기 때문에 공용함수 사용
